@@ -1,12 +1,6 @@
 ﻿# DPCourseDesign
 2017.10. Tongji University Course "Design Patterns" final project 
 
-##File Hierachy
->**diagraphs**
->>usecase_tool *Issane* *20171014* *-*
->**documents**
->**images**
-
 ##Class Diagram
 
 ##Usecase Diagrams
