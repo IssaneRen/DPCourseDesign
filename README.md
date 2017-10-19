@@ -6,4 +6,4 @@
 2017/10/14 Add a sample of one Design Pattern 'Portotype'
 
 
-yuka add it!
+There is still some time left. Let's check and shout out!
