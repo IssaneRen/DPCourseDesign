@@ -66,6 +66,7 @@
   <ItemGroup>
     <ClInclude Include="Abstract.h" />
     <ClInclude Include="AbstractType.h" />
+    <ClInclude Include="Animal.h" />
     <ClInclude Include="Atmosphere.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Facility.h" />
@@ -74,6 +75,7 @@
     <ClInclude Include="Time.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animal.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Facility.cpp" />
     <ClCompile Include="Living.cpp" />
