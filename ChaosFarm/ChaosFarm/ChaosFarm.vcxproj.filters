@@ -39,6 +39,9 @@
     <ClInclude Include="Time.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Animal.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
@@ -60,6 +63,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Time.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Animal.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

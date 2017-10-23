@@ -6,3 +6,8 @@ Living::Living(vector<Abstract*>* abs_list, int size, int max_age, string* name,
 	name_ = new string(name->c_str());
 
 }
+
+
+void Living::set_name(string* new_name){
+	*name_ = (*new_name);
+}
