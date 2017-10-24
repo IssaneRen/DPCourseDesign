@@ -8,9 +8,9 @@ public:
 
 	~Facility(){}
 
-	virtual void fix(){ durability_++; }
+	virtual void fix(int n = 1){ durability_ += n; }
 
-	virtual void loss(){ if (durability_ > 0)durability_--; }
+	virtual void loss(int n = 1){ if (durability_ >= n)durability_ -= n; }
 
 	virtual void time_pass_by() = 0;
 

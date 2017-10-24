@@ -17,8 +17,6 @@ public:
 
 	bool remove_observer(Entity *observer);
 
-	bool remove_observer(int id);
-
 
 protected:
 	vector<Entity*>* observer_pool_;

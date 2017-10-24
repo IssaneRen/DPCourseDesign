@@ -11,17 +11,9 @@ public:
 
 	~Object(){}
 
-	int get_id(){
-		return id_;
-	}
-
-	virtual void report();
 
 protected:
 
-	int id_;
-
-	static int counter_for_id_;
 };
 
 

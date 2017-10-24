@@ -45,7 +45,7 @@ protected:
 	int max_age_;
 	float grow_speed_;						//由空气气味浓度影响，是一个系数。在grow()中被使用
 	float health_gradient_;					//健康值变化率，由空气微生物浓度影响，是一个系数。在time_pass_by()中被使用，影响健康度变化
-	int health_;							 //积累到一定程度后将会死亡。
+	int health_;							 //归0后死亡。
 	string* name_;
 	SEX sex_;
 };
