@@ -19,9 +19,6 @@ public:
 
 	virtual void update(Abstract* abs, AbstractType type) = 0;
 
-	virtual void report(){
-		cout << "Entity id: " << id_ << ", size: " << size_ << "." << endl;
-	}
 protected:
 	int size_;
 };

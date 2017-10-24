@@ -70,6 +70,7 @@
     <ClInclude Include="Atmosphere.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Facility.h" />
+    <ClInclude Include="Fence.h" />
     <ClInclude Include="Living.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Time.h" />
@@ -78,6 +79,7 @@
     <ClCompile Include="Animal.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Facility.cpp" />
+    <ClCompile Include="Fence.cpp" />
     <ClCompile Include="Living.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object.cpp" />
