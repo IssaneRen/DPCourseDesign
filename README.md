@@ -3,7 +3,7 @@
 
 #Class Diagram
 1.tool
-![class_tool](diagram/class_tool.png)
+![class_tool](diagrams/class_tool.png)
 #Usecase Diagrams
 1.tool
 ![usecase_tool](diagrams/usecase_tool.png)
