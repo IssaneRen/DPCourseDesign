@@ -38,6 +38,6 @@
 *.vcxproj
 *.filters
 *.1.tlog
-Debug/*
+Debug/
 .vs/*
 v15/*
