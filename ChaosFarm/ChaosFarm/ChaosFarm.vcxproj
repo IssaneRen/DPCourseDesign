@@ -70,6 +70,7 @@
     <ClInclude Include="Atmosphere.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Facility.h" />
+    <ClInclude Include="FarmProduct.h" />
     <ClInclude Include="Fence.h" />
     <ClInclude Include="Living.h" />
     <ClInclude Include="Object.h" />
