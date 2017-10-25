@@ -1,7 +1,7 @@
 #include "Animal.h"
 
 
-Animal::Animal(vector<Abstract*>* abs_list, int size, int max_age, string* name, SEX sex)
+Animal::Animal(vector<Abstract*>* abs_list, int size, int max_age, const char* name, SEX sex)
 	:Living(abs_list, size, max_age, name, sex), hunger_(0), thirsty_(0){
 
 }
@@ -19,7 +19,7 @@ bool Animal::eat(Entity* food){
 
 bool Animal::drink(){
 	if (thirsty_ <= 0){
-		cout << name_ << "is not hungry, and don't want to drink." << endl;
+		cout << name_ << "is not thirsty, and don't want to drink." << endl;
 		return false;
 	}
 	thirsty_--;

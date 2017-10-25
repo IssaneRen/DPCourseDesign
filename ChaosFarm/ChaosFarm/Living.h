@@ -15,7 +15,7 @@ enum SEX{
 
 class Living :public Entity{
 public:
-	Living(vector<Abstract*>* abs_list, int size, int max_age, string* name, SEX sex);
+	Living(vector<Abstract*>* abs_list, int size, int max_age,const char* name, SEX sex);
 
 	~Living(){ delete name_; }
 
@@ -29,9 +29,9 @@ public:
 
 	virtual void grow() = 0;															//生长函数。随时间增长年龄
 
-	string* get_name(){ return name_; }									//返回存放名字的字符串
+	const char* get_name(){ return name_->c_str(); }									//返回存放名字的字符串
 
-	void set_name(string* new_name);											 //更改生物名字
+	void set_name(const char* new_name);											 //更改生物名字
 
 	virtual void time_pass_by() = 0;
 
@@ -39,7 +39,7 @@ public:
 
 	virtual void update(Abstract* abs, AbstractType type) = 0;
 
-
+	void set_health_gradient(float new_gradient){ health_gradient_ = new_gradient; }
 protected:
 	int age_;
 	int max_age_;

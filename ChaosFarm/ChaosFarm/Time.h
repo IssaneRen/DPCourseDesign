@@ -32,7 +32,7 @@ public:
 private:
 	Time(int year = 0, int month = 0, int day = 0, int hour = 0);
 
-	~Time();
+	~Time(){ if (time_instance_)delete time_instance_; }
 
 	int year_;
 	int month_;
