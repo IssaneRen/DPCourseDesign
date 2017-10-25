@@ -31,6 +31,13 @@
 *.out
 *.app
 
-#Visual Studio Logs
+#Visual Studio
+*.suo
+*.sdf
+*.sln
+*.vcxproj
+*.filters
 *.1.tlog
-*.vs
+Debug/*
+.vs/*
+v15/*
