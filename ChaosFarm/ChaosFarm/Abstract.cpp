@@ -19,3 +19,4 @@ void Abstract::notify(){
 		(*it)->update(this, AbstractType::ERROR);
 	}
 }
+

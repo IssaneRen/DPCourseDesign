@@ -74,5 +74,8 @@
     <ClCompile Include="Fence.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Atmosphere.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

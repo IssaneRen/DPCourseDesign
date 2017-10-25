@@ -77,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animal.cpp" />
+    <ClCompile Include="Atmosphere.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Facility.cpp" />
     <ClCompile Include="Fence.cpp" />
