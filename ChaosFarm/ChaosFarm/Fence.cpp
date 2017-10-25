@@ -49,7 +49,7 @@ bool Fence::let_out(Animal* animal){
 }
 
 
-bool Fence::let_out(string* animal_name){
+bool Fence::let_out(const char* animal_name){
 	for (FenceIterator it = get_start(); it != get_end(); ++it){
 		if ((*it).get_name() == animal_name){
 			remove_at(it);
