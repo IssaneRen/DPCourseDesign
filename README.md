@@ -9,7 +9,7 @@
 1.tool
 ![usecase_tool](diagrams/usecase_tool.png)
 
-### README.md file update log
+# README.md file update log
 2017/10/14 Add a sample of one Design Pattern 'Portotype'
 2017/10/16 Add a usecase diagram of 'tool' class
 2017/10/25 Add class diagram of 'tool' class
