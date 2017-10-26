@@ -25,10 +25,11 @@ public:
 	virtual void time_pass_by();
 	virtual void when_atmosphere_changed() = 0;
 	virtual void update(Abstract* abs, AbstractType type);
-	virtual Living* mate_with(Living* another) = 0;
+	virtual Living* mate_with(vector<Abstract*>* abs_list,Living* another) = 0;
 	virtual void breath(Atmosphere* atm);
 	virtual void grow() = 0;
 	virtual void cry(){ cout << "cry!!" << endl; }
+	virtual void die(){ cout << "die!!" << endl; }
 protected:
 	Insect(vector<Abstract*>* abs_list, int size, int max_age, SEX sex) :Animal(abs_list, size, max_age, sex) {}
 	virtual Insect* clone(vector<Abstract*>* abs_list, int size, int max_age, SEX sex) = 0;
