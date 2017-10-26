@@ -8,13 +8,13 @@ public:
 	virtual void when_atmosphere_changed();
 	virtual Living* mate_with(Living* another);
 	virtual void grow();
-	virtual Insect* clone(vector<Abstract*>* abs_list, int size, int max_age, string* name, SEX sex);
+	virtual Insect* clone(vector<Abstract*>* abs_list, int size, int max_age, SEX sex);
 protected:
-	Bee(vector<Abstract*>* abs_list, int size, int max_age, string* name, SEX sex, int dummy) :Insect(abs_list, size, max_age, name, sex) {}
+	Bee(vector<Abstract*>* abs_list, int size, int max_age, SEX sex, int dummy) :Insect(abs_list, size, max_age, sex) {}
 private:
 	static Bee bee_;
 	static int reproduction_rate;
-	Bee() :Insect(NULL, 0, 0, NULL, NON) { addPrototype(this); }
+	Bee() :Insect(NULL, 0, 0, NON) { addPrototype(this); }
 };
 Bee Bee::bee_;
 int Bee::reproduction_rate = 1;
@@ -24,9 +24,9 @@ string* Bee::get_species()
 	return new string("bee");
 }
 
-Insect * Bee::clone(vector<Abstract*>* abs_list, int size, int max_age, string* name, SEX sex)
+Insect * Bee::clone(vector<Abstract*>* abs_list, int size, int max_age, SEX sex)
 {
-	return new Bee(abs_list, size, max_age, name, sex, 1);
+	return new Bee(abs_list, size, max_age, sex, 1);
 }
 void Bee::when_atmosphere_changed()
 {

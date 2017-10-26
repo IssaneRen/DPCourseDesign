@@ -14,7 +14,7 @@ public:
 	virtual bool is_empty();
 	virtual FarmIterator* begin();
 	virtual FarmIterator* end();
-	void hatch(int number, vector<Abstract*>* abs_list, int size, int max_age, string* name, SEX sex);
+	void hatch(int number, vector<Abstract*>* abs_list, int size, int max_age, SEX sex);
 	virtual void add(Object* new_element) {};
 private:
 	string* species_;
@@ -43,11 +43,11 @@ FarmIterator* InsectGroup::end()
 	for (; temp->get_next() != NULL; temp = temp->get_next());
 	return new InsectIterator(temp);
 }
-void InsectGroup::hatch(int number, vector<Abstract*>* abs_list, int size, int max_age, string* name, SEX sex)
+void InsectGroup::hatch(int number, vector<Abstract*>* abs_list, int size, int max_age, SEX sex)
 {
 	for (int i = 0; i < number; i++)
 	{
-		Insect*temp = Insect::find_and_clone(abs_list, size, max_age, name, sex, species_);
+		Insect*temp = Insect::find_and_clone(abs_list, size, max_age, sex, species_);
 		Node* new_element = new Node(temp);
 		list_.add(new_element);
 	}
