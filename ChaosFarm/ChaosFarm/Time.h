@@ -23,8 +23,11 @@ public:
 	void hour_pass(int n = 1){
 		hour_ += n;
 		time_overflow_check(); 
+		d_hour_ = n;
 		notify();
 	}
+
+	int get_d_hour(){ return d_hour_; }
 
 	virtual void report(){
 		cout << "Time: " << year_ << "," << month_ << "," << day_ << "---- " << hour_ << endl;
@@ -39,6 +42,8 @@ private:
 	int month_;
 	int day_;
 	int hour_;
+
+	int d_hour_;
 
 	static Time* time_instance_;
 
