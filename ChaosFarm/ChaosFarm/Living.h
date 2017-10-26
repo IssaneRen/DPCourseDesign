@@ -9,23 +9,24 @@ enum SEX{
 	NON = 0,
 	MALE = 1,
 	FEMALE = 2,
-	HERMAPHRODITISM = 3,		//´ÆĞÛÍ¬Ìå
+	HERMAPHRODITISM = 3,		//é›Œé›„åŒä½“
 
 };
 
 class Living :public Entity{
 public:
+
 	Living(vector<Abstract*>* abs_list, int size, int max_age, SEX sex);
 
 	~Living(){}
 
 	virtual void die() = 0;
 
-	virtual Living* mate_with(vector<Abstract*>* abs_list, Living* another) = 0;								 //½»Åäº¯Êı£¬ÓëÁíÒ»¸öÉúÎï½øĞĞ½»Åä£¬·µ»ØËùÉú×Ó´ú¸öÌåµÄÖ¸Õë
+	virtual Living* mate_with(vector<Abstract*>* abs_list, Living* another) = 0;								 //äº¤é…å‡½æ•°ï¼Œä¸å¦ä¸€ä¸ªç”Ÿç‰©è¿›è¡Œäº¤é…ï¼Œè¿”å›æ‰€ç”Ÿå­ä»£ä¸ªä½“çš„æŒ‡é’ˆ
 
-	virtual void breath(Atmosphere* atm) = 0;										 //ºôÎüº¯Êı¡£µ÷ÓÃ¸Ä±äatm¶şÑõ»¯Ì¼ºÍÑõÆøÅ¨¶ÈµÄº¯Êı
+	virtual void breath(Atmosphere* atm) = 0;										 //å‘¼å¸å‡½æ•°ã€‚è°ƒç”¨æ”¹å˜atmäºŒæ°§åŒ–ç¢³å’Œæ°§æ°”æµ“åº¦çš„å‡½æ•°
 
-	virtual void grow() = 0;															//Éú³¤º¯Êı¡£ËæÊ±¼äÔö³¤ÄêÁä
+	virtual void grow() = 0;															//ç”Ÿé•¿å‡½æ•°ã€‚éšæ—¶é—´å¢é•¿å¹´é¾„
 
 	virtual void time_pass_by() = 0;
 
@@ -48,12 +49,13 @@ public:
 	void set_health_gradient(float new_gradient){ health_gradient_ = new_gradient; }
 
 	SEX get_sex(){ return sex_; }
+
 protected:
 	int age_;
 	int max_age_;
-	float grow_speed_;						//ÓÉ¿ÕÆøÆøÎ¶Å¨¶ÈÓ°Ïì£¬ÊÇÒ»¸öÏµÊı¡£ÔÚgrow()ÖĞ±»Ê¹ÓÃ
-	float health_gradient_;					//½¡¿µÖµ±ä»¯ÂÊ£¬ÓÉ¿ÕÆøÎ¢ÉúÎïÅ¨¶ÈÓ°Ïì£¬ÊÇÒ»¸öÏµÊı¡£ÔÚtime_pass_by()ÖĞ±»Ê¹ÓÃ£¬Ó°Ïì½¡¿µ¶È±ä»¯
-	int health_;							 //¹é0ºóËÀÍö¡£
+	float grow_speed_;						//ç”±ç©ºæ°”æ°”å‘³æµ“åº¦å½±å“ï¼Œæ˜¯ä¸€ä¸ªç³»æ•°ã€‚åœ¨grow()ä¸­è¢«ä½¿ç”¨
+	float health_gradient_;					//å¥åº·å€¼å˜åŒ–ç‡ï¼Œç”±ç©ºæ°”å¾®ç”Ÿç‰©æµ“åº¦å½±å“ï¼Œæ˜¯ä¸€ä¸ªç³»æ•°ã€‚åœ¨time_pass_by()ä¸­è¢«ä½¿ç”¨ï¼Œå½±å“å¥åº·åº¦å˜åŒ–
+	int health_;							 //å½’0åæ­»äº¡ã€‚
 	SEX sex_;
 };
 
