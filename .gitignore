@@ -40,5 +40,5 @@
 *.filters
 *.1.tlog
 Debug/
-.vs/*
-v15/*
+.vs/
+v15/
