@@ -23,6 +23,7 @@ public:
 	void hour_pass(int n = 1){
 		hour_ += n;
 		time_overflow_check(); 
+		notify();
 	}
 
 	virtual void report(){
