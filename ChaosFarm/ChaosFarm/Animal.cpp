@@ -8,6 +8,7 @@ Animal::Animal(vector<Abstract*>* abs_list, int size, int max_age, SEX sex)
 
 bool Animal::eat(Entity* food){
 	if (hunger_ <= 0){
+    
 		return false;
 	}
 	hunger_--;
@@ -18,6 +19,7 @@ bool Animal::eat(Entity* food){
 
 bool Animal::drink(){
 	if (thirsty_ <= 0){
+    
 		return false;
 	}
 	thirsty_--;

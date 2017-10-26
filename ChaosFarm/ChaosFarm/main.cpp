@@ -20,6 +20,7 @@ int main(){
 	Insect* temp = (Insect*)it->value()->get_value();
 
 	temp->cry();
+  
 	system("pause");
 	return 0;
 }
