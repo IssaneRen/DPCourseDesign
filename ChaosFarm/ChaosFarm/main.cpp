@@ -2,6 +2,7 @@
 #include "Time.h"
 #include "InsectGroup.h"
 #include "Insect.h"
+#include "Bee.h"
 
 int main(){
 	Time* time = Time::instance();
