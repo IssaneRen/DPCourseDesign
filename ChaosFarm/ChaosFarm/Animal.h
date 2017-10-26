@@ -42,7 +42,7 @@ public:
 	virtual void grow() = 0;															//生长函数。随时间增长年龄
 
 protected:
-	int hunger_;				//饱腹度
+	int hunger_;				//饱腹�?
 	int thirsty_;
 };
 
