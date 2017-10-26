@@ -11,12 +11,12 @@ using namespace std;
 
 class Farmland:public Facility{
 public:
-	Farmland(Abstract* abs= NULL ,string desc = ""){
-		m_abs = abs;
-		m_abs->add_observer(this);
-		description_ = desc;
+	Farmland(vector<Abstract*>* abs, int size, int duarability,const char* desc)
+		:Facility(abs,size,duarability)
+	{
+		description_ = new string(desc);
 	}
-	virtual string get_discription() const { return description_; }
+	virtual const char* get_discription() const { return description_->c_str(); }
 	virtual int size() { return f_size_; }
 	void plow(){
 	cout<<"Farmland has plowed."<<endl ;
@@ -50,15 +50,15 @@ public:
 
 	}
 private:
-	string description_;
+	string* description_;
 	int f_size_=20 ;
 	Abstract* m_abs;
 };
-
+/*
 //装饰者模式 
 class Manure : public Farmland {
 public:
-	string get_discription() const {
+	const char* get_discription() const {
 		return "";
 	}
 };
@@ -178,8 +178,6 @@ private:
 	vector<Command*>commands_;
 };
 
-
-
-
+*/
 
 #endif

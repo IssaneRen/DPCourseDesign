@@ -31,11 +31,24 @@ public:
 
 	virtual void when_atmosphere_changed() = 0;
 
-	virtual void update(AbstractType type) = 0;
+	virtual void update(AbstractType type){
+		switch (type)
+		{
+		case ERROR:
+			break;
+		case TIME:time_pass_by();
+			break;
+		case ATMOSPHERE:when_atmosphere_changed();
+			break;
+		default:
+			break;
+		}
+	}
 
 	void set_health_gradient(float new_gradient){ health_gradient_ = new_gradient; }
 
 	SEX get_sex(){ return sex_; }
+
 protected:
 	int age_;
 	int max_age_;

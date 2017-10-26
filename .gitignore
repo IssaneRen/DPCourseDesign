@@ -34,6 +34,7 @@
 #Visual Studio
 *.suo
 *.sdf
+*.opensdf
 *.sln
 *.vcxproj
 *.filters
@@ -41,3 +42,4 @@
 Debug/
 .vs/
 v15/
+*.VC.db
