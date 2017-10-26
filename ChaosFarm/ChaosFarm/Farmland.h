@@ -178,8 +178,6 @@ private:
 	vector<Command*>commands_;
 };
 
-
-
 */
 
 #endif
