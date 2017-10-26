@@ -18,7 +18,19 @@ public:
 
 	virtual void when_atmosphere_changed() = 0;
 
-	virtual void update(Abstract* abs, AbstractType type) = 0;
+	virtual void update(AbstractType type){
+		switch (type)
+		{
+		case ERROR:
+			break;
+		case TIME:time_pass_by();
+			break;
+		case ATMOSPHERE:when_atmosphere_changed();
+			break;
+		default:
+			break;
+		}
+	}
 
 	virtual void die() = 0;
 
