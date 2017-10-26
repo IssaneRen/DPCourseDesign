@@ -49,16 +49,6 @@ bool Fence::let_out(Animal* animal){
 }
 
 
-bool Fence::let_out(string* animal_name){
-	for (FenceIterator it = get_start(); it != get_end(); ++it){
-		if ((*it).get_name() == animal_name){
-			remove_at(it);
-			return true;
-		}
-	}
-	return false;
-}
-
 
 void Fence::expand(int ex_size){
 	max_size_ += ex_size;
