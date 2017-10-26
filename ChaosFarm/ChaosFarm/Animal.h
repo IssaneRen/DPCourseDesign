@@ -4,13 +4,14 @@
 
 class Animal :public	Living{
 public:
-	Animal(vector<Abstract*>* abs_list, int size, int max_age, string* name, SEX sex);
+	Animal(vector<Abstract*>* abs_list, int size, int max_age, SEX sex);
 
 	~Animal(){}
 
 	virtual bool eat(Entity* food);
 
-	virtual void cry(){ cout << name_ << "is crying." << endl; }
+
+	virtual void cry() = 0;
 
 	virtual bool drink();
 
@@ -20,18 +21,16 @@ public:
 
 	virtual void update(Abstract* abs, AbstractType type) = 0;
 
-	virtual void die(){														//ËÀÍöÊ±±»µ÷ÓÃ¡£
-		cout << name_ << " died just now." << endl;
-	}
+	virtual void die() = 0;
 
-	virtual Living* mate_with(Living* another) = 0;								 //½»Åäº¯Êı£¬ÓëÁíÒ»¸öÉúÎï½øĞĞ½»Åä£¬·µ»ØËùÉú×Ó´ú¸öÌåµÄÖ¸Õë
+	virtual Living* mate_with(vector<Abstract*>* abs_list, Living* another) = 0;								 //äº¤é…å‡½æ•°ï¼Œä¸å¦ä¸€ä¸ªç”Ÿç‰©è¿›è¡Œäº¤é…ï¼Œè¿”å›æ‰€ç”Ÿå­ä»£ä¸ªä½“çš„æŒ‡é’ˆ
 
-	virtual void breath(Atmosphere* atm) = 0;										 //ºôÎüº¯Êı¡£µ÷ÓÃ¸Ä±äatm¶şÑõ»¯Ì¼ºÍÑõÆøÅ¨¶ÈµÄº¯Êı
+	virtual void breath(Atmosphere* atm) = 0;										 //å‘¼å¸å‡½æ•°ã€‚è°ƒç”¨æ”¹å˜atmäºŒæ°§åŒ–ç¢³å’Œæ°§æ°”æµ“åº¦çš„å‡½æ•°
 
-	virtual void grow() = 0;															//Éú³¤º¯Êı¡£ËæÊ±¼äÔö³¤ÄêÁä
+	virtual void grow() = 0;															//ç”Ÿé•¿å‡½æ•°ã€‚éšæ—¶é—´å¢é•¿å¹´é¾„
 
 protected:
-	int hunger_;				//±¥¸¹¶È
+	int hunger_;				//é¥±è…¹åº¦
 	int thirsty_;
 };
 

@@ -16,6 +16,6 @@ bool Abstract::remove_observer(Entity* observer){
 void Abstract::notify(){
 	if (observer_pool_->empty())return;
 	for (vector<Entity*>::iterator it = observer_pool_->begin(); it != observer_pool_->end(); it++){
-		(*it)->update(this, AbstractType::ERROR);
+		(*it)->update(AbstractType::ERROR);
 	}
 }

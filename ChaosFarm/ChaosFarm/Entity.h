@@ -17,7 +17,11 @@ public:
 
 	virtual void when_atmosphere_changed() = 0;
 
-	virtual void update(Abstract* abs, AbstractType type) = 0;
+	virtual void update(AbstractType type) = 0;
+
+	int get_size(){ return size_; }
+
+	void set_size(int new_size){ size_ = new_size; }
 
 protected:
 	int size_;
