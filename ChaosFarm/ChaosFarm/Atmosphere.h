@@ -4,7 +4,7 @@
 using namespace::std;
 
 enum weather_type { SUNNY, WINDY, RAINY, CLOUDY };
-enum SmellType { FRAGANCE, STINK };
+enum SmellType { FRAGRANCE, STINK };
 class Atmosphere :public Abstract {
 
 public:
@@ -24,7 +24,7 @@ public:
 private:
 	Atmosphere();
 	~Atmosphere();
-	static Atmosphere* atmosphere;                                                
+	static Atmosphere* atmosphere;
 };
 
 
