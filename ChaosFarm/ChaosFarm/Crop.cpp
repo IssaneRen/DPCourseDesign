@@ -2,6 +2,7 @@
 
 Crop::Crop(vector<Abstract*>* abs_list, int size, int max_age, string* name, SEX sex)
 :Plant(abs_list, size, max_age, name, sex), fruit_size_(0){
+	state = new Growing();         //初始选择未成熟
 }
 
 void Crop::absorb_water()
@@ -34,13 +35,13 @@ void Crop::bloom()
 
 bool Crop::defend()
 {
-	if (rand() % 2)
+	if (rand() % 2)											//随机成功或失败
 	{
 		return true;
 	}
 	else
 	{
-		weaken(rand() % 20);
+		weaken(rand() % 20);								//失败时调用weaken
 		return false;
 	}
 }
@@ -54,7 +55,7 @@ void Crop::weaken(int num)
 	}
 }
 
-void Crop::grow()
+void Crop::growbigger()
 {
 	if (energy_ >= 3)
 	{
@@ -66,6 +67,16 @@ void Crop::grow()
 		}
 		size_ = size_ * (1 + grow_speed_);
 	}
+}
+
+void Crop::grow()
+{
+	state->grow(this);
+}
+
+void Crop::reproduce()
+{
+	state->reproduce(this);
 }
 
 void Crop::die()
@@ -106,11 +117,7 @@ void Crop::time_pass_by()
 	if (energy_ >= 20)
 	{
 		grow();
-		if (age_ > 5)
-		{
-			bloom();
-			bear_fruit();
-		}
+		reproduce();
 	}
 	else
 	{
@@ -142,4 +149,25 @@ void Crop::update(Abstract* abs, AbstractType type)
 		cout << "error type";
 		break;
 	}
+}
+
+void CropState::grow(Crop* c)
+{
+	cout << "cannot grow." << endl;
+}
+
+void CropState::reproduce(Crop* c)
+{
+	cout << "cannot reproduce." << endl;
+}
+
+void Growing::grow(Crop* c)
+{
+	c->growbigger();
+}
+
+void Mature::reproduce(Crop* c)
+{
+	c->bloom();
+	c->bear_fruit();
 }
