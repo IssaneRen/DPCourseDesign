@@ -24,8 +24,8 @@ void Stock::put_in(Entity* entity)
 void Stock::get_out(Entity* entity)
 {
 	for (StockIterator* stock_it = stock_list_->create_iterator(); stock_it != stock_list_->end(); stock_it = stock_it->next()){
-		if (stock_it->value()->get_value() == entity){
-			size_ -= ((Entity*)stock_it->value()->get_value())->get_size();
+		if (stock_it->value() == entity){
+			size_ -= ((Entity*)stock_it->value())->get_size();
 			stock_list_->remove(stock_it);
 		}
 	}
@@ -44,7 +44,7 @@ bool Stock::is_full()
 StockIterator* Stock::find(Entity* entity)
 {
 	for (StockIterator* stock_it = stock_list_->create_iterator(); stock_it != stock_list_->end(); stock_it = stock_it->next()){
-		if (stock_it->value()->get_value() == entity){
+		if (stock_it->value() == entity){
 			return stock_it;
 		}
 	}

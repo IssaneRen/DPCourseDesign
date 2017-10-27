@@ -25,6 +25,7 @@ public:
 	}
 	virtual void time_pass_by();
 	virtual void when_atmosphere_changed() = 0;
+	virtual string* get_species() = 0;
 	virtual void update(Abstract* abs, AbstractType type);
 	virtual Living* mate_with(vector<Abstract*>* abs_list,Living* another) = 0;
 	virtual void breath(Atmosphere* atm);
@@ -34,7 +35,6 @@ public:
 protected:
 	Insect(vector<Abstract*>* abs_list, int size, int max_age, SEX sex) :Animal(abs_list, size, max_age, sex) {}
 	virtual Insect* clone(vector<Abstract*>* abs_list, int size, SEX sex) = 0;
-	virtual string* get_species() = 0;
 	static void addPrototype(Insect* insect);
 private:
 	static map<string*, Insect*> prototype_;
