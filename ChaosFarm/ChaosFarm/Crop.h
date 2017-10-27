@@ -21,6 +21,8 @@ public:
 	void bear_fruit();
 	void reproduce();
 	void growbigger();
+	void setState(CropState* s);
+	int get_fruit_size() { return fruit_size_; }
 private:
 	int fruit_size_;
 	void die();

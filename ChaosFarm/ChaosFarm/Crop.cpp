@@ -132,7 +132,24 @@ void Crop::time_pass_by()
 
 void Crop::when_atmosphere_changed()
 {
-
+	Atmosphere* atm = Atmosphere::getInstance();
+	switch (atm->weather)
+	{
+	case SUNNY:
+		grow_speed_ += 0.1;
+		water_content_ -= 3;
+		break;
+	case RAINY:
+		grow_speed_ -= 0.1;
+		water_content_ += 5;
+		break;
+	case WINDY:
+		break;
+	case CLOUDY:
+		break;
+	default:
+		break;
+	}
 }
 
 void Crop::update(AbstractType type)
@@ -151,6 +168,11 @@ void Crop::update(AbstractType type)
 	}
 }
 
+void Crop::setState(CropState* s)
+{
+	state = s;                                                                //¸Ä±ästate
+}
+
 void CropState::grow(Crop* c)
 {
 	cout << "cannot grow." << endl;
@@ -164,6 +186,11 @@ void CropState::reproduce(Crop* c)
 void Growing::grow(Crop* c)
 {
 	c->growbigger();
+	if (c->get_age() > 5)
+	{
+		CropState* s = new Mature();
+		c->setState(s);
+	}
 }
 
 void Mature::reproduce(Crop* c)
