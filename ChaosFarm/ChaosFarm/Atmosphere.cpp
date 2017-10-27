@@ -17,24 +17,30 @@ Atmosphere* Atmosphere::getInstance() {
 
 void Atmosphere::change_water_content(float new_content) {
 	atmosphere->water_content = new_content;
+	notify();
 }
 
 void Atmosphere::change_oxygen_content(float new_content) {
 	atmosphere->oxygen_content = new_content;
+	notify();
 }
 
 void Atmosphere::change_carbon_dioxide_content(float new_content) {
 	atmosphere->carbon_dioxide_content = new_content;
+	notify();
 }
 
 void Atmosphere::change_microorganism_content(float new_content) {
 	atmosphere->microorganism_content = new_content;
+	notify();
 }
 
 void Atmosphere::change_weathertype(weather_type new_weather) {
 	atmosphere->weather = new_weather;
+	notify();
 }
 
 void Atmosphere::add_smell(SmellType smell, float concentration) {
 	atmosphere->smell[smell] = concentration;
+	notify();
 }
