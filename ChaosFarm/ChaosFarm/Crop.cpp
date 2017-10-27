@@ -1,7 +1,7 @@
 #include "Crop.h"
 
-Crop::Crop(vector<Abstract*>* abs_list, int size, int max_age, string* name, SEX sex)
-:Plant(abs_list, size, max_age, name, sex), fruit_size_(0){
+Crop::Crop(vector<Abstract*>* abs_list, int size, int max_age, SEX sex)
+:Plant(abs_list, size, max_age, sex), fruit_size_(0){
 	state = new Growing();         //³õÊ¼Ñ¡ÔñÎ´³ÉÊì
 }
 
@@ -83,7 +83,7 @@ void Crop::die()
 {
 	if (health_ == 0 || age_ > max_age_)
 	{
-		cout << name_ << " died just now." << endl;
+		cout << "A crop died just now." << endl;
 	}
 }
 
@@ -135,15 +135,15 @@ void Crop::when_atmosphere_changed()
 
 }
 
-void Crop::update(Abstract* abs, AbstractType type)
+void Crop::update(AbstractType type)
 {
 	switch (type)
 	{
-	TIME:
-		time_pass_by();
+	case TIME:
+		this->time_pass_by();
 		break;
-	ATMOSPHERE:
-		when_atmosphere_changed();
+	case ATMOSPHERE:
+		this->when_atmosphere_changed();
 		break;
 	default:
 		cout << "error type";

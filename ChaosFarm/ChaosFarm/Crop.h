@@ -6,7 +6,7 @@ class Crop : public Plant
 {
 	class CropState* state;
 public:
-	Crop(vector<Abstract*>* abs_list, int size, int max_age, string* name, SEX sex = NON);
+	Crop(vector<Abstract*>* abs_list, int size, int max_age, SEX sex = NON);
 	~Crop(){}
 	void absorb_water();
 	void weaken(int num);
@@ -16,7 +16,7 @@ public:
 	void breath();
 	void time_pass_by();
 	void when_atmosphere_changed();
-	void update(Abstract* abs, AbstractType type);
+	void update(AbstractType type);
 	void grow();
 	void bear_fruit();
 	void reproduce();

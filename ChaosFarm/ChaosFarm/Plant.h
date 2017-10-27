@@ -7,7 +7,7 @@
 class Plant : public Living
 {
 public:
-	Plant(vector<Abstract*>* abs_list, int size, int max_age, string* name, SEX sex = NON);
+	Plant(vector<Abstract*>* abs_list, int size, int max_age, SEX sex = NON);
 	~Plant(){}
 	virtual void grow() = 0;
 	virtual void die() = 0;
@@ -16,7 +16,8 @@ public:
 	virtual void breath() = 0;
 	virtual void time_pass_by() = 0;
 	virtual void when_atmosphere_changed() = 0;
-	virtual void update(Abstract* abs, AbstractType type) = 0;
+	virtual Living* mate_with(vector<Abstract*>* abs_list, Living* another){ return NULL; }
+	virtual void update(AbstractType type) = 0;
 protected:
 	int energy_;
 	int water_content_;
