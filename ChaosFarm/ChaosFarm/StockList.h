@@ -14,8 +14,8 @@ public:
 	virtual bool is_empty();
 	virtual StockIterator* begin();
 	virtual StockIterator* end();
-	virtual void add(Object* new_element) {};
-	void remove(StockIterator* it){}
+	virtual void add(Object* new_element);
+	virtual void remove(FarmIterator* iterator);
 private:
 	List* list_;
 };

@@ -8,13 +8,14 @@
 class StockIterator :public FarmIterator{
 public:
 	StockIterator(Node* item);
-	virtual Node* value();
+	virtual Object* value();
+	virtual Object* get_node(); 
 	virtual StockIterator* next();
 	virtual StockIterator* previous();
 	virtual StockIterator* first();
 	virtual StockIterator* last();
 	virtual bool has_next();
-	virtual bool had_previous();
+	virtual bool has_previous();
 private:
 	Node* current_item_;
 };

@@ -5,7 +5,12 @@ StockIterator::StockIterator(Node* item)
 	current_item_ = item;
 }
 
-Node* StockIterator::value()
+Object* StockIterator::value()
+{
+	return current_item_->get_value();
+}
+
+Object* StockIterator::get_node()
 {
 	return current_item_;
 }
@@ -61,7 +66,7 @@ bool StockIterator::has_next()
 		return true;
 	}
 }
-bool StockIterator::had_previous()
+bool StockIterator::has_previous()
 {
 	if (current_item_->get_previous() == NULL)
 	{

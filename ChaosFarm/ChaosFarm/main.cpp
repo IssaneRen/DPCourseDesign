@@ -1,7 +1,5 @@
-#include "Object.h"
 #include "Time.h"
 #include "InsectGroup.h"
-#include "Insect.h"
 #include "Bee.h"
 #include "Weed.h"
 
@@ -12,14 +10,14 @@ int main(){
 	time->report();
 
 	InsectGroup* beeGroup = new InsectGroup(new string("bee"));
-	beeGroup->hatch(100, NULL, 0, 0, NON);
+	beeGroup->hatch(100, NULL);
 	cout << beeGroup->size() << endl;
 
 	InsectIterator* it = beeGroup->create_iterator();
 
 	//it = it->next();
 
-	Insect* temp = (Insect*)it->value()->get_value();
+	Bee* temp = (Bee*)it->value();
 
 	temp->cry();
 	/*
