@@ -114,12 +114,14 @@ void List::remove(Node* node)
 			if (node->get_next() != NULL)
 			{
 				node->get_next()->set_previous(NULL);
+				head_ = node->get_next();
 				delete node;
 				size_--;
 				return;
 			}
 			else
 			{
+				head_ = NULL;
 				delete node;
 				size_--;
 				return;

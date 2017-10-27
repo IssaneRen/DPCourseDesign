@@ -9,16 +9,36 @@ int main(){
 	time->report();
 
 	InsectGroup* beeGroup = new InsectGroup(new string("bee"));
-	beeGroup->hatch(100, NULL);
+	for (int i = 0; i < 99; i++)
+	{
+		SEX sex;
+		if (i % 2 == 0)
+		{
+			sex = FEMALE;
+		}
+		else
+		{
+			sex = MALE;
+		}
+		Bee* bee = (Bee*)Insect::find_and_clone(NULL, sex, new string("bee"));
+		beeGroup->add(bee);
+	}
+
+	beeGroup->hatch(NULL);
 	cout << beeGroup->size() << endl;
 
-	InsectIterator* it = beeGroup->create_iterator();
+	InsectGroup::Iterator* it = new InsectGroup::Iterator();
 
-	//it = it->next();
+	beeGroup->begin(it);
 
-	Bee* temp = (Bee*)it->value();
+	for (int i = 0; i < 50; i++)
+	{
+		it->turn_next();
 
-	temp->cry();
+		Bee* temp = (Bee*)it->value();
+
+		cout << temp->get_sex() << endl;
+	}
 	/*
 	Farmland *f1 = new Redland();
 	f1 = new Kcl(f1);
