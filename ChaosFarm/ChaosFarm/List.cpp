@@ -83,44 +83,48 @@ void List::add(Node* new_node)
 	}
 }
 
-void List::remove(int location)
+void List::remove(Node* node)
 {
-	Node* temp = head_;
-	if (temp == NULL)
+	if (node == NULL)
 	{
 		return;
 	}
-	if (location == 0)
+	else
 	{
-		head_ = head_->get_next();
-		head_->set_previous(NULL);
-		temp->~Node();
-		size_--;
-		return;
-	}
-	if (location < 0)
-	{
-		return;
-	}
-	for (int i = 1; i < location; i++)
-	{
-		temp = temp->get_next();
-		if (temp == NULL)
+		if (node->get_previous() != NULL)
 		{
-			return;
+			if (node->get_next() != NULL)
+			{
+				node->get_previous()->set_next(node->get_next());
+				node->get_next()->set_previous(node->get_previous());
+				delete node;
+				size_--;
+				return;
+			}
+			else
+			{
+				node->get_previous()->set_next(NULL);
+				delete node;
+				size_--;
+				return;
+			}
 		}
-	}
-	Node* node_to_delete = temp->get_next();
-	if (node_to_delete != NULL)
-	{
-		temp->set_next(node_to_delete->get_next());
-		if (temp->get_next() != NULL)
+		else
 		{
-			temp->get_next()->set_previous(temp);
+			if (node->get_next() != NULL)
+			{
+				node->get_next()->set_previous(NULL);
+				delete node;
+				size_--;
+				return;
+			}
+			else
+			{
+				delete node;
+				size_--;
+				return;
+			}
 		}
-		node_to_delete->~Node();
-		size_--;
-		return;
 	}
 }
 

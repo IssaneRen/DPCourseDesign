@@ -5,9 +5,14 @@ InsectIterator::InsectIterator(Node* item)
 	current_item_ = item;
 }
 
-Node* InsectIterator::value()
+Object* InsectIterator::get_node()
 {
 	return current_item_;
+}
+
+Object* InsectIterator::value()
+{
+	return current_item_->get_value();
 }
 
 InsectIterator* InsectIterator::next()
@@ -61,7 +66,7 @@ bool InsectIterator::has_next()
 		return true;
 	}
 }
-bool InsectIterator::had_previous()
+bool InsectIterator::has_previous()
 {
 	if (current_item_->get_previous() == NULL)
 	{

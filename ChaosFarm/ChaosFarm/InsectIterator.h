@@ -6,13 +6,14 @@ class InsectIterator :public FarmIterator
 {
 public:
 	InsectIterator(Node* item);
-	virtual Node* value();
+	virtual Object* value();
+	virtual Object* get_node();
 	virtual InsectIterator* next();
 	virtual InsectIterator* previous();
 	virtual InsectIterator* first();
 	virtual InsectIterator* last();
 	virtual bool has_next();
-	virtual bool had_previous();
+	virtual bool has_previous();
 private:
 	Node* current_item_;
 };

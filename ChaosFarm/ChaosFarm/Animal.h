@@ -11,6 +11,7 @@ public:
 	virtual bool eat(Entity* food);
 
 
+
 	virtual void cry() = 0;
 
 	virtual bool drink();
@@ -19,7 +20,20 @@ public:
 
 	virtual void when_atmosphere_changed() = 0;
 
-	virtual void update(Abstract* abs, AbstractType type) = 0;
+
+	virtual void update(AbstractType type){
+		switch (type)
+		{
+		case ERROR:
+			break;
+		case TIME:time_pass_by();
+			break;
+		case ATMOSPHERE:when_atmosphere_changed();
+			break;
+		default:
+			break;
+		}
+	}
 
 	virtual void die() = 0;
 
@@ -30,7 +44,7 @@ public:
 	virtual void grow() = 0;															//生长函数。随时间增长年龄
 
 protected:
-	int hunger_;				//饱腹度
+	int hunger_;				//饱腹�?
 	int thirsty_;
 };
 

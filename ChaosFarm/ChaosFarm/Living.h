@@ -9,13 +9,12 @@ enum SEX{
 	NON = 0,
 	MALE = 1,
 	FEMALE = 2,
-	HERMAPHRODITISM = 3,		//é›Œé›„åŒä½“
+	HERMAPHRODITISM = 3,		//´ÆÐÛÍ¬Ìå
 
 };
 
 class Living :public Entity{
 public:
-
 	Living(vector<Abstract*>* abs_list, int size, int max_age, SEX sex);
 
 	~Living(){}
@@ -25,15 +24,31 @@ public:
 
 	virtual void die() = 0;
 
-	virtual Living* mate_with(vector<Abstract*>* abs_list, Living* another) = 0;								 //äº¤é…å‡½æ•°ï¼Œä¸Žå¦ä¸€ä¸ªç”Ÿç‰©è¿›è¡Œäº¤é…ï¼Œè¿”å›žæ‰€ç”Ÿå­ä»£ä¸ªä½“çš„æŒ‡é’ˆ
+	virtual Living* mate_with(vector<Abstract*>* abs_list, Living* another) = 0;								 //½»Åäº¯Êý£¬ÓëÁíÒ»¸öÉúÎï½øÐÐ½»Åä£¬·µ»ØËùÉú×Ó´ú¸öÌåµÄÖ¸Õë
 
 	virtual void grow() = 0;															//ç”Ÿé•¿å‡½æ•°ã€‚éšæ—¶é—´å¢žé•¿å¹´é¾„
+
+	virtual void breath() = 0;										 //ºôÎüº¯Êý¡£µ÷ÓÃ¸Ä±äatm¶þÑõ»¯Ì¼ºÍÑõÆøÅ¨¶ÈµÄº¯Êý
+
+	virtual void grow() = 0;															//Éú³¤º¯Êý¡£ËæÊ±¼äÔö³¤ÄêÁä
 
 	virtual void time_pass_by() = 0;
 
 	virtual void when_atmosphere_changed() = 0;
 
-	virtual void update(AbstractType type) = 0;
+	virtual void update(AbstractType type){
+		switch (type)
+		{
+		case ERROR:
+			break;
+		case TIME:time_pass_by();
+			break;
+		case ATMOSPHERE:when_atmosphere_changed();
+			break;
+		default:
+			break;
+		}
+	}
 
 	void set_health_gradient(float new_gradient){ health_gradient_ = new_gradient; }
 
@@ -44,8 +59,10 @@ protected:
 	int age_;
 	int max_age_;
 	float grow_speed_;						//ç”±ç©ºæ°”æ°”å‘³æµ“åº¦å½±å“ï¼Œæ˜¯ä¸€ä¸ªç³»æ•°ã€‚åœ¨grow()ä¸­è¢«ä½¿ç”¨
-	float health_gradient_;					//å¥åº·å€¼å˜åŒ–çŽ‡ï¼Œç”±ç©ºæ°”å¾®ç”Ÿç‰©æµ“åº¦å½±å“ï¼Œæ˜¯ä¸€ä¸ªç³»æ•°ã€‚åœ¨time_pass_by()ä¸­è¢«ä½¿ç”¨ï¼Œå½±å“å¥åº·åº¦å˜åŒ–
 	int health_;							 //å½?åŽæ­»äº¡ã€?
+	float grow_speed_;						//ÓÉ¿ÕÆøÆøÎ¶Å¨¶ÈÓ°Ïì£¬ÊÇÒ»¸öÏµÊý¡£ÔÚgrow()ÖÐ±»Ê¹ÓÃ
+	float health_gradient_;					//½¡¿µÖµ±ä»¯ÂÊ£¬ÓÉ¿ÕÆøÎ¢ÉúÎïÅ¨¶ÈÓ°Ïì£¬ÊÇÒ»¸öÏµÊý¡£ÔÚtime_pass_by()ÖÐ±»Ê¹ÓÃ£¬Ó°Ïì½¡¿µ¶È±ä»¯
+	int health_;							 //¹é0ºóËÀÍö¡£
 	SEX sex_;
 };
 

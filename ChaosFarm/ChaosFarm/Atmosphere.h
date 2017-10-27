@@ -24,7 +24,7 @@ public:
 private:
 	Atmosphere();
 	~Atmosphere();
-	static Atmosphere* atmosphere;                                                
+	static Atmosphere* atmosphere;
 };
 
 
