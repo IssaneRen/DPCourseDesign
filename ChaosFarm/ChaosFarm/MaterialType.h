@@ -8,8 +8,7 @@ enum MaterialType {		//NILL type stands for "nothing about material to declare"
 	IRON,
 	SILVER,
 	GOLDEN,
-	COPPER,
-
+	COPPER
 };
 
 #endif // !CF_MATERIALTYPE_H
