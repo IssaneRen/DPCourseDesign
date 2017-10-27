@@ -39,6 +39,7 @@ public:
 
 	SEX get_sex(){ return sex_; }
 
+	int get_age() { return age_; }
 protected:
 	int age_;
 	int max_age_;
