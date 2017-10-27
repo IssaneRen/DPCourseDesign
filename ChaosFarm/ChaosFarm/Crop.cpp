@@ -4,6 +4,7 @@
 Crop::Crop(vector<Abstract*>* abs_list, int size, int max_age, SEX sex)
 :Plant(abs_list, size, max_age, sex), fruit_size_(0){
 	state = new Growing();         //³õÊ¼Ñ¡ÔñÎ´³ÉÊì
+	output_rate_ = 1.0;
 }
 
 void Crop::absorb_water()
@@ -23,6 +24,11 @@ void Crop::bear_fruit()
 		fruit_size_++;
 	}
 }
+
+void Crop::plant_on(BaseFarmLand* farmland){
+	farmland->plant_a_crop(this); 
+}
+
 
 void Crop::bloom()
 {

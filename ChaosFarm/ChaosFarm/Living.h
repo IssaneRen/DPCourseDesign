@@ -20,7 +20,7 @@ public:
 	~Living(){}
 
 
-	virtual void breath() = 0;										 //呼吸函数。调用改变atm二氧化碳和氧气浓度的函数
+	virtual void breath(){ cout << "A living is breath." << endl; }										 //呼吸函数。调用改变atm二氧化碳和氧气浓度的函数
 
 	virtual void die() = 0;
 
