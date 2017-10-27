@@ -1,6 +1,9 @@
 #ifndef CF_CROP_H
 #define CF_CROP_H
 #include "Plant.h"
+#include "BaseFarmland.h"
+
+class BaseFarmLand;
 
 class Crop : public Plant
 {
@@ -22,9 +25,13 @@ public:
 	void reproduce();
 	void growbigger();
 	void setState(CropState* s);
-	int get_fruit_size() { return fruit_size_; }
+	int get_fruit_size() { return float(fruit_size_)*output_rate_; }
+	void plant_on(BaseFarmLand* farmland);
+	void set_output_rate(float new_rate){ output_rate_ = new_rate; }
+	float get_output_rate(){ return output_rate_; }
 private:
 	int fruit_size_;
+	float output_rate_;
 	void die();
 };
 
