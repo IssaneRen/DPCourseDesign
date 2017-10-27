@@ -21,16 +21,16 @@ public:
 	virtual void die()  ;
 	virtual Living* mate_with(vector<Abstract*>* abs_list, Living* another) { return NULL; }
 	virtual void bloom()  ;
-	virtual void photoshythesize() ;         //¹âºÏ×÷ÓÃ
+	virtual void photoshythesize() ;         //å…‰åˆä½œç”¨
 	virtual void water_absorb(); 
 	virtual void breath() ;
 	virtual void time_pass_by() ;
 	virtual void when_atmosphere_changed() ;
 	virtual void update(Abstract* abs, AbstractType type) ;
 
-	virtual void attack(Crop* crop);        //¹¥»÷×¯¼Ú
+	virtual void attack(Crop* crop);        //æ”»å‡»åº„ç¨¼
 	void setStrategy(StrategyType type);             
-	void doIt();                            //ÔÓ²İµÄ²»Í¬¶¯×÷
+	void doIt();                            //æ‚è‰çš„ä¸åŒåŠ¨ä½œ
 	
 protected:
 	WeedStrategy* strategy_;
