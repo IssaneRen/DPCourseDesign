@@ -26,10 +26,6 @@ public:
 
 	virtual Living* mate_with(vector<Abstract*>* abs_list, Living* another) = 0;								 //交配函数，与另一个生物进行交配，返回所生子代个体的指针
 
-	virtual void grow() = 0;															//鐢熼暱鍑芥暟銆傞殢鏃堕棿澧為暱骞撮緞
-
-	virtual void breath() = 0;										 //呼吸函数。调用改变atm二氧化碳和氧气浓度的函数
-
 	virtual void grow() = 0;															//生长函数。随时间增长年龄
 
 	virtual void time_pass_by() = 0;
@@ -58,8 +54,6 @@ public:
 protected:
 	int age_;
 	int max_age_;
-	float grow_speed_;						//鐢辩┖姘旀皵鍛虫祿搴﹀奖鍝嶏紝鏄竴涓郴鏁般�傚湪grow()涓浣跨敤
-	int health_;							 //褰?鍚庢浜°�?
 	float grow_speed_;						//由空气气味浓度影响，是一个系数。在grow()中被使用
 	float health_gradient_;					//健康值变化率，由空气微生物浓度影响，是一个系数。在time_pass_by()中被使用，影响健康度变化
 	int health_;							 //归0后死亡。
