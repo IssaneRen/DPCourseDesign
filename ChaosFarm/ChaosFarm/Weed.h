@@ -29,7 +29,7 @@ public:
 	virtual void update(Abstract* abs, AbstractType type) ;
 
 	virtual void attack(Crop* crop);        //攻击庄稼
-	void setStrategy(int type);             
+	void setStrategy(StrategyType type);             
 	void doIt();                            //杂草的不同动作
 	
 protected:
