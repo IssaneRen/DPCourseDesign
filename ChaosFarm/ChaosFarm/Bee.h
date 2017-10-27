@@ -6,7 +6,6 @@ class Bee :public Insect
 public:
 	virtual string* get_species();
 	virtual void when_atmosphere_changed();
-	virtual Living* mate_with(Living* another);
 	virtual void grow();
 	virtual Insect* clone(vector<Abstract*>* abs_list, int size, int max_age, SEX sex);
 	virtual Living* mate_with(vector<Abstract*>* abs_list, Living* another){ return NULL; }
@@ -34,10 +33,6 @@ Insect * Bee::clone(vector<Abstract*>* abs_list, int size, int max_age, SEX sex)
 void Bee::when_atmosphere_changed()
 {
 
-}
-Living* Bee::mate_with(Living* another)
-{
-	return NULL;
 }
 void Bee::grow()
 {

@@ -6,7 +6,6 @@ class Crop : public Plant
 {
 public:
 	Crop(vector<Abstract*>* abs_list, int size, int max_age, string* name, SEX sex = NON);
-	Crop();
 	~Crop(){}
 	void absorb_water();
 	void weaken(int num);

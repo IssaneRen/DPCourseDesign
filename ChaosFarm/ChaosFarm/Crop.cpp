@@ -1,7 +1,8 @@
 #include "Crop.h"
+#include "Atmosphere.h"
 
 Crop::Crop(vector<Abstract*>* abs_list, int size, int max_age, string* name, SEX sex)
-:Plant(abs_list, size, max_age, name, sex), fruit_size_(0){
+:Plant(abs_list, size, max_age, sex), fruit_size_(0){
 }
 
 void Crop::absorb_water()
@@ -72,7 +73,7 @@ void Crop::die()
 {
 	if (health_ == 0 || age_ > max_age_)
 	{
-		cout << name_ << " died just now." << endl;
+		cout << " died just now." << endl;
 	}
 }
 
