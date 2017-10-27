@@ -6,7 +6,7 @@ Time* Time::time_instance_ = 0;
 
 
 Time::Time(int year, int month, int day, int hour)
-	:Abstract(), year_(year), month_(month), day_(day), hour_(hour), d_hour_(1)
+	:Abstract(), year_(year), month_(month), day_(day), hour_(hour), d_hour_(0)
 {
 	time_overflow_check();
 }
