@@ -101,7 +101,7 @@ void Weed::attack(Crop* crop)
 	}
 }
 
-void Weed::setStrategy(int type)
+void Weed::setStrategy(StrategyType type)
 {
 	delete strategy_;
 	if (type == Sing)
