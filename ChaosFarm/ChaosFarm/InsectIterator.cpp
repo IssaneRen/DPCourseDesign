@@ -5,9 +5,9 @@ InsectIterator::InsectIterator(Node* item)
 	current_item_ = item;
 }
 
-Node* InsectIterator::value()
+Object* InsectIterator::value()
 {
-	return current_item_;
+	return (Object*)current_item_->get_value();
 }
 
 InsectIterator* InsectIterator::next()

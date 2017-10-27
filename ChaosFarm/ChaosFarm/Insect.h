@@ -5,9 +5,10 @@
 class Insect:public Animal
 {
 public:
-	static Insect* find_and_clone(vector<Abstract*>* abs_list, int size, int max_age, SEX sex, string* species)
+	static Insect* find_and_clone(vector<Abstract*>* abs_list, int size, SEX sex, string* species)
 	{
 		map<string*, Insect*>::iterator it;
+		
 		for (it = prototype_.begin(); ; it++)
 		{
 			if (*(*it).first == *species)break;
@@ -19,7 +20,7 @@ public:
 				}
 			}
 		}
-		Insect*temp = (*it).second->clone(abs_list, size, max_age, sex);
+		Insect*temp = (*it).second->clone(abs_list, size, sex);
 		return temp;
 	}
 	virtual void time_pass_by();
@@ -28,11 +29,11 @@ public:
 	virtual Living* mate_with(vector<Abstract*>* abs_list,Living* another) = 0;
 	virtual void breath(Atmosphere* atm);
 	virtual void grow() = 0;
-	virtual void cry(){ cout << "cry!!" << endl; }
-	virtual void die(){ cout << "die!!" << endl; }
+	virtual void cry() = 0;
+	virtual void die() = 0;
 protected:
 	Insect(vector<Abstract*>* abs_list, int size, int max_age, SEX sex) :Animal(abs_list, size, max_age, sex) {}
-	virtual Insect* clone(vector<Abstract*>* abs_list, int size, int max_age, SEX sex) = 0;
+	virtual Insect* clone(vector<Abstract*>* abs_list, int size, SEX sex) = 0;
 	virtual string* get_species() = 0;
 	static void addPrototype(Insect* insect);
 private:

@@ -6,7 +6,7 @@ class InsectIterator :public FarmIterator
 {
 public:
 	InsectIterator(Node* item);
-	virtual Node* value();
+	virtual Object* value();
 	virtual InsectIterator* next();
 	virtual InsectIterator* previous();
 	virtual InsectIterator* first();
