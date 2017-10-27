@@ -23,7 +23,7 @@ public:
 
 	bool let_out(Animal* animal);
 
-	bool let_out(string* animal_name);
+	bool let_out(const char* animal_name);
 
 	void expand(int ex_size);
 
