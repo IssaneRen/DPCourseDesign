@@ -1,25 +1,28 @@
 #pragma once
 #include "Insect.h"
+#include "Time.h"
+#include "Atmosphere.h"
 
 class Bee :public Insect
 {
 public:
 	virtual string* get_species();
+	virtual float get_reproduction_rate();
 	virtual void when_atmosphere_changed();
 	virtual void grow();
 	virtual void cry();
 	virtual void die();
+	void produce_honey();
 	virtual Insect* clone(vector<Abstract*>* abs_list, int size, SEX sex);
 	virtual Living* mate_with(vector<Abstract*>* abs_list, Living* another){ return NULL; }
 protected:
-	Bee(vector<Abstract*>* abs_list, int size, int max_age, SEX sex, int dummy) :Insect(abs_list, size, max_age, sex) {}
+	Bee(vector<Abstract*>* abs_list, int size, SEX sex, int dummy) :Insect(abs_list, size, 900, sex) {}
 private:
 	static Bee bee_;
-	static int reproduction_rate; 
-	Bee() :Insect(NULL, 0, 0, NON) { addPrototype(this); }
+	float reproduction_rate_; 
+	Bee() :Insect(NULL, 0, 0, NON),reproduction_rate_(1) { addPrototype(this); }
 };
 Bee Bee::bee_;
-int Bee::reproduction_rate = 1;
 
 string* Bee::get_species()
 {
@@ -28,16 +31,29 @@ string* Bee::get_species()
 
 Insect * Bee::clone(vector<Abstract*>* abs_list, int size, SEX sex)
 {
-	Bee* temp = new Bee(abs_list, size, 900, sex, 1);
+	Bee* temp = new Bee(abs_list, size, sex, 1);
 	return temp;
+}
+float Bee::get_reproduction_rate()
+{
+	return reproduction_rate_;
 }
 void Bee::when_atmosphere_changed()
 {
+	Atmosphere* atmosphere = Atmosphere::getInstance();
 
 }
 void Bee::grow()
 {
-	
+	Time* time = Time::instance();
+	if (age_ < max_age_)
+	{
+		age_ = age_ + time->get_d_hour();
+		if (age_ >= max_age_)
+		{
+			die();
+		}
+	}
 }
 void Bee::cry()
 {
@@ -46,4 +62,8 @@ void Bee::cry()
 void Bee::die()
 {
 	cout << "Bee:die!" << endl;
+}
+void Bee::produce_honey()
+{
+
 }
