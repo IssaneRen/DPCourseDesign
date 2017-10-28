@@ -40,6 +40,7 @@
 *.filters
 *.1.tlog
 Debug/
+Release/
 .vs/
 v15/
 *.VC.db

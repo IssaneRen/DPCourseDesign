@@ -3,9 +3,13 @@
 #include "InsectGroup.h"
 #include "Insect.h"
 #include "Bee.h"
+#include "Tool.h"
+#include "UnitTool.h"
+#include "CollectedTool.h"
 
 void testTime();
 void testInsect();
+void testTool();
 
 
 int main(){
@@ -15,6 +19,7 @@ int main(){
 
 	testTime();
 	testInsect();
+	testTool();
 
 	system("pause");
 	return 0;
@@ -37,4 +42,20 @@ void testInsect()
 	InsectIterator* it = beeGroup->create_iterator();
 	Insect* temp = (Insect*)it->value()->get_value();
 	temp->cry();
+}
+
+void testTool()
+{
+	//Tool* tool = new Tool(nullptr,0);
+	UnitTool* mugun = new UnitTool("木棍");
+	UnitTool* chuizitou = new UnitTool("锤子头");
+	auto list = new vector<Tool*>;
+	list->push_back(mugun);
+	list->push_back(chuizitou);
+	CollectedTool* chuizi = new CollectedTool("锤子", list);
+	chuizitou->loss();
+	if(chuizi->checkWorstTool()->getName().length() > 0)
+		cout << "锤子中最需要修理的是：" << chuizi->checkWorstTool()->getName() << endl;
+	chuizi->outputDurability();
+	chuizi->loss();
 }
