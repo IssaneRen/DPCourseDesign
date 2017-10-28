@@ -28,6 +28,14 @@ public:
 	void produce_milk();
 
 	void farrow();
+
+	virtual void do_morning(){}
+
+	virtual void do_noon(){}
+
+	virtual void do_afternoon(){}
+
+	virtual void do_night(){}
 };
 
 #endif 

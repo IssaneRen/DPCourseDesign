@@ -28,6 +28,14 @@ public:
 	void lay_egg();
 
 	void incubate();
+
+	virtual void do_morning(){}
+
+	virtual void do_noon(){}
+
+	virtual void do_afternoon(){}
+
+	virtual void do_night(){}
 };
 
 #endif 

@@ -10,7 +10,13 @@ public:
 
 	virtual bool eat(Entity* food);
 
+	virtual void do_morning() = 0;
 
+	virtual void do_noon() = 0;
+
+	virtual void do_afternoon() = 0;
+
+	virtual void do_night() = 0;
 
 	virtual void cry() = 0;
 

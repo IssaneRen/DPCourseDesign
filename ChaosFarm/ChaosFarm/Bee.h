@@ -12,6 +12,10 @@ public:
 	virtual void grow();
 	virtual void cry();
 	virtual void die();
+	virtual void do_morning(){}
+	virtual void do_noon(){}
+	virtual void do_afternoon(){}
+	virtual void do_night(){}
 	void produce_honey();
 	virtual Insect* clone(vector<Abstract*>* abs_list, int size);
 	virtual Living* mate_with(vector<Abstract*>* abs_list, Living* another){ return NULL; }

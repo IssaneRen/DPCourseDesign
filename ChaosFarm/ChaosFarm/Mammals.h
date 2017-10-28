@@ -19,6 +19,14 @@ public:
 	virtual void produce_milk() = 0;
 
 	virtual void farrow() = 0;
+
+	virtual void do_morning() = 0;
+
+	virtual void do_noon() = 0;
+
+	virtual void do_afternoon() = 0;
+
+	virtual void do_night() = 0;
 };
 #endif 
 
