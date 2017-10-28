@@ -15,7 +15,7 @@ public:
 	void weaken(int num);
 	bool defend();
 	void bloom();
-	void photoshythesize();
+	void photosynthesis();
 	void breath();
 	void time_pass_by();
 	void when_atmosphere_changed();

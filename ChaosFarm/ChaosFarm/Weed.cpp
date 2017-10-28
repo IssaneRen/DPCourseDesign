@@ -8,7 +8,7 @@ Weed::Weed(vector<Abstract*>* abs_list, int size, int max_age, SEX sex)
 
 void Weed::grow()
 {
-	photoshythesize();
+	photosynthesis();
 	if (health_ < 100)
 	{
 		health_++;
@@ -27,12 +27,10 @@ void Weed::bloom()
 
 }
 
-void Weed::photoshythesize()
+void Weed::photosynthesis()
 {
 	Atmosphere* atm = Atmosphere::getInstance();
-	energy_ = energy_ + 10;
-	atm->oxygen_content += 0.2;
-	atm->carbon_dioxide_content -= 0.2;
+	energy_ = energy_ + 10 * atm->get_lux();
 	water_content_--;
 	cout << "Weed has absorbed sunshine"
 		<< endl;
@@ -49,10 +47,8 @@ void Weed::breath()
 {
 	Atmosphere* atm = Atmosphere::getInstance();
 
-	if (atm->oxygen_content > 0.2)
+	if (energy_>=5)
 	{
-		atm->oxygen_content -= 0.2;
-		atm->carbon_dioxide_content += 0.2;
 		energy_ -= 5;
 		water_content_++;
 		cout << "Weed is breathing"

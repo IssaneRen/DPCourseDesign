@@ -32,11 +32,9 @@ void Crop::plant_on(BaseFarmLand* farmland){
 
 void Crop::bloom()
 {
-	Atmosphere* atm = Atmosphere::getInstance();
 	if (energy_ >= 3)
 	{
 		energy_ -= 3;		
-		atm->smell[FRAGRANCE] += 0.01;
 	}
 }
 
@@ -94,26 +92,23 @@ void Crop::die()
 	}
 }
 
-void Crop::photoshythesize()
+void Crop::photosynthesis()
 {
 	Atmosphere* atm = Atmosphere::getInstance();
-	if (atm->weather == SUNNY && atm->carbon_dioxide_content > 0.2 && water_content_ > 0)							    //光合作用
+	if (water_content_ > 0)							    //光合作用
 	{
-		atm->carbon_dioxide_content -= 0.01;
-		atm->oxygen_content += 0.01;
+		
 		water_content_--;
-		energy_ += 5;
+		energy_ += 5 * atm->get_lux();
 
 	}
 }
 
 void Crop::breath()
 {
-	Atmosphere* atm = Atmosphere::getInstance();
-	if (atm->oxygen_content > 0.2 && fruit_size_ > 0)								//进行呼吸
+	if (fruit_size_ > 0)								//进行呼吸
 	{
-		atm->oxygen_content -= 0.01;
-		atm->carbon_dioxide_content += 0.01;
+		cout << "A crop is breathing." << endl;
 		fruit_size_--;
 		energy_ += 10;
 	}
@@ -128,7 +123,7 @@ void Crop::time_pass_by()
 	}
 	else
 	{
-		photoshythesize();
+		photosynthesis();
 		breath();
 	}
 	if (water_content_ < 10)
@@ -140,7 +135,7 @@ void Crop::time_pass_by()
 void Crop::when_atmosphere_changed()
 {
 	Atmosphere* atm = Atmosphere::getInstance();
-	switch (atm->weather)
+	switch (atm->get_weather_type())
 	{
 	case SUNNY:
 		grow_speed_ += 0.1;
