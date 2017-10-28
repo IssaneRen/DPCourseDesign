@@ -72,7 +72,7 @@ void Weed::when_atmosphere_changed()
 
 }
 
-void Weed::update(Abstract* abs, AbstractType type)
+void Weed::update(AbstractType type)
 {
 	time_pass_by();
 	if (health_ < 0)
