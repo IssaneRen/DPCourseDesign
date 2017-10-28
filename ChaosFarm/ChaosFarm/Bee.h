@@ -16,7 +16,7 @@ public:
 	virtual Insect* clone(vector<Abstract*>* abs_list, int size, SEX sex);
 	virtual Living* mate_with(vector<Abstract*>* abs_list, Living* another){ return NULL; }
 protected:
-	Bee(vector<Abstract*>* abs_list, int size, SEX sex, int dummy) :Insect(abs_list, size, 900, sex) {}
+	Bee(vector<Abstract*>* abs_list, int size, SEX sex, int dummy) :Insect(abs_list, size, 900, sex), reproduction_rate_(1) {}
 private:
 	static Bee bee_;
 	float reproduction_rate_; 
