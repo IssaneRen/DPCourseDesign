@@ -1,6 +1,7 @@
 #ifndef CF_MAMMALS_H_
 #define CF_MAMMALS_H_
 #include "Animal.h"
+#include "Time.h"
 
 
 class Mammals :public Animal {
@@ -11,9 +12,9 @@ public:
 
 	void run();
 
-	virtual void produce_milk() = 0;
+	virtual void time_pass_by(){ Time::instance()->do_something(this); }
 
-	virtual void farrow() = 0;
+	virtual void produce_milk() = 0;
 
 	virtual void do_morning() = 0;
 

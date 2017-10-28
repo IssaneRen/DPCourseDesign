@@ -6,6 +6,7 @@
 #define DAYS_PER_MONTH 30
 #define MONTHS_PER_YEAR 12
 class Time;
+class Animal;
 
 enum PeriodType{
 	MORNING,
@@ -19,7 +20,7 @@ enum PeriodType{
 //每当调用hour_pass，时间就会变动。
 //时间变动后，所有注册了的观察者就会对此作出反应，表现为调用自身的time_pass_by。
 //在time_pass_by内，观察者将会调用do_something并将指向自身的指针传递给此singleton。根据本singleton的状态（表现为time_instance_的类型不同）调用do_morning、do_noon……等函数。
-class Time : Abstract{
+class Time :public Abstract{
 
 public:
 	static Time* instance();

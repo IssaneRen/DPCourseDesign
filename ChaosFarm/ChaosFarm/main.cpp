@@ -29,7 +29,9 @@ int main(){
 	time = time->hour_pass(7);
 	time->report();
 
-	Chicken* chicken = new Chicken();
+	vector<Abstract*> abs_list;
+	abs_list.push_back(time);
+	Chicken* chicken = new Chicken(&abs_list);
 
 
 	delete chicken;
