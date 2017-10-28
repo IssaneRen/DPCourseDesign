@@ -1,11 +1,15 @@
 #include "Object.h"
 #include "Time.h"
+#include "Crop.h"
 #include "InsectGroup.h"
 #include "Insect.h"
+#include "Time.h"
+#include "BaseFarmland.h"
 #include "Bee.h"
 #include "Tool.h"
 #include "UnitTool.h"
 #include "CollectedTool.h"
+#include "Weed.h"
 
 void testTime();
 void testInsect();
@@ -16,9 +20,6 @@ int main(){
 	//add Test Functions here!
 	//Do not delete test Functions
 	//instead, delete invoking them here in main() if you want to
-
-	testTime();
-	testInsect();
 	testTool();
 
 	system("pause");
@@ -33,15 +34,15 @@ void testTime()
 	time->report();
 }
 
-void testInsect() 
-{	
-	InsectGroup* beeGroup = new InsectGroup(new string("bee"));
-	beeGroup->hatch(100, NULL, 0, 0, NON);
-	cout << beeGroup->size() << endl;
-
-	InsectIterator* it = beeGroup->create_iterator();
-	Insect* temp = (Insect*)it->value()->get_value();
-	temp->cry();
+void test_time_h() {
+	Time* time = Time::instance();
+	time->report();
+	time = time->hour_pass(7);
+	time->report();
+	time = time->hour_pass(4);
+	time->report();
+	time = time->hour_pass(7);
+	time->report();
 }
 
 void testTool()
@@ -54,7 +55,7 @@ void testTool()
 	list->push_back(chuizitou);
 	CollectedTool* chuizi = new CollectedTool("锤子", list);
 	chuizitou->loss();
-	if(chuizi->checkWorstTool()->getName().length() > 0)
+	if (chuizi->checkWorstTool()->getName().length() > 0)
 		cout << "锤子中最需要修理的是：" << chuizi->checkWorstTool()->getName() << endl;
 	chuizi->outputDurability();
 	chuizi->loss();

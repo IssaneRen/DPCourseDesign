@@ -11,7 +11,7 @@ public:
 	CollectedTool(vector<Abstract*>* abs_list, int size, string name, int init_durability = 100, MaterialType material = MaterialType::NILL);
 	~CollectedTool();
 
-	void update(Abstract* abs, AbstractType type);
+	void update(AbstractType type);
 	void outputDurability();
 	int getDurability();
 	void fix(int n = 1);

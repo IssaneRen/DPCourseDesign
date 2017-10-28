@@ -20,7 +20,7 @@ UnitTool::~UnitTool()
 {
 }
 
-void UnitTool::update(Abstract* abs, AbstractType type)
+void UnitTool::update(AbstractType type)
 {
 
 }

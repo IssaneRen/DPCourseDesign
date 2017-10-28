@@ -1,74 +1,112 @@
-#include "StockIterator.h"
+#include "StockList.h"
 
-StockIterator::StockIterator(Node* item)
+StockList::Iterator::Iterator()
 {
-	current_item_ = item;
-}
-
-Node* StockIterator::value()
-{
-	return current_item_;
+	current_node_ = NULL;
 }
 
-StockIterator* StockIterator::next()
+StockList::Iterator::Iterator(StockList* list)
 {
-	StockIterator* temp = new StockIterator(current_item_->get_next());
-	return temp;
-}
-StockIterator* StockIterator::previous()
-{
-	StockIterator* temp = new StockIterator(current_item_->get_previous());
-	return temp;
-}
-StockIterator* StockIterator::first()
-{
-	Node* temp = current_item_;
-	if (temp->get_previous() == NULL)
+	Node* node = list->list_->head();
+	if (node != NULL)
 	{
-		StockIterator* result = new StockIterator(temp);
-		return result;
+		current_node_ = node;
 	}
 	else
 	{
+		current_node_ = NULL;
+	}
+}
+
+StockList::Iterator::Iterator(Iterator* another)
+{
+	if (another != NULL)
+	{
+		current_node_ = (Node*)another->current_node_;
+	}
+	else
+	{
+		current_node_ = NULL;
+	}
+}
+
+Object* StockList::Iterator::value()
+{
+	if (current_node_ != NULL)
+	{
+		return ((Node*)current_node_)->get_value();
+	}
+	else
+	{
+		return NULL;
+	}
+}
+
+void StockList::Iterator::turn_next()
+{
+	if (has_next())
+	{
+		current_node_ = ((Node*)current_node_)->get_next();
+	}
+}
+void StockList::Iterator::turn_previous()
+{
+	if (has_previous())
+	{
+		current_node_ = ((Node*)current_node_)->get_previous();
+	}
+}
+void StockList::Iterator::turn_first()
+{
+	if (current_node_ != NULL)
+	{
+		Node* temp = (Node*)current_node_;
 		for (; temp->get_previous() != NULL; temp = temp->get_previous());
-		StockIterator* result = new StockIterator(temp);
-		return result;
+		current_node_ = temp;
 	}
 }
-StockIterator* StockIterator::last()
+void StockList::Iterator::turn_last()
 {
-	Node* temp = current_item_;
-	if (temp->get_next() == NULL)
+	if (current_node_ != NULL)
 	{
-		StockIterator* result = new StockIterator(temp);
-		return result;
-	}
-	else
-	{
+		Node* temp = (Node*)current_node_;
 		for (; temp->get_next() != NULL; temp = temp->get_next());
-		StockIterator* result = new StockIterator(temp);
-		return result;
+		current_node_ = temp;
 	}
 }
-bool StockIterator::has_next()
+bool StockList::Iterator::has_next()
 {
-	if (current_item_->get_next() == NULL)
+	if (current_node_ != NULL)
 	{
-		return false;
+		if (((Node*)current_node_)->get_next() == NULL)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
 	}
 	else
 	{
-		return true;
+		return false;
 	}
 }
-bool StockIterator::had_previous()
+bool StockList::Iterator::has_previous()
 {
-	if (current_item_->get_previous() == NULL)
+	if (current_node_ != NULL)
 	{
-		return false;
+		if (((Node*)current_node_)->get_previous() == NULL)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
 	}
 	else
 	{
-		return true;
+		return false;
 	}
 }

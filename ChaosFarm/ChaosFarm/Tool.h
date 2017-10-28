@@ -14,7 +14,7 @@ public:
 	void time_pass_by();
 	void when_atmosphere_changed();
 	
-	void update(Abstract* abs, AbstractType type) = 0;
+	void update(AbstractType type) = 0;
 	virtual void fix(int n = 1) = 0;
 	virtual void loss() = 0;
 	virtual void outputDurability() = 0;

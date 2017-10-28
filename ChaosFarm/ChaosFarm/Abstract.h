@@ -7,11 +7,19 @@
 #include <iterator>
 class Entity;
 
+typedef vector<Entity*> ObserverPool;
+
 class Abstract :public Object{
 public:
 	Abstract(){ observer_pool_ = new vector<Entity*>(); }
 
 	~Abstract(){ delete observer_pool_; }
+
+	Abstract(const ObserverPool* observer_pool){
+		observer_pool_ = new ObserverPool((*observer_pool));
+	}
+
+	const ObserverPool* get_observer_pool(){ return observer_pool_; }
 
 	void add_observer(Entity* ob){ observer_pool_->push_back(ob); }
 
@@ -19,7 +27,7 @@ public:
 
 
 protected:
-	vector<Entity*>* observer_pool_;
+	ObserverPool* observer_pool_;
 
 	virtual void notify();
 

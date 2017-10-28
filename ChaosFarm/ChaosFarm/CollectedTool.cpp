@@ -25,7 +25,7 @@ CollectedTool::~CollectedTool()
 {
 }
 
-void CollectedTool::update(Abstract* abs, AbstractType type)
+void CollectedTool::update(AbstractType type)
 {
 
 }

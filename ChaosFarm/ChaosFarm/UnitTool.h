@@ -9,7 +9,7 @@ public:
 	UnitTool(vector<Abstract*>* abs_list, int size, string name, int init_durability = 100, MaterialType material = MaterialType::NILL);
 	~UnitTool();
 
-	void update(Abstract* abs, AbstractType type);
+	void update(AbstractType type);
 	void outputDurability();
 	int getDurability() { return durability_; }
 	void loss();

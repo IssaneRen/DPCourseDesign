@@ -16,9 +16,9 @@ public:
 
 	virtual void when_atmosphere_changed() = 0;
 
-	virtual void update(Abstract* abs, AbstractType type) = 0;
+	virtual void update(AbstractType type) = 0;
 
-
+	int get_durability(){ return durability_; }
 protected:
 	int durability_;
 };

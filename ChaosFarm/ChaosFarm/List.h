@@ -25,7 +25,7 @@ public:
 	List();
 	Node* head();
 	void add(Node* new_node);
-	void remove(int location);
+	void remove(Node* node);
 	int size();
 	bool is_empty();
 private:

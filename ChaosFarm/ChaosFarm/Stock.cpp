@@ -23,12 +23,14 @@ void Stock::put_in(Entity* entity)
 
 void Stock::get_out(Entity* entity)
 {
-	for (StockIterator* stock_it = stock_list_->create_iterator(); stock_it != stock_list_->end(); stock_it = stock_it->next()){
-		if (stock_it->value()->get_value() == entity){
-			size_ -= ((Entity*)stock_it->value()->get_value())->get_size();
+	StockList::Iterator* stock_it = new StockList::Iterator();
+	for (stock_list_->begin(stock_it); stock_it->has_next(); stock_it->turn_next()){
+		if (stock_it->value() == entity){
+			size_ -= ((Entity*)stock_it->value())->get_size();
 			stock_list_->remove(stock_it);
 		}
 	}
+	delete stock_it;
 }
 
 bool Stock::is_empty()
@@ -41,10 +43,11 @@ bool Stock::is_full()
 	return (size_ >= max_size_ ) ? true : false;
 }
 
-StockIterator* Stock::find(Entity* entity)
+StockList::Iterator* Stock::find(Entity* entity)
 {
-	for (StockIterator* stock_it = stock_list_->create_iterator(); stock_it != stock_list_->end(); stock_it = stock_it->next()){
-		if (stock_it->value()->get_value() == entity){
+	StockList::Iterator* stock_it = new StockList::Iterator();
+	for (stock_list_->begin(stock_it); stock_it->has_next(); stock_it->turn_next()){
+		if (stock_it->value() == entity){
 			return stock_it;
 		}
 	}

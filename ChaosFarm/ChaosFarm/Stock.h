@@ -25,7 +25,7 @@ public:
 
 	int get_rest_size() { return max_size_ - size_;  }
 
-	StockIterator* find(Entity* entity);
+	StockList::Iterator* find(Entity* entity);
 
 	void expand(int ex_size);
 

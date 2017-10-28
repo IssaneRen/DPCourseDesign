@@ -5,7 +5,7 @@
 class Chicken final: public Poultry{
 public:
 
-	Chicken(vector<Abstract*>* abs_list, int size, int max_age, SEX sex);
+	Chicken(vector<Abstract*>* abs_list, int size, int max_age);
 
 	~Chicken() {}
     
@@ -14,8 +14,6 @@ public:
 	void when_atmosphere_changed();
 
 	void die();
-
-	Living* mate_with(vector<Abstract*>* abs_list,Living* another);
 
 	void breath(Atmosphere* atm);
 
@@ -30,6 +28,14 @@ public:
 	void lay_egg();
 
 	void incubate();
+
+	virtual void do_morning(){}
+
+	virtual void do_noon(){}
+
+	virtual void do_afternoon(){}
+
+	virtual void do_night(){}
 };
 
 #endif 

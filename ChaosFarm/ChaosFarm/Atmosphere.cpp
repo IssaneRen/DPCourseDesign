@@ -1,46 +1,31 @@
 #include "Atmosphere.h"
 
+Atmosphere* Atmosphere::instance = 0;
+
 
 Atmosphere::Atmosphere()
 {
+	change_weathertype(SUNNY);
 }
 
 Atmosphere::~Atmosphere()
 {
 }
 
-Atmosphere* Atmosphere::atmosphere = new Atmosphere();
 
 Atmosphere* Atmosphere::getInstance() {
-	return atmosphere;
+	return instance;
 }
 
-void Atmosphere::change_water_content(float new_content) {
-	atmosphere->water_content = new_content;
-	notify();
-}
 
-void Atmosphere::change_oxygen_content(float new_content) {
-	atmosphere->oxygen_content = new_content;
-	notify();
-}
-
-void Atmosphere::change_carbon_dioxide_content(float new_content) {
-	atmosphere->carbon_dioxide_content = new_content;
-	notify();
-}
-
-void Atmosphere::change_microorganism_content(float new_content) {
-	atmosphere->microorganism_content = new_content;
-	notify();
-}
-
-void Atmosphere::change_weathertype(weather_type new_weather) {
-	atmosphere->weather = new_weather;
-	notify();
-}
-
-void Atmosphere::add_smell(SmellType smell, float concentration) {
-	atmosphere->smell[smell] = concentration;
+void Atmosphere::change_weathertype(WEATHER_TYPE new_weather) {
+	weather = new_weather;
+	switch (new_weather){
+	case SUNNY:lux_ = GOOD_LUX; break;
+	case WINDY:lux_ = GOOD_LUX; break;
+	case CLOUDY:lux_ = BAD_LUX; break;
+	case RAINY:BAD_LUX; break;
+	default:break;
+	}
 	notify();
 }

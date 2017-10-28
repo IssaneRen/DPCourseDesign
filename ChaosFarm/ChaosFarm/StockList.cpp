@@ -1,10 +1,6 @@
 #include "StockList.h"
+#include "Stock.h"
 
-
-StockIterator* StockList::create_iterator()
-{
-	return new StockIterator(list_->head());
-}
 int StockList::size()
 {
 	return list_->size();
@@ -13,13 +9,48 @@ bool StockList::is_empty()
 {
 	return list_->is_empty();
 }
-StockIterator* StockList::begin()
+void StockList::begin(FarmIterator* iterator)
 {
-	return new StockIterator(list_->head());
+	if (size() > 0)
+	{
+		Iterator begin(this);
+		if (iterator != NULL)
+		{
+			*(Iterator*)iterator = begin;
+		}
+		else
+		{
+			return;
+		}
+	}
 }
-StockIterator* StockList::end()
+
+void StockList::end(FarmIterator* iterator)
 {
-	Node* temp = list_->head();
-	for (; temp->get_next() != NULL; temp = temp->get_next());
-	return new StockIterator(temp);
+	if (size() > 0)
+	{
+		Iterator end(this);
+		for (; end.has_next(); end.turn_next());
+		if (iterator != NULL)
+		{
+			*(Iterator*)iterator = end;
+		}
+		else
+		{
+			return;
+		}
+	}
+}
+
+void StockList::add(Object* new_element)
+{
+	if (new_element != NULL)
+	{
+		Node* new_node = new Node(new_element);
+		list_->add(new_node);
+	}
+}
+void StockList::remove(FarmIterator* iterator)
+{
+	list_->remove((Node*)(((Iterator*)iterator)->current_node_));
 }
