@@ -1,8 +1,8 @@
 #include "Animal.h"
 
 
-Animal::Animal(vector<Abstract*>* abs_list, int size, int max_age, SEX sex)
-	:Living(abs_list, size, max_age, sex), hunger_(0), thirsty_(0){
+Animal::Animal(vector<Abstract*>* abs_list, int size, int max_age)
+	:Living(abs_list, size, max_age), hunger_(0), thirsty_(0){
 
 }
 

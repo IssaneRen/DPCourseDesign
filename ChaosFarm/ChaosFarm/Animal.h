@@ -4,7 +4,7 @@
 
 class Animal :public	Living{
 public:
-	Animal(vector<Abstract*>* abs_list, int size, int max_age, SEX sex);
+	Animal(vector<Abstract*>* abs_list, int size, int max_age);
 
 	~Animal(){}
 

@@ -14,7 +14,7 @@ public:
 		Dummy,Sing,Dance,Chat
 	};
 
-	Weed(vector<Abstract*>* abs_list, int size, int max_age, SEX sex );
+	Weed(vector<Abstract*>* abs_list, int size, int max_age);
 
 	~Weed() {}
 	void grow() ;

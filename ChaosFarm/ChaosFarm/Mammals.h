@@ -6,7 +6,7 @@
 
 class Mammals :public Animal {
 public:
-	Mammals(vector<Abstract*>* abs_list, int size, int max_age, SEX sex);
+	Mammals(vector<Abstract*>* abs_list, int size, int max_age);
 
 	~Mammals() {}
 

@@ -1,8 +1,8 @@
 #include "Crop.h"
 #include "Atmosphere.h"
 
-Crop::Crop(vector<Abstract*>* abs_list, int size, int max_age, SEX sex)
-:Plant(abs_list, size, max_age, sex), fruit_size_(0){
+Crop::Crop(vector<Abstract*>* abs_list, int size, int max_age)
+:Plant(abs_list, size, max_age), fruit_size_(0){
 	state = new Growing();         //≥ı º—°‘ÒŒ¥≥… Ï
 	output_rate_ = 1.0;
 }

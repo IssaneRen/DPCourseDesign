@@ -5,7 +5,7 @@
 class Cattle final: public Mammals{
 public:
 
-	Cattle(vector<Abstract*>* abs_list, int size, int max_age, SEX sex);
+	Cattle(vector<Abstract*>* abs_list, int size, int max_age);
 
 	~Cattle() {}
     
@@ -14,8 +14,6 @@ public:
 	void when_atmosphere_changed();
 
 	void die();
-
-	Living* mate_with(vector<Abstract*>* abs_list,Living* another);
 
 	void breath(Atmosphere* atm);
 

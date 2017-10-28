@@ -1,7 +1,7 @@
 #include "Weed.h"
 
-Weed::Weed(vector<Abstract*>* abs_list, int size, int max_age, SEX sex)
-	:Plant(abs_list, size, max_age, sex),strategy_(NULL){
+Weed::Weed(vector<Abstract*>* abs_list, int size, int max_age)
+	:Plant(abs_list, size, max_age),strategy_(NULL){
 	
 }
 

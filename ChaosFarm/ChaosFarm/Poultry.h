@@ -6,7 +6,7 @@
 
 class Poultry :public Animal {
 public:
-	Poultry(vector<Abstract*>* abs_list, int size, int max_age, SEX sex);
+	Poultry(vector<Abstract*>* abs_list, int size, int max_age);
 
 	~Poultry() {}
 
