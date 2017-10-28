@@ -30,7 +30,7 @@ public:
 	//取得当前天气下的光强系数。
 	float get_lux(){ return lux_; }
 
-private:
+protected:
 	Atmosphere();
 	~Atmosphere();
 
@@ -39,6 +39,8 @@ private:
 	WEATHER_TYPE weather_;					//当前天气类型
 
 	static Atmosphere* instance_;			//singleton的static实例
+
+	virtual void notify();
 };
 
 

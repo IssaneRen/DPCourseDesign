@@ -49,7 +49,7 @@ public:
 protected:
 
 
-
+	virtual void notify();
 
 	int year_;
 	int month_;
@@ -79,7 +79,6 @@ private:
 		}
 		static CGarbo garbo;
 	};
-
 
 
 };

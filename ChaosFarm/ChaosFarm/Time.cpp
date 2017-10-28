@@ -84,3 +84,11 @@ void Time::get_time(int time_container[4]){
 	time_container[2] = day_;
 	time_container[3] = hour_;
 }
+
+
+void Time::notify(){
+	if (observer_pool_->empty())return;
+	for (vector<Entity*>::iterator it = observer_pool_->begin(); it != observer_pool_->end(); it++){
+		(*it)->update(AbstractType::TIME);
+	}
+}

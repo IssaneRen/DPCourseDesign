@@ -30,3 +30,10 @@ void Atmosphere::change_weathertype(WEATHER_TYPE new_weather) {
 	}
 	notify();
 }
+
+void Atmosphere::notify(){
+	if (observer_pool_->empty())return;
+	for (vector<Entity*>::iterator it = observer_pool_->begin(); it != observer_pool_->end(); it++){
+		(*it)->update(AbstractType::ATMOSPHERE);
+	}
+}
