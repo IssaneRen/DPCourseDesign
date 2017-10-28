@@ -20,9 +20,11 @@ public:
 	}
 
 	//ÓÃÒÔÌí¼Óobserver
-	const ObserverPool* get_observer_pool(){ return observer_pool_; }
+	ObserverPool* get_observer_pool(){ return observer_pool_; }
 
-	void add_observer(Entity* ob){ observer_pool_->push_back(ob); }
+	void add_observer(Entity* ob){ 
+		observer_pool_->push_back(ob);
+	}
 
 	bool remove_observer(Entity *observer);
 

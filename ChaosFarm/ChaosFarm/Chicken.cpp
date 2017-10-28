@@ -59,20 +59,20 @@ void Chicken::incubate()
 }
 
 void Chicken::do_morning(){
-	//cout << "Chicken:"
+	cout << "Chicken:" << id_ << ":do_morning(): the chicken is crowing." << endl;
 }
 
 
 void Chicken::do_noon(){
-
+	cout << "Chicken:" << id_ << ":do_noon(): the chicken is taking a nap." << endl;
 }
 
 
 void Chicken::do_afternoon(){
-
+	cout << "Chicken:" << id_ << ":do_afternoon(): the chicken is laying eggs." << endl;
 }
 
 
 void Chicken::do_night(){
-
+	cout << "Chicken:" << id_ << ":do_night(): the chicken is sleeping." << endl;
 }

@@ -7,13 +7,16 @@ using namespace std;
 
 class Object{
 public:
-	Object();
+	Object(){ id_ = counter_++; }
 
 	~Object(){}
 
+	int get_id(){ return id_; }
 
 protected:
+	int id_;
 
+	static int counter_;
 };
 
 

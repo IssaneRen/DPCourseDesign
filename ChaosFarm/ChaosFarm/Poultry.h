@@ -10,7 +10,7 @@ public:
 
 	~Poultry() {}
 
-	void fly();
+	void fly(){ cout << "Poultry:" << id_ << ":fly(): A poultry is flying." << endl; }
 
 	virtual void time_pass_by(){ Time::instance()->do_something(this); }
 

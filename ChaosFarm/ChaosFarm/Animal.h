@@ -2,7 +2,7 @@
 #define CF_ANIMAL_H
 #include "Living.h"
 
-class Animal :public	Living{
+class Animal :public Living{
 public:
 	Animal(vector<Abstract*>* abs_list, int size, int max_age);
 

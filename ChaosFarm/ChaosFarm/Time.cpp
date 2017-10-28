@@ -25,17 +25,16 @@ Time::Time(Time* time)
 }
 
 Time* Time::instance(){
-		{
-			if (!time_instance_)
-				time_instance_ = new Time();
-			int time[4];
-			time_instance_->get_time(time);
-			if (time[3] >= 6 && time[3] <= 11)time_instance_ = MorningTime::create_morning_time(time_instance_);
-			else if (time[3] >= 11 && time[3] <= 14)time_instance_ = NoonTime::create_noon_time(time_instance_);
-			else if (time[3] >= 14 && time[3] <= 18)time_instance_ = AfternoonTime::create_afternoon_time(time_instance_);
-			else time_instance_ = NightTime::create_night_time(time_instance_);
-			return time_instance_;
-		}
+	if (!time_instance_){
+		time_instance_ = new Time();
+		int time[4];
+		time_instance_->get_time(time);
+		if (time[3] >= 6 && time[3] <= 11)time_instance_ = MorningTime::create_morning_time(time_instance_);
+		else if (time[3] >= 11 && time[3] <= 14)time_instance_ = NoonTime::create_noon_time(time_instance_);
+		else if (time[3] >= 14 && time[3] <= 18)time_instance_ = AfternoonTime::create_afternoon_time(time_instance_);
+		else time_instance_ = NightTime::create_night_time(time_instance_);
+	}
+	return time_instance_;
 }
 
 
@@ -87,8 +86,10 @@ void Time::get_time(int time_container[4]){
 
 
 void Time::notify(){
-	if (observer_pool_->empty())return;
-	for (vector<Entity*>::iterator it = observer_pool_->begin(); it != observer_pool_->end(); it++){
+	if (Time::get_observer_pool()->empty())return;
+	for (vector<Entity*>::iterator it = (Time::get_observer_pool()->begin()); ;){
 		(*it)->update(AbstractType::TIME);
+		++it;
+		if (it == Time::get_observer_pool()->end())break;
 	}
 }

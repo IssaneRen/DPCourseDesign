@@ -19,6 +19,11 @@ void test_farmland();
 
 int main(){
 	Time* time = Time::instance();
+
+	vector<Abstract*> abs_list;
+	abs_list.push_back(time);
+	Chicken* chicken = new Chicken(&abs_list);
+
 	time->report();
 	time = time->hour_pass(7);
 	time->report();
@@ -29,13 +34,9 @@ int main(){
 	time = time->hour_pass(7);
 	time->report();
 
-	vector<Abstract*> abs_list;
-	abs_list.push_back(time);
-	Chicken* chicken = new Chicken(&abs_list);
 
 
 	delete chicken;
-
 
 	system("pause");
 	return 0;
