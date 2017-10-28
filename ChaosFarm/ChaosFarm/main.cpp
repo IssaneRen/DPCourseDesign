@@ -7,9 +7,13 @@
 #include "InsectGroup.h"
 #include "Bee.h"
 #include "Weed.h"
+#include "Stock.h"
+#include "Chicken.h"
 #include "BaseFarmland.h"
 
 void test_time_h();
+
+void stock_test();
 
 int main(){
 	BaseFarmLand* base_farm_land = new BaseFarmLand(NULL, 100, 100, "base farmland", 0.3);
@@ -20,6 +24,8 @@ int main(){
 	cout << "Because the crop is planted on an effect farmland, its output rate is set to " << crop->get_output_rate() << "." << endl;
 
 	test_time_h();
+
+	stock_test();
 
 	system("pause");
 	return 0;
@@ -36,4 +42,17 @@ void test_time_h(){
 	time->report();
 	time = time->hour_pass(7);
 	time->report();
+}
+
+
+void stock_test(){
+	Stock* stock = new Stock(NULL, 100);
+	Chicken* chicken = new Chicken();
+	stock->put_in(chicken);
+	StockList::Iterator* chicken_find = stock->find(chicken);
+	if (chicken_find != NULL)cout << "FIND!" << endl;
+	else cout << "not find" << endl;
+	delete chicken_find;
+	delete chicken;
+	delete stock;
 }

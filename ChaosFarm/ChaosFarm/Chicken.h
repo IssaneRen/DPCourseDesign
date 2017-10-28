@@ -5,7 +5,7 @@
 class Chicken final: public Poultry{
 public:
 
-	Chicken(vector<Abstract*>* abs_list, int size, int max_age);
+	Chicken(vector<Abstract*>* abs_list = NULL, int size = 3, int max_age = 100);
 
 	~Chicken() {}
     

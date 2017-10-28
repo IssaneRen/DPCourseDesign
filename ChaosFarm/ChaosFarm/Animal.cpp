@@ -6,14 +6,7 @@ Animal::Animal(vector<Abstract*>* abs_list, int size, int max_age)
 
 }
 
-bool Animal::eat(Entity* food){
-	if (hunger_ <= 0){
-		return false;
-	}
-	hunger_--;
-	return true;
 
-}
 
 
 bool Animal::drink(){
