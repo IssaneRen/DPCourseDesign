@@ -48,15 +48,15 @@ void test_time_h() {
 void testTool()
 {
 	//Tool* tool = new Tool(nullptr,0);
-	UnitTool* mugun = new UnitTool("Ä¾¹÷");
-	UnitTool* chuizitou = new UnitTool("´¸×ÓÍ·");
+	UnitTool* mugun = new UnitTool("æœ¨æ£");
+	UnitTool* chuizitou = new UnitTool("é”¤å­å¤´");
 	auto list = new vector<Tool*>;
 	list->push_back(mugun);
 	list->push_back(chuizitou);
-	CollectedTool* chuizi = new CollectedTool("´¸×Ó", list);
+	CollectedTool* chuizi = new CollectedTool("é”¤å­", list);
 	chuizitou->loss();
 	if (chuizi->checkWorstTool()->getName().length() > 0)
-		cout << "´¸×ÓÖĞ×îĞèÒªĞŞÀíµÄÊÇ£º" << chuizi->checkWorstTool()->getName() << endl;
+		cout << "é”¤å­ä¸­æœ€éœ€è¦ä¿®ç†çš„æ˜¯ï¼š" << chuizi->checkWorstTool()->getName() << endl;
 	chuizi->outputDurability();
 	chuizi->loss();
 }

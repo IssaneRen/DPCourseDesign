@@ -5,6 +5,8 @@ Atmosphere* Atmosphere::instance = 0;
 
 Atmosphere::Atmosphere()
 {
+
+
 	change_weathertype(SUNNY);
 }
 
@@ -14,6 +16,7 @@ Atmosphere::~Atmosphere()
 
 
 Atmosphere* Atmosphere::getInstance() {
+	if (!instance)instance = new Atmosphere();
 	return instance;
 }
 
