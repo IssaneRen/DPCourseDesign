@@ -9,7 +9,7 @@ class Crop : public Plant
 {
 	class CropState* state;
 public:
-	Crop(vector<Abstract*>* abs_list, int size, int max_age, SEX sex = NON);
+	Crop(vector<Abstract*>* abs_list, int size, int max_age);
 	~Crop(){}
 	void absorb_water();
 	void weaken(int num);
@@ -25,7 +25,7 @@ public:
 	void reproduce();
 	void growbigger();
 	void setState(CropState* s);
-	int get_fruit_size() { return float(fruit_size_)*output_rate_; }
+	int get_fruit_size() { return (float(fruit_size_))*output_rate_; }
 	void plant_on(BaseFarmLand* farmland);
 	void set_output_rate(float new_rate){ output_rate_ = new_rate; }
 	float get_output_rate(){ return output_rate_; }

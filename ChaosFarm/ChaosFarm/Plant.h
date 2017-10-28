@@ -7,7 +7,7 @@
 class Plant : public Living
 {
 public:
-	Plant(vector<Abstract*>* abs_list, int size, int max_age, SEX sex = NON);
+	Plant(vector<Abstract*>* abs_list, int size, int max_age);
 	~Plant(){}
 	virtual void grow() = 0;
 	virtual void die() = 0;

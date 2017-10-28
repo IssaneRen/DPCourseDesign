@@ -1,7 +1,7 @@
 #include "Weed.h"
 
-Weed::Weed(vector<Abstract*>* abs_list, int size, int max_age, SEX sex)
-	:Plant(abs_list, size, max_age, sex),strategy_(NULL){
+Weed::Weed(vector<Abstract*>* abs_list, int size, int max_age)
+	:Plant(abs_list, size, max_age),strategy_(NULL){
 	
 }
 
@@ -72,7 +72,7 @@ void Weed::when_atmosphere_changed()
 
 }
 
-void Weed::update(Abstract* abs, AbstractType type)
+void Weed::update(AbstractType type)
 {
 	time_pass_by();
 	if (health_ < 0)

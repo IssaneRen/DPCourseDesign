@@ -11,7 +11,7 @@
 class Insect:public Animal
 {
 public:
-	static Insect* find_and_clone(vector<Abstract*>* abs_list, SEX sex, string* species)
+	static Insect* find_and_clone(vector<Abstract*>* abs_list, string* species)
 	{
 		map<string*, Insect*>::iterator it;
 		
@@ -26,7 +26,7 @@ public:
 				}
 			}
 		}
-		Insect*temp = (*it).second->clone(abs_list, 1, sex);
+		Insect*temp = (*it).second->clone(abs_list, 1);
 		return temp;
 	}
 	virtual void time_pass_by();
@@ -40,8 +40,8 @@ public:
 	virtual void cry() = 0;
 	virtual void die() = 0;
 protected:
-	Insect(vector<Abstract*>* abs_list, int size, int max_age, SEX sex) :Animal(abs_list, size, max_age, sex) {}
-	virtual Insect* clone(vector<Abstract*>* abs_list, int size, SEX sex) = 0;
+	Insect(vector<Abstract*>* abs_list, int size, int max_age) :Animal(abs_list, size, max_age) {}
+	virtual Insect* clone(vector<Abstract*>* abs_list, int size) = 0;
 	static void addPrototype(Insect* insect);
 private:
 	static map<string*, Insect*> prototype_;
@@ -171,16 +171,7 @@ void InsectGroup::hatch(vector<Abstract*>* abs_list)
 	}
 	for (int i = 0; i < number; i++)
 	{
-		SEX sex;
-		if (i % 2 == 0)
-		{
-			sex = MALE;
-		}
-		else
-		{
-			sex = FEMALE;
-		}
-		Insect*temp = Insect::find_and_clone(abs_list, sex, species_);
+		Insect*temp = Insect::find_and_clone(abs_list, species_);
 		Node* new_element = new Node(temp);
 		list_->add(new_element);
 	}

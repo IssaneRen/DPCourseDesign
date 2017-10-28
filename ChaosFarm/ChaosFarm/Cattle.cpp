@@ -6,7 +6,7 @@
 #include "AbstractType.h"
 #include "Time.h"
 
-Cattle::Cattle(vector<Abstract*>* abs_list, int size, int max_age, SEX sex) :Mammals(abs_list, size, max_age, sex) 
+Cattle::Cattle(vector<Abstract*>* abs_list, int size, int max_age) :Mammals(abs_list, size, max_age) 
 {
 
 }
@@ -30,18 +30,6 @@ void Cattle::die()
 	cout << "A cattle is dead." << endl;
 }
 
-Living* Cattle::mate_with(vector<Abstract*>* abs_list,Living* another)
-{
-	int max_size = max(size_, another->get_size());
-	int min_size = min(size_, another->get_size());
-	srand((unsigned)time(NULL));
-
-	int size = rand() % (max_size - min_size + 1) + min_size;
-	SEX sex = (SEX)(rand() % 2 + 1);
-
-	Cattle* child = new Cattle(abs_list, size, 100, sex);
-	return child;
-}
 
 void Cattle::breath(Atmosphere* atm)
 {
@@ -68,16 +56,7 @@ bool Cattle::eat(Entity* food)
 
 void Cattle::cry()
 {
-	if (sex_ == MALE)
-	{
-		cout << "I am a box." << endl;
-		return;
-	}
-	else
-	{
-		cout << "I am a cow." << endl;
-		return;
-	}
+	cout << "A cattle is crying!" << endl;
 }
 
 bool Cattle::drink() 
@@ -94,22 +73,12 @@ bool Cattle::drink()
 
 void Cattle::produce_milk()
 {
-	if (sex_ != FEMALE)
-	{
-		cout << "Only cows can produce milk!" << endl;
-		return;
-	}
 	cout << "I have produced some milk." << endl;
 	return;
 }
 
 void Cattle::farrow()
 {
-	if (sex_ != FEMALE)
-	{
-		cout << "Only cows can farrow!" << endl;
-		return;
-	}
 	cout << "I am farrowing." << endl;
 	return;
 }
