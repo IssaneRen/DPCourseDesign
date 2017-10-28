@@ -21,6 +21,25 @@ int main(){
 
 	test_time_h();
 
+	Weed* weed = new Weed(NULL, 10, 50);
+	
+	for (int i = 0; i < 10; i++)
+	{
+		weed->grow();
+		weed->die();
+		weed->bloom();
+		weed->photosynthesis();
+		weed->water_absorb();
+		weed->breath();
+		weed->time_pass_by();
+		weed->when_atmosphere_changed();
+		weed->update(TIME);
+		weed->attack(crop);
+		
+		cout << '/n'
+			<< endl;
+	}
+
 	system("pause");
 	return 0;
 }
