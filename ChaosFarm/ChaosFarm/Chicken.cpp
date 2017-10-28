@@ -45,8 +45,7 @@ Living* Chicken::mate_with(vector<Abstract*>* abs_list,Living* another)
 
 void Chicken::breath(Atmosphere* atm)
 {
-	atm->change_oxygen_content(0.209f);
-	atm->change_carbon_dioxide_content(0.031f);
+	cout << "A chicken is breathing." << endl;
 }
 
 void Chicken::grow()

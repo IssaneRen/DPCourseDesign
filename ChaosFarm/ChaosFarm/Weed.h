@@ -21,7 +21,7 @@ public:
 	virtual void die()  ;
 	virtual Living* mate_with(vector<Abstract*>* abs_list, Living* another) { return NULL; }
 	virtual void bloom()  ;
-	virtual void photoshythesize() ;         //光合作用
+	virtual void photosynthesis();         //光合作用
 	virtual void water_absorb(); 
 	virtual void breath() ;
 	virtual void time_pass_by() ;

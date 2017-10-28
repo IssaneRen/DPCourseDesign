@@ -45,8 +45,7 @@ Living* Cattle::mate_with(vector<Abstract*>* abs_list,Living* another)
 
 void Cattle::breath(Atmosphere* atm)
 {
-	atm->change_oxygen_content(0.209f);
-	atm->change_carbon_dioxide_content(0.031f);
+	cout << "A cattle is breathing." << endl;
 }
 
 void Cattle::grow()
