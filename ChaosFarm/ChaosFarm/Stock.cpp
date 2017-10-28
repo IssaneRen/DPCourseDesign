@@ -19,6 +19,7 @@ void Stock::when_atmosphere_changed()
 void Stock::put_in(Entity* entity)
 {
 	stock_list_->add(entity);
+	cout << "An entity is put into the stock." << endl;
 }
 
 void Stock::get_out(Entity* entity)
@@ -59,4 +60,16 @@ void Stock::expand(int ex_size)
 	max_size_ += ex_size;
 }
 
-
+void Stock::update(AbstractType type){
+	switch (type)
+	{
+	case ERROR:
+		break;
+	case TIME:time_pass_by();
+		break;
+	case ATMOSPHERE:when_atmosphere_changed();
+		break;
+	default:
+		break;
+	}
+}
