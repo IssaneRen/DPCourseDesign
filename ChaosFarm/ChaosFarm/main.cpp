@@ -15,22 +15,38 @@ void test_time_h();
 
 void stock_test();
 
+void test_farmland();
+
 int main(){
+	Time* time = Time::instance();
+	time->report();
+	time = time->hour_pass(7);
+	time->report();
+	time = time->hour_pass(4);
+	time->report();
+	time = time->hour_pass(7);
+	time->report();
+	time = time->hour_pass(7);
+	time->report();
+
+	Chicken* chicken = new Chicken();
+
+
+	delete chicken;
+
+
+	system("pause");
+	return 0;
+}
+
+void test_farmland(){
 	BaseFarmLand* base_farm_land = new BaseFarmLand(NULL, 100, 100, "base farmland", 0.3);
 	FarmLand* farm_land = new FarmLand(base_farm_land);
 	EffectFarmLand* effect_farm_land = new EffectFarmLand(farm_land);
 	Crop* crop = new Crop(NULL, 10, 50);
 	crop->plant_on(effect_farm_land);
 	cout << "Because the crop is planted on an effect farmland, its output rate is set to " << crop->get_output_rate() << "." << endl;
-
-	test_time_h();
-
-	stock_test();
-
-	system("pause");
-	return 0;
 }
-
 
 
 void test_time_h(){
@@ -39,6 +55,8 @@ void test_time_h(){
 	time = time->hour_pass(7);
 	time->report();
 	time = time->hour_pass(4);
+	time->report();
+	time = time->hour_pass(7);
 	time->report();
 	time = time->hour_pass(7);
 	time->report();
