@@ -1,24 +1,30 @@
 #ifndef CF_MAMMALS_H_
 #define CF_MAMMALS_H_
 #include "Animal.h"
-#include "Fence.h"
+#include "Time.h"
 
 
 class Mammals :public Animal {
 public:
-	Mammals(vector<Abstract*>* abs_list, int size, int max_age);
+	Mammals(vector<Abstract*>* abs_list, int size, int max_age):Animal(abs_list, size, max_age) {}
 
 	~Mammals() {}
 
-	void go_into_fence(Fence* fence);
+	void run(){
+		format_output("Mammals::run()", "is running");
+	}
 
-	void go_out_of_fence(Fence* fence);
 
-	void run();
+	virtual void grow(){
+		age_ += Time::instance()->get_d_hour();
+		if (age_ >= max_age_)die();
+	}
 
-	virtual void produce_milk() = 0;
+	virtual void time_pass_by(){ if (alive_) Time::instance()->do_something(this); grow(); }
 
-	virtual void farrow() = 0;
+	virtual void produce_milk(){
+		format_output("Mammals::produce_milk()", "is producing milk");
+	}
 
 	virtual void do_morning() = 0;
 
@@ -27,6 +33,8 @@ public:
 	virtual void do_afternoon() = 0;
 
 	virtual void do_night() = 0;
+
+	virtual const char* get_class_name(){ return "Mammals"; }
 };
 #endif 
 

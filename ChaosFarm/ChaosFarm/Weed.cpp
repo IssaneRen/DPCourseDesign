@@ -1,18 +1,15 @@
-#include "Weed.h"
+﻿#include "Weed.h"
 
 Weed::Weed(vector<Abstract*>* abs_list, int size, int max_age)
-	:Plant(abs_list, size, max_age),strategy_(NULL){
-	
+	:Plant(abs_list, size, max_age), strategy_(NULL) {
+
 }
 
 
 void Weed::grow()
 {
+
 	photosynthesis();
-	if (health_ < 100)
-	{
-		health_++;
-	}
 }
 
 void Weed::die()
@@ -47,7 +44,7 @@ void Weed::breath()
 {
 	Atmosphere* atm = Atmosphere::getInstance();
 
-	if (energy_>=5)
+	if (energy_ >= 5)
 	{
 		energy_ -= 5;
 		water_content_++;
@@ -72,14 +69,6 @@ void Weed::when_atmosphere_changed()
 
 }
 
-void Weed::update(AbstractType type)
-{
-	time_pass_by();
-	if (health_ < 0)
-	{
-		die();
-	}
-}
 
 void Weed::attack(Crop* crop)
 {
@@ -114,8 +103,8 @@ void Weed::setStrategy(StrategyType type)
 	}
 }
 
-void Weed::doIt()
+void Weed::doIt(StrategyType type)
 {
+	setStrategy(type);
 	strategy_->format();
 }
-

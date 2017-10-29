@@ -19,13 +19,16 @@ public:
 		observer_pool_ = new ObserverPool((*observer_pool));
 	}
 
-	const ObserverPool* get_observer_pool(){ return observer_pool_; }
+	//ÓÃÒÔÌí¼Óobserver
+	ObserverPool* get_observer_pool(){ return observer_pool_; }
 
-	void add_observer(Entity* ob){ observer_pool_->push_back(ob); }
+	void add_observer(Entity* ob){ 
+		observer_pool_->push_back(ob);
+	}
 
 	bool remove_observer(Entity *observer);
 
-
+	virtual const char* get_class_name(){ return "Abstract"; }
 protected:
 	ObserverPool* observer_pool_;
 

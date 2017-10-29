@@ -20,6 +20,7 @@ public:
 	virtual void update(AbstractType type) = 0;
 	int get_energy() { return energy_; }
 	int get_water_content() { return water_content_; }
+	virtual const char* get_class_name(){ return "Plant"; }
 protected:
 	int energy_;
 	int water_content_;

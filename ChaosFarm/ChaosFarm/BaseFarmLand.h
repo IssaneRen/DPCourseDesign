@@ -65,6 +65,8 @@ public:
 	void set_fertility(float fertility){ fertility_ = fertility; }
 
 	virtual void plant_a_crop(Crop* crop);
+
+	virtual const char* get_class_name(){ return "BaseFarmLand"; }
 protected:
 
 	string* description_;			//ÃèÊö×Ö·û´®
@@ -85,6 +87,8 @@ public:
 	void plow(int n = 1){ fertility_ += n; }
 
 	virtual void plant_a_crop(Crop* crop){ BaseFarmLand::plant_a_crop(crop); }
+
+	virtual const char* get_class_name(){ return "FarmLand"; }
 };
 
 
@@ -98,6 +102,7 @@ public:
 	~EffectFarmLand(){}
 
 	virtual void plant_a_crop(Crop* crop);
+	virtual const char* get_class_name(){ return "EffectFarmLand"; }
 };
 
 

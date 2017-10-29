@@ -1,5 +1,4 @@
 #include "Object.h"
 
-Object::Object(){
-}
+int Object::counter_ = 0;
 

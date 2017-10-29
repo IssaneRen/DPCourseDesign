@@ -7,13 +7,22 @@ using namespace std;
 
 class Object{
 public:
-	Object();
+	Object(){ id_ = counter_++; }
 
 	~Object(){}
 
+	int get_id(){ return id_; }
+
+	virtual const char* get_class_name(){ return "Object"; }
+
+	virtual void format_output(const char* class_function_name, const char* message = ""){
+		cout << get_class_name() << " : " << id_ << " : " << class_function_name << " : " << message << endl;
+	}
 
 protected:
+	int id_;
 
+	static int counter_;
 };
 
 

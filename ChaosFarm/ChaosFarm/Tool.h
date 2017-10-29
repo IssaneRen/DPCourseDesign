@@ -20,7 +20,7 @@ public:
 	virtual void outputDurability() = 0;
 	virtual int getDurability() = 0;
 	string getName() { return name_; }
-
+	virtual const char* get_class_name(){ return "Tool"; }
 protected:
 	string name_;
 	MaterialType material_;

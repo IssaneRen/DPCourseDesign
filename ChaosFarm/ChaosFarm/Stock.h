@@ -29,6 +29,8 @@ public:
 
 	void expand(int ex_size);
 
+	virtual void update(AbstractType type);
+
 private:
 	StockList* stock_list_;
 	int max_size_;

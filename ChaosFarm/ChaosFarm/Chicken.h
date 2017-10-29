@@ -5,37 +5,25 @@
 class Chicken final: public Poultry{
 public:
 
-	Chicken(vector<Abstract*>* abs_list, int size, int max_age);
+	Chicken(vector<Abstract*>* abs_list = NULL, int size = 3, int max_age = 100);
 
 	~Chicken() {}
-    
-	void time_pass_by();
 
-	void when_atmosphere_changed();
+	virtual const char* get_class_name(){ return "Chicken"; }
 
-	void die();
+	virtual void when_atmosphere_changed();
 
-	void breath(Atmosphere* atm);
+	virtual void cry();
 
-	void grow();
+	virtual void drink();
 
-	bool eat(Entity* food);
+	virtual void do_morning();
 
-	void cry();
+	virtual void do_noon();
 
-	bool drink();
+	virtual void do_afternoon();
 
-	void lay_egg();
-
-	void incubate();
-
-	virtual void do_morning(){}
-
-	virtual void do_noon(){}
-
-	virtual void do_afternoon(){}
-
-	virtual void do_night(){}
+	virtual void do_night();
 };
 
 #endif 

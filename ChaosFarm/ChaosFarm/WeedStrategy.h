@@ -4,7 +4,7 @@
 
 using namespace std;
 
-class WeedStrategy
+class WeedStrategy:public Object
 {
 public:
 	WeedStrategy(){}
@@ -13,6 +13,7 @@ public:
 	{
 		justify();
 	}
+	virtual const char* get_class_name(){ return "WeedStrategy"; }
 private:
 	virtual void justify() = 0;
 };
@@ -21,6 +22,7 @@ class SingStrategy : public WeedStrategy
 {
 public:
 	SingStrategy() {};
+	virtual const char* get_class_name(){ return "SingStrategy"; }
 private:
 	void justify()
 	{
@@ -33,6 +35,7 @@ class DanceStrategy: public WeedStrategy
 {
 public:
 	DanceStrategy() {};
+	virtual const char* get_class_name(){ return "DanceStrategy"; }
 private:
 	void justify()
 	{
@@ -45,6 +48,7 @@ class ChatStrategy : public WeedStrategy
 {
 public:
 	ChatStrategy() {};
+	virtual const char* get_class_name(){ return "ChatStrategy"; }
 private:
 	void justify()
 	{
