@@ -15,7 +15,7 @@ enum toolType{
 class CoachTool : public CollectedTool {
 public:
 	toolType returnType() { return COACH; }
-	void use();
+
 private:
 
 };
