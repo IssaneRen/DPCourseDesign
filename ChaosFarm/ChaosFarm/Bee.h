@@ -2,6 +2,8 @@
 #include "Insect.h"
 #include "Time.h"
 #include "Atmosphere.h"
+#include "FarmProduct.h"
+#include "Warehouse.h"
 
 class Bee :public Insect
 {
@@ -72,7 +74,7 @@ void Bee::die()
 
 void Bee::do_morning()
 {
-	
+
 }
 void Bee::do_noon()
 {

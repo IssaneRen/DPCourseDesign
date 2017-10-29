@@ -2,6 +2,8 @@
 #include "Time.h"
 #include "Atmosphere.h"
 
+Warehouse* Warehouse::warehouse_p_ = 0;
+
 void Warehouse::time_pass_by()
 {
 	int passed_time = Time::instance()->get_d_hour();
@@ -21,9 +23,9 @@ void Warehouse::when_atmosphere_changed()
 
 }
 
-ItemList* Warehouse::get_item_list()
+Shelf* Warehouse::get_shelf()
 {
-	return item_list_;
+	return shelf_;
 }
 
 void Warehouse::set_max_durability(int value)
@@ -51,12 +53,12 @@ void Warehouse::fix(int n)
 	}
 }
 
-ItemList::Iterator::Iterator()
+Shelf::Iterator::Iterator()
 {
 	current_node_ = NULL;
 }
 
-ItemList::Iterator::Iterator(ItemList* list)
+Shelf::Iterator::Iterator(Shelf* list)
 {
 	Node* node = list->list_->head();
 	if (node != NULL)
@@ -69,7 +71,7 @@ ItemList::Iterator::Iterator(ItemList* list)
 	}
 }
 
-ItemList::Iterator::Iterator(Iterator* another)
+Shelf::Iterator::Iterator(Iterator* another)
 {
 	if (another != NULL)
 	{
@@ -81,7 +83,7 @@ ItemList::Iterator::Iterator(Iterator* another)
 	}
 }
 
-Object* ItemList::Iterator::value()
+Object* Shelf::Iterator::value()
 {
 	if (current_node_ != NULL)
 	{
@@ -93,21 +95,21 @@ Object* ItemList::Iterator::value()
 	}
 }
 
-void ItemList::Iterator::turn_next()
+void Shelf::Iterator::turn_next()
 {
 	if (has_next())
 	{
 		current_node_ = ((Node*)current_node_)->get_next();
 	}
 }
-void ItemList::Iterator::turn_previous()
+void Shelf::Iterator::turn_previous()
 {
 	if (has_previous())
 	{
 		current_node_ = ((Node*)current_node_)->get_previous();
 	}
 }
-void ItemList::Iterator::turn_first()
+void Shelf::Iterator::turn_first()
 {
 	if (current_node_ != NULL)
 	{
@@ -116,7 +118,7 @@ void ItemList::Iterator::turn_first()
 		current_node_ = temp;
 	}
 }
-void ItemList::Iterator::turn_last()
+void Shelf::Iterator::turn_last()
 {
 	if (current_node_ != NULL)
 	{
@@ -125,7 +127,7 @@ void ItemList::Iterator::turn_last()
 		current_node_ = temp;
 	}
 }
-bool ItemList::Iterator::has_next()
+bool Shelf::Iterator::has_next()
 {
 	if (current_node_ != NULL)
 	{
@@ -143,7 +145,7 @@ bool ItemList::Iterator::has_next()
 		return false;
 	}
 }
-bool ItemList::Iterator::has_previous()
+bool Shelf::Iterator::has_previous()
 {
 	if (current_node_ != NULL)
 	{
@@ -162,12 +164,12 @@ bool ItemList::Iterator::has_previous()
 	}
 }
 
-int ItemList::size()
+int Shelf::size()
 {
 	return capacity_;
 }
 
-bool ItemList::is_empty()
+bool Shelf::is_empty()
 {
 	if (used_space_ == 0)
 	{
@@ -179,7 +181,7 @@ bool ItemList::is_empty()
 	}
 }
 
-void ItemList::begin(FarmIterator& iterator)
+void Shelf::begin(FarmIterator& iterator)
 {
 	if (used_space_ > 0)
 	{
@@ -193,7 +195,7 @@ void ItemList::begin(FarmIterator& iterator)
 	}
 }
 
-void ItemList::end(FarmIterator& iterator)
+void Shelf::end(FarmIterator& iterator)
 {
 	if (used_space_ > 0)
 	{
@@ -207,7 +209,7 @@ void ItemList::end(FarmIterator& iterator)
 	}
 }
 
-void ItemList::add(Object* new_element)
+void Shelf::add(Object* new_element)
 {
 	int size = ((Entity*)new_element)->get_size();
 	if (usable_capacity() < size)
@@ -218,34 +220,81 @@ void ItemList::add(Object* new_element)
 	{
 		Node* new_node = new Node(new_element);
 		list_->add(new_node);
+		used_space_ = used_space_ + size;
 	}
 }
 
-void ItemList::remove(FarmIterator& iterator)
+void Shelf::remove(FarmIterator& iterator)
 {
 	Iterator* temp = (Iterator*)&iterator;
+	used_space_ = used_space_ - ((Entity*)temp->value())->get_size();
 	list_->remove((Node*)temp->current_node_);
 }
 
-void ItemList::show_list()
+void Shelf::show_list()
 {
-
+	if (used_space_ == 0)
+	{
+		cout << "Warehouse Shelf:" << endl;
+		cout << "Nothing!" << endl;
+	}
+	else
+	{
+		Iterator it;
+		begin(it);
+		cout << "Warehouse Shelf:" << endl;
+		for (; it.has_next(); it.turn_next())
+		{
+			cout << "kind:" << it.value()->get_class_name() << " id:" << it.value()->get_id() << endl;
+		}
+		cout << "kind:" << it.value()->get_class_name() << " id:" << it.value()->get_id() << endl;
+	}
 }
 
-List* ItemList::find_kind(string kind_name)
+List& Shelf::find_kind(string kind_name, List& container)
 {
-	return list_;
+	Iterator it;
+	begin(it);
+	if (it.current_node_ != NULL)
+	{
+		for (; it.has_next(); it.turn_next())
+		{
+			if (it.value()->get_class_name() == kind_name)
+			{
+				Node* new_node = new Node(it.value());
+				container.add(new_node);
+			}
+		}
+		if (it.value()->get_class_name() == kind_name)
+		{
+			Node* new_node = new Node(it.value());
+			container.add(new_node);
+		}
+	}
+	return container;
 }
 
-int ItemList::usable_capacity()
+int Shelf::usable_capacity()
 {
 	return (capacity_ - used_space_);
 }
 
-void ItemList::dilate(int extend_space)
+void Shelf::dilate(int extend_space)
 {
 	if (extend_space >= 0)
 	{
 		capacity_ = capacity_ + extend_space;
 	}
+}
+
+Shelf::Shelf()
+{
+	list_ = new List;
+	capacity_ = 1000;
+	used_space_ = 0;
+}
+
+int Shelf::capacity()
+{
+	return capacity_;
 }

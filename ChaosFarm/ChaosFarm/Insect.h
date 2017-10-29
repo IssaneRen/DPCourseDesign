@@ -90,6 +90,7 @@ public:
 		virtual void turn_last();
 		virtual bool has_next();
 		virtual bool has_previous();
+		virtual const char* get_class_name() { return "InsectGroup::Iterator"; }
 	};
 	InsectGroup(string* species) :species_(species)
 	{

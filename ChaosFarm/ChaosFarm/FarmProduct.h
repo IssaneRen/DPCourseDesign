@@ -7,7 +7,7 @@ using namespace std;
 class FarmProduct :public Entity{
 public:
 
-	FarmProduct(vector<Abstract*>* abs_list, int size, const char* name);
+	FarmProduct(vector<Abstract*>* abs_list, int size, const char* name) :Entity(abs_list, size) {		name_ = new string(name);	}
 
 	~FarmProduct(){ delete name_; }
 
