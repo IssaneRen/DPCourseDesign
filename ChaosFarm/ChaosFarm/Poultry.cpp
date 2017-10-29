@@ -1,6 +1,6 @@
 #include "Poultry.h"
 
-Poultry::Poultry(vector<Abstract*>* abs_list, int size, int max_age, SEX sex) :Animal(abs_list, size, max_age, sex) {
+Poultry::Poultry(vector<Abstract*>* abs_list, int size, int max_age) :Animal(abs_list, size, max_age) {
 
 }
 

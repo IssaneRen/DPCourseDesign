@@ -6,7 +6,7 @@ class Facility :public Entity{
 public:
 	Facility(vector<Abstract*>* abs_list, int size, int init_durability = 100);
 
-	~Facility(){}
+	virtual ~Facility(){}
 
 	virtual void fix(int n = 1){ durability_ += n; }
 
@@ -15,8 +15,6 @@ public:
 	virtual void time_pass_by() = 0;
 
 	virtual void when_atmosphere_changed() = 0;
-
-	virtual void update(AbstractType type) = 0;
 
 	int get_durability(){ return durability_; }
 protected:

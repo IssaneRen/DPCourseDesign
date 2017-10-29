@@ -12,18 +12,19 @@ int main() {
 
 	cout << beeGroup->size() << endl;
 
-	InsectGroup::Iterator* it = new InsectGroup::Iterator();
-
-	beeGroup->begin(it);
+	InsectGroup::Iterator it;
 
 	for (int i = 0; i < 50; i++)
 	{
-		it->turn_next();
+		beeGroup->begin(it);
 
-		Bee* temp = (Bee*)it->value();
+		Bee* temp = (Bee*)it.value();
 
 		cout << *(temp->get_species()) << endl;
+
+		beeGroup->remove(it);
 	}
+	cout << beeGroup->size() << endl;
 	system("pause");
 	return 0;
 }

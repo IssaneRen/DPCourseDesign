@@ -11,7 +11,8 @@
 class Insect:public Animal
 {
 public:
-	static Insect* find_and_clone(vector<Abstract*>* abs_list, SEX sex, string* species)
+	virtual ~Insect(){}
+	static Insect* find_and_clone(vector<Abstract*>* abs_list, string* species)
 	{
 		map<string*, Insect*>::iterator it;
 		
@@ -26,7 +27,7 @@ public:
 				}
 			}
 		}
-		Insect*temp = (*it).second->clone(abs_list, 1, sex);
+		Insect*temp = (*it).second->clone(abs_list, 1);
 		return temp;
 	}
 	virtual void time_pass_by();
@@ -40,8 +41,8 @@ public:
 	virtual void cry() = 0;
 	virtual void die() = 0;
 protected:
-	Insect(vector<Abstract*>* abs_list, int size, int max_age, SEX sex) :Animal(abs_list, size, max_age, sex) {}
-	virtual Insect* clone(vector<Abstract*>* abs_list, int size, SEX sex) = 0;
+	Insect(vector<Abstract*>* abs_list, int size, int max_age) :Animal(abs_list, size, max_age) {}
+	virtual Insect* clone(vector<Abstract*>* abs_list, int size) = 0;
 	static void addPrototype(Insect* insect);
 private:
 	static map<string*, Insect*> prototype_;
@@ -76,8 +77,9 @@ public:
 	class Iterator :public FarmIterator
 	{
 	public:
-		friend class InsectGroup;
 		Iterator();
+		virtual ~Iterator(){}
+		friend class InsectGroup;
 		Iterator(InsectGroup* group);
 		Iterator(Iterator* another);
 		virtual Object* value();
@@ -99,11 +101,11 @@ public:
 	}
 	virtual int size();
 	virtual bool is_empty();
-	virtual void begin(FarmIterator* iterator);
-	virtual void end(FarmIterator* iterator);
+	virtual void begin(FarmIterator& iterator);
+	virtual void end(FarmIterator& iterator);
 	void hatch(vector<Abstract*>* abs_list);
 	virtual void add(Object* new_element);
-	virtual void remove(FarmIterator* iterator);
+	virtual void remove(FarmIterator& iterator);
 private:
 	string* species_;
 	List*list_;
@@ -117,35 +119,30 @@ bool InsectGroup::is_empty()
 {
 	return list_->is_empty();
 }
-void InsectGroup::begin(FarmIterator* iterator)
+void InsectGroup::begin(FarmIterator& iterator)
 {
 	if (size() > 0)
 	{
 		Iterator begin(this);
-		if (iterator != NULL)
-		{
-			*(Iterator*)iterator = begin;
-		}
-		else
-		{
-			return;
-		}
+		iterator = begin;
+	}
+	else
+	{
+		Iterator begin;
+		iterator = begin;
 	}
 }
-void InsectGroup::end(FarmIterator* iterator)
+void InsectGroup::end(FarmIterator& iterator)
 {
 	if (size() > 0)
 	{
 		Iterator end(this);
-		for (; end.has_next(); end.turn_next());
-		if (iterator != NULL)
-		{
-			*(Iterator*)iterator = end;
-		}
-		else
-		{
-			return;
-		}
+		iterator = end;
+	}
+	else
+	{
+		Iterator end;
+		iterator = end;
 	}
 }
 void InsectGroup::hatch(vector<Abstract*>* abs_list)
@@ -154,7 +151,7 @@ void InsectGroup::hatch(vector<Abstract*>* abs_list)
 	if (list_->size() > 0)
 	{
 		Iterator* it = new Iterator();
-		begin((FarmIterator*)it);
+		begin(*it);
 		float group_reproduction_rate = 0;
 		for (; it->has_next(); it->turn_next())
 		{
@@ -171,16 +168,7 @@ void InsectGroup::hatch(vector<Abstract*>* abs_list)
 	}
 	for (int i = 0; i < number; i++)
 	{
-		SEX sex;
-		if (i % 2 == 0)
-		{
-			sex = MALE;
-		}
-		else
-		{
-			sex = FEMALE;
-		}
-		Insect*temp = Insect::find_and_clone(abs_list, sex, species_);
+		Insect*temp = Insect::find_and_clone(abs_list, species_);
 		Node* new_element = new Node(temp);
 		list_->add(new_element);
 	}
@@ -197,9 +185,10 @@ void InsectGroup::add(Object* new_element)
 		}
 	}
 }
-void InsectGroup::remove(FarmIterator* iterator)
+void InsectGroup::remove(FarmIterator& iterator)
 {
-	list_->remove((Node*)(((Iterator*)iterator)->current_node_));
+	Iterator* temp = (Iterator*)&iterator;
+	list_->remove((Node*)temp->current_node_);
 }
 
 

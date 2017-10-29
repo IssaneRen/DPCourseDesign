@@ -6,7 +6,7 @@
 #include "AbstractType.h"
 #include "Time.h"
 
-Chicken::Chicken(vector<Abstract*>* abs_list, int size, int max_age, SEX sex) :Poultry(abs_list, size, max_age, sex) 
+Chicken::Chicken(vector<Abstract*>* abs_list, int size, int max_age) :Poultry(abs_list, size, max_age) 
 {
 
 }
@@ -30,23 +30,10 @@ void Chicken::die()
 	cout << "A chicken is dead." << endl;
 }
 
-Living* Chicken::mate_with(vector<Abstract*>* abs_list,Living* another)
-{
-	int max_size = max(size_, another->get_size());
-	int min_size = min(size_, another->get_size());
-	srand((unsigned)time(NULL));
-
-	int size = rand() % (max_size - min_size + 1) + min_size;
-	SEX sex = (SEX)(rand() % 2 + 1);
-
-	Chicken* child = new Chicken(abs_list, size, 100, sex);
-	return child;
-}
 
 void Chicken::breath(Atmosphere* atm)
 {
-	atm->change_oxygen_content(0.209f);
-	atm->change_carbon_dioxide_content(0.031f);
+	cout << "A chicken is breathing." << endl;
 }
 
 void Chicken::grow()
@@ -69,16 +56,7 @@ bool Chicken::eat(Entity* food)
 
 void Chicken::cry()
 {
-	if (sex_ == MALE)
-	{
-		cout << "I am a cock." << endl;
-		return;
-	}
-	else
-	{
-		cout << "I am a hen." << endl;
-		return;
-	}
+	cout << "A chicken is crying." << endl;
 }
 
 bool Chicken::drink() 
@@ -95,22 +73,12 @@ bool Chicken::drink()
 
 void Chicken::lay_egg()
 {
-	if (sex_ != FEMALE)
-	{
-		cout << "Only hen can lay egg!" << endl;
-		return;
-	}
 	cout << "I have laid an egg." << endl;
 	return;
 }
 
 void Chicken::incubate()
 {
-	if (sex_ != FEMALE)
-	{
-		cout << "Only hen can incubate the eggs!" << endl;
-		return;
-	}
 	cout << "I am incubating the eggs." << endl;
 	return;
 }
