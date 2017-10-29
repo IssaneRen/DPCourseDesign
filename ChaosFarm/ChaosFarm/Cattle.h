@@ -9,15 +9,15 @@ public:
 
 	~Cattle() {}
 
-	void when_atmosphere_changed();
+	virtual void when_atmosphere_changed();
 
-	void die();
+	virtual void die();
 
-	void grow();
+	virtual void grow();
 
-	void cry();
+	virtual void cry();
 
-	bool drink();
+	virtual void drink();
 
 	void produce_milk();
 
