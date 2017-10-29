@@ -103,7 +103,7 @@ public:
 	}
 
 	virtual void report(){
-		cout << "It's morning now." << endl;
+		format_output("MorningTime::report()", "it is morning now");
 		Time::report();
 	}
 
@@ -128,7 +128,7 @@ public:
 	}
 
 	virtual void report(){
-		cout << "It's noon now." << endl;
+		format_output("NoonTime::report()", "it is noon now");
 		Time::report();
 	}
 protected:
@@ -152,7 +152,7 @@ public:
 	}
 
 	virtual void report(){
-		cout << "It's afternoon now." << endl;
+		format_output("AfternoonTime::report()", "it is afternoon now");
 		Time::report();
 	}
 protected:
@@ -175,7 +175,7 @@ public:
 	}
 
 	virtual void report(){
-		cout << "It's night now." << endl;
+		format_output("NightTime::report()", "it is night now");
 		Time::report();
 	}
 protected:

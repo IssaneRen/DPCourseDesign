@@ -12,26 +12,22 @@ Chicken::Chicken(vector<Abstract*>* abs_list, int size, int max_age) :Poultry(ab
 }
 
 
-void Chicken::when_atmosphere_changed()
-{
-	cout << "Atmosphere has changed." << endl;
-}
 
 
 void Chicken::cry()
 {
-	cout << "A chicken is crying." << endl;
+	format_output("Chicken::cry()", "cluck  cluck  cluck !!!");
 }
 
 void Chicken::drink() 
 {
-	cout << "Chiken:" << id_ << "drink(): the chicken is drinking." << endl;
+	format_output("Chicken::drink() ", "the water is great.");
 }
 
 
 
 void Chicken::do_morning(){
-	cout << "Chicken:" << id_ << ":do_morning(): the chicken is crowing." << endl;
+	cry();
 }
 
 
@@ -46,5 +42,5 @@ void Chicken::do_afternoon(){
 
 
 void Chicken::do_night(){
-	cout << "Chicken:" << id_ << ":do_night(): the chicken is sleeping." << endl;
+	sleep();
 }
