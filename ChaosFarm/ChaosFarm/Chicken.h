@@ -11,8 +11,6 @@ public:
 
 	virtual const char* get_class_name(){ return "Chicken"; }
 
-	virtual void when_atmosphere_changed();
-
 	virtual void cry();
 
 	virtual void drink();

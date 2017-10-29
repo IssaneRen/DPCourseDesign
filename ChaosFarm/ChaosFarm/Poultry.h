@@ -37,6 +37,18 @@ public:
 	virtual void do_night() = 0;
 
 	virtual const char* get_class_name(){ return "Poultry"; }
+
+
+	virtual void when_atmosphere_changed(){
+		Atmosphere* atm = Atmosphere::getInstance();
+		switch (atm->get_weather_type()){
+		case SUNNY:format_output("Poultry::when_atmosphere_changed()", "is enjoying the sunshine"); break;
+		case WINDY:format_output("Poultry::when_atmosphere_changed()", "is feeling the wind"); break;
+		case RAINY:format_output("Poultry::when_atmosphere_changed()", "try to take a shelter from rain"); break;
+		case CLOUDY:format_output("Poultry::when_atmosphere_changed()", "is not happy"); break;
+		default:break;
+		}
+	}
 };
 #endif 
 
