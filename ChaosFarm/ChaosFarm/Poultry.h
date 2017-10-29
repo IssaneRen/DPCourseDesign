@@ -6,19 +6,27 @@
 
 class Poultry :public Animal {
 public:
-	Poultry(vector<Abstract*>* abs_list, int size, int max_age);
+	Poultry(vector<Abstract*>* abs_list, int size, int max_age) :Animal(abs_list, size, max_age) {}
 
 	~Poultry() {}
 
+	virtual void grow(){
+		age_ += Time::instance()->get_d_hour();
+		if (age_ >= max_age_)die();
+	}
+
+
 	void fly(){ cout << "Poultry:" << id_ << ":fly(): A poultry is flying." << endl; }
 
-	virtual void time_pass_by(){ Time::instance()->do_something(this); }
+	virtual void time_pass_by(){ if (alive_)Time::instance()->do_something(this); grow(); }
 
 	virtual void lay_egg(){
 		format_output("Poultry::lay_egg()", " is laying eggs.");
 	}
 
-	virtual void incubate() = 0;
+	virtual void incubate(){
+		format_output("Poultry::incubate()", "is incubating.");
+	}
 
 	virtual void do_morning() = 0;
 

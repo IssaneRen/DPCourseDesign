@@ -1,4 +1,4 @@
-﻿#include "Object.h"
+#include "Object.h"
 #include "Time.h"
 #include "Crop.h"
 #include "Insect.h"
@@ -11,7 +11,6 @@
 #include "Weed.h"
 #include "Stock.h"
 #include "Chicken.h"
-#include "BaseFarmland.h"
 
 void testTime();
 void testInsect();
@@ -21,15 +20,17 @@ void test_farmland();
 void test_chicken_time();
 void test_Crop();
 
+
 int main(){
 	//add Test Functions here!
 	//Do not delete test Functions
 	//instead, delete invoking them here in main() if you want to
 
 	//testTool();
-
 	//test_chicken_time();
-	test_Crop();
+	//test_Crop();
+	//test_chicken_time();
+	
 	system("pause");
 	return 0;
 }
@@ -54,11 +55,10 @@ void test_chicken_time(){
 	time->report();
 	time = time->hour_pass(7);
 	time->report();
-	time = time->hour_pass(7);
+	time = time->hour_pass(100);
 	time->report();
 	delete chicken;
 }
-
 
 void test_time_h() {
 	Time* time = Time::instance();

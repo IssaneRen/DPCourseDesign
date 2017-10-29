@@ -15,13 +15,11 @@ public:
 	virtual const char* get_class_name(){ return "Living"; }
 
 	virtual void die(){
+		alive_ = false;
 		cout << get_class_name() << ":" << id_ << ":" << "the living is dead just now." << endl;
 	}
 
-	virtual void grow(){
-		age_++;
-		if (age_ >= max_age_)die();
-	}
+	virtual void grow() = 0;
 
 	virtual void time_pass_by() = 0;
 

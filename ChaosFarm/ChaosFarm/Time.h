@@ -35,8 +35,7 @@ public:
 	Time* hour_pass(int n = 1);
 
 	virtual void do_something(Animal* animal){
-		cout << "An animal tried to do something in this Time:";
-		report();
+		cerr << "ERROR: You have come into the base class Time. which whill never happen if correct" << endl;
 	}
 
 	int get_d_hour(){ return d_hour_; }
