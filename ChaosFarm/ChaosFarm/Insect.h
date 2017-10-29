@@ -3,6 +3,7 @@
 #include "Animal.h"
 #include "Collection.h"
 #include "List.h"
+#include "Atmosphere.h"
 #include<vector>
 #include<math.h>
 
@@ -32,17 +33,13 @@ public:
 	}
 	virtual void time_pass_by();
 	virtual float get_reproduction_rate() = 0;
-	virtual void when_atmosphere_changed() = 0;
+	virtual void when_atmosphere_changed();
 	virtual string* get_species() = 0;
-	virtual void update(Abstract* abs, AbstractType type);
 	virtual Living* mate_with(vector<Abstract*>* abs_list,Living* another) = 0;
-	virtual void breath(Atmosphere* atm);
-	virtual void grow() = 0;
-	virtual void cry() = 0;
-	virtual void die() = 0;
 	virtual const char* get_class_name(){ return "Insect"; }
 protected:
-	Insect(vector<Abstract*>* abs_list, int size, int max_age) :Animal(abs_list, size, max_age) {}
+	float reproduction_rate_;
+	Insect(vector<Abstract*>* abs_list, int size, int max_age) :Animal(abs_list, size, max_age),reproduction_rate_(1) {}
 	virtual Insect* clone(vector<Abstract*>* abs_list, int size) = 0;
 	static void addPrototype(Insect* insect);
 private:
@@ -60,14 +57,19 @@ void Insect::time_pass_by()
 	grow();
 }
 
-void Insect::update(Abstract* abs, AbstractType type)
+void Insect::when_atmosphere_changed()
 {
-
-}
-
-void Insect::breath(Atmosphere* atm)
-{
-
+	Atmosphere* atmosphere = Atmosphere::getInstance();
+	if (atmosphere->get_weather_type() == WINDY)
+	{
+		reproduction_rate_ = 0.5;
+		format_output("Insect::when_atmosphere_changed()", "low reproduction rate!");
+	}
+	if (atmosphere->get_weather_type() == RAINY)
+	{
+		reproduction_rate_ = 0.25;
+		format_output("Insect::when_atmosphere_changed()", "low reproduction rate!");
+	}
 }
 
 
@@ -90,7 +92,7 @@ public:
 		virtual void turn_last();
 		virtual bool has_next();
 		virtual bool has_previous();
-		virtual const char* get_class_name() { return "InsectGroup::Iterator"; }
+		virtual const char* get_class_name() { return "Iterator"; }
 	};
 	InsectGroup(string* species) :species_(species)
 	{
@@ -191,7 +193,7 @@ void InsectGroup::add(Object* new_element)
 void InsectGroup::remove(FarmIterator& iterator)
 {
 	Iterator* temp = (Iterator*)&iterator;
-	list_->remove((Node*)temp->current_node_);
+	list_->erase((Node*)temp->current_node_);
 }
 
 

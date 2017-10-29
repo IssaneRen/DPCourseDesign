@@ -38,7 +38,7 @@ public:
 	virtual void add(Object* new_element);
 	virtual void remove(FarmIterator& iterator);
 	void show_list();
-	List& find_kind(string kind_name, List& container);
+	void find_kind(string kind_name);
 	int usable_capacity();
 	void dilate(int extend_space);
 	int capacity();
@@ -72,11 +72,21 @@ public:
 
 	virtual void fix(int n = 1);
 
-	Shelf* get_shelf();
-
 	void set_max_durability(int value);
 
 	virtual const char* get_class_name() { return "Warehouse"; }
+
+	int size();
+	bool is_empty();
+	void begin(Collection::FarmIterator& iterator);
+	void end(Collection::FarmIterator& iterator);
+	void add(Object* new_element);
+	void remove(Collection::FarmIterator& iterator);
+	void show_list();
+	void find_kind(string kind_name);
+	int usable_capacity();
+	void dilate(int extend_space);
+	int capacity();
 private:
 	static Warehouse* warehouse_p_;
 
@@ -85,7 +95,6 @@ private:
 	Warehouse(vector<Abstract*>* abs_list, int size, int max_durability) :Facility(abs_list, size)
 	{
 		max_durability_ = max_durability;
-		shelf_ = new Shelf();
 	}
 
 	int max_durability_;

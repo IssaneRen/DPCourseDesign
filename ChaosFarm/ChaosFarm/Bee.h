@@ -1,9 +1,6 @@
 #pragma once
 #include "Insect.h"
 #include "Time.h"
-#include "Atmosphere.h"
-#include "FarmProduct.h"
-#include "Warehouse.h"
 
 class Bee :public Insect
 {
@@ -11,24 +8,20 @@ public:
 	virtual ~Bee(){}
 	virtual string* get_species();
 	virtual float get_reproduction_rate();
-	virtual void when_atmosphere_changed();
 	virtual void grow();
-	virtual void cry();
 	virtual void die();
 	virtual void do_morning();
 	virtual void do_noon();
 	virtual void do_afternoon();
 	virtual void do_night();
-	void produce_honey();
 	virtual Insect* clone(vector<Abstract*>* abs_list, int size);
 	virtual Living* mate_with(vector<Abstract*>* abs_list, Living* another){ return NULL; }
 	virtual const char* get_class_name(){ return "Bee"; }
 protected:
-	Bee(vector<Abstract*>* abs_list, int size, int dummy) :Insect(abs_list, size, 900), reproduction_rate_(1) {}
+	Bee(vector<Abstract*>* abs_list, int size, int dummy) :Insect(abs_list, size, 900){}
 private:
 	static Bee bee_;
-	float reproduction_rate_; 
-	Bee() :Insect(NULL, 0, 0),reproduction_rate_(1) { addPrototype(this); }
+	Bee() :Insect(NULL, 0, 0){ addPrototype(this); }
 };
 Bee Bee::bee_;
 
@@ -46,11 +39,7 @@ float Bee::get_reproduction_rate()
 {
 	return reproduction_rate_;
 }
-void Bee::when_atmosphere_changed()
-{
-	Atmosphere* atmosphere = Atmosphere::getInstance();
 
-}
 void Bee::grow()
 {
 	Time* time = Time::instance();
@@ -63,32 +52,25 @@ void Bee::grow()
 		}
 	}
 }
-void Bee::cry()
-{
-	cout << "Bee:cry!" << endl;
-}
+
 void Bee::die()
 {
-	cout << "Bee:die!" << endl;
+	format_output("Bee::die()", "is dead.");
 }
 
 void Bee::do_morning()
 {
-
+	format_output("Bee::get_up()", "is flying.");
 }
 void Bee::do_noon()
 {
-
+	format_output("Bee::produce_honey()", "is busily gathering honey.");
 }
 void Bee::do_afternoon()
 {
-
+	format_output("Bee::produce_honey()", "is busily gathering honey.");
 }
 void Bee::do_night()
 {
-
-}
-void Bee::produce_honey()
-{
-
+	format_output("Bee::sleep()", "zzz...");
 }

@@ -23,11 +23,6 @@ void Warehouse::when_atmosphere_changed()
 
 }
 
-Shelf* Warehouse::get_shelf()
-{
-	return shelf_;
-}
-
 void Warehouse::set_max_durability(int value)
 {
 	max_durability_ = value;
@@ -51,6 +46,105 @@ void Warehouse::fix(int n)
 			durability_ = max_durability_;
 		}
 	}
+}
+
+int Warehouse::size()
+{
+	if (shelf_ == NULL)
+	{
+		shelf_ = new Shelf();
+	}
+	return shelf_->size();
+}
+
+bool Warehouse::is_empty()
+{
+	if (shelf_ == NULL)
+	{
+		shelf_ = new Shelf();
+	}
+	return shelf_->is_empty();
+}
+
+void Warehouse::begin(Collection::FarmIterator& iterator)
+{
+	if (shelf_ == NULL)
+	{
+		shelf_ = new Shelf();
+	}
+	shelf_->begin(iterator);
+}
+
+void Warehouse::end(Collection::FarmIterator& iterator)
+{
+	if (shelf_ == NULL)
+	{
+		shelf_ = new Shelf();
+	}
+	shelf_->end(iterator);
+}
+
+void Warehouse::add(Object* new_element)
+{
+	if (shelf_ == NULL)
+	{
+		shelf_ = new Shelf();
+	}
+	shelf_->add(new_element);
+}
+
+void Warehouse::remove(Collection::FarmIterator& iterator)
+{
+	if (shelf_ == NULL)
+	{
+		shelf_ = new Shelf();
+	}
+	shelf_->remove(iterator);
+}
+
+void Warehouse::show_list()
+{
+	if (shelf_ == NULL)
+	{
+		shelf_ = new Shelf();
+	}
+	shelf_->show_list();
+}
+
+void Warehouse::find_kind(string kind_name)
+{
+	if (shelf_ == NULL)
+	{
+		shelf_ = new Shelf();
+	}
+	shelf_->find_kind(kind_name);
+}
+
+int Warehouse::usable_capacity()
+{
+	if (shelf_ == NULL)
+	{
+		shelf_ = new Shelf();
+	}
+	return shelf_->usable_capacity();
+}
+
+void Warehouse::dilate(int extend_space)
+{
+	if (shelf_ == NULL)
+	{
+		shelf_ = new Shelf();
+	}
+	shelf_->dilate(extend_space);
+}
+
+int Warehouse::capacity()
+{
+	if (shelf_ == NULL)
+	{
+		shelf_ = new Shelf();
+	}
+	return shelf_->capacity();
 }
 
 Shelf::Iterator::Iterator()
@@ -251,7 +345,7 @@ void Shelf::show_list()
 	}
 }
 
-List& Shelf::find_kind(string kind_name, List& container)
+void Shelf::find_kind(string kind_name)
 {
 	Iterator it;
 	begin(it);
@@ -261,17 +355,14 @@ List& Shelf::find_kind(string kind_name, List& container)
 		{
 			if (it.value()->get_class_name() == kind_name)
 			{
-				Node* new_node = new Node(it.value());
-				container.add(new_node);
+				cout << "kind:" << it.value()->get_class_name() << " id:" << it.value()->get_id() << endl;
 			}
 		}
 		if (it.value()->get_class_name() == kind_name)
 		{
-			Node* new_node = new Node(it.value());
-			container.add(new_node);
+			cout << "kind:" << it.value()->get_class_name() << " id:" << it.value()->get_id() << endl;
 		}
 	}
-	return container;
 }
 
 int Shelf::usable_capacity()
