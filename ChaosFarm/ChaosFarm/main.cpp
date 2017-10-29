@@ -12,7 +12,6 @@
 #include "Weed.h"
 #include "Stock.h"
 #include "Chicken.h"
-#include "BaseFarmland.h"
 
 void testTime();
 void testInsect();
@@ -21,16 +20,14 @@ void stock_test();
 void test_farmland();
 void test_chicken_time_atmosphere();
 
-
 int main(){
 	//add Test Functions here!
 	//Do not delete test Functions
 	//instead, delete invoking them here in main() if you want to
 
 	//testTool();
-	FarmProduct* fp = new FarmProduct(NULL, 10, "farmproduct", 1000);
-	delete fp;
 	test_chicken_time_atmosphere();
+
 	system("pause");
 	return 0;
 }
@@ -63,7 +60,6 @@ void test_chicken_time_atmosphere(){
 	atm->change_weathertype(CLOUDY);
 	delete chicken;
 }
-
 
 void test_time_h() {
 	Time* time = Time::instance();
