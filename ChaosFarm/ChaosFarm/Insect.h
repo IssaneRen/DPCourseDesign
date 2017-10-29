@@ -32,10 +32,10 @@ public:
 		return temp;
 	}
 	virtual void time_pass_by();
+	virtual void grow();
 	virtual float get_reproduction_rate() = 0;
 	virtual void when_atmosphere_changed();
 	virtual string* get_species() = 0;
-	virtual Living* mate_with(vector<Abstract*>* abs_list,Living* another) = 0;
 	virtual const char* get_class_name(){ return "Insect"; }
 protected:
 	float reproduction_rate_;
@@ -54,22 +54,35 @@ map<string*, Insect*> Insect::prototype_;
 
 void Insect::time_pass_by()
 {
-	grow();
+	if (alive_)
+	{
+		Time::instance()->do_something(this);
+		grow();
+	}
 }
 
 void Insect::when_atmosphere_changed()
 {
-	Atmosphere* atmosphere = Atmosphere::getInstance();
-	if (atmosphere->get_weather_type() == WINDY)
+	if (alive_)
 	{
-		reproduction_rate_ = 0.5;
-		format_output("Insect::when_atmosphere_changed()", "low reproduction rate!");
+		Atmosphere* atmosphere = Atmosphere::getInstance();
+		if (atmosphere->get_weather_type() == WINDY)
+		{
+			reproduction_rate_ = 0.5;
+			format_output("Insect::when_atmosphere_changed()", "low reproduction rate!");
+		}
+		if (atmosphere->get_weather_type() == RAINY)
+		{
+			reproduction_rate_ = 0.25;
+			format_output("Insect::when_atmosphere_changed()", "low reproduction rate!");
+		}
 	}
-	if (atmosphere->get_weather_type() == RAINY)
-	{
-		reproduction_rate_ = 0.25;
-		format_output("Insect::when_atmosphere_changed()", "low reproduction rate!");
-	}
+}
+
+void Insect::grow()
+{
+	age_ += Time::instance()->get_d_hour();
+	if (age_ >= max_age_)die();
 }
 
 
