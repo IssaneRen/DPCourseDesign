@@ -12,16 +12,10 @@ void Weed::grow()
 	photosynthesis();
 }
 
-void Weed::die()
-{
-	cout << "Weed is dead"
-		<< endl;
-
-}
 
 void Weed::bloom()
 {
-
+	format_output("Weed::bloom()", "the weed dose not want to bloom.");
 }
 
 void Weed::photosynthesis()
@@ -86,7 +80,7 @@ void Weed::attack(Crop* crop)
 	}
 }
 
-void Weed::setStrategy(StrategyType type)
+void Weed::set_strategy(StrategyType type)
 {
 	delete strategy_;
 	if (type == Sing)
@@ -103,8 +97,8 @@ void Weed::setStrategy(StrategyType type)
 	}
 }
 
-void Weed::doIt(StrategyType type)
+void Weed::do_it(StrategyType type)
 {
-	setStrategy(type);
+	set_strategy(type);
 	strategy_->format();
 }

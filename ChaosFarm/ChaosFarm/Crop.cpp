@@ -152,21 +152,6 @@ void Crop::when_atmosphere_changed()
 	}
 }
 
-void Crop::update(AbstractType type)
-{
-	switch (type)
-	{
-	case TIME:
-		this->time_pass_by();
-		break;
-	case ATMOSPHERE:
-		this->when_atmosphere_changed();
-		break;
-	default:
-		cout << "error type";
-		break;
-	}
-}
 
 void Crop::setState(CropState* s)
 {

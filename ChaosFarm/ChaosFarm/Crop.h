@@ -19,7 +19,6 @@ public:
 	void breath();
 	void time_pass_by();
 	void when_atmosphere_changed();
-	void update(AbstractType type);
 	void grow();
 	void bear_fruit();
 	void reproduce();
