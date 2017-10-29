@@ -13,9 +13,9 @@ public:
 
 	~Entity(){}
 
-	virtual void time_pass_by() = 0;
+	virtual void time_pass_by(){}
 
-	virtual void when_atmosphere_changed() = 0;
+	virtual void when_atmosphere_changed(){}
 
 	virtual void update(AbstractType type){
 		switch (type)

@@ -16,6 +16,8 @@ public:
 
 	virtual void do_night() = 0;
 
+	virtual void sleep(){ format_output("Animal::sleep()", "zzz..."); }
+
 	virtual void cry(){
 		format_output("Animal::cry()", "is crying");
 	}
