@@ -6,11 +6,13 @@
 
 class Mammals :public Animal {
 public:
-	Mammals(vector<Abstract*>* abs_list, int size, int max_age);
+	Mammals(vector<Abstract*>* abs_list, int size, int max_age):Animal(abs_list, size, max_age) {}
 
 	~Mammals() {}
 
-	void run();
+	void run(){
+		format_output("Mammals::run()", "is running");
+	}
 
 
 	virtual void grow(){
