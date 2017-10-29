@@ -21,7 +21,7 @@ public:
 	virtual void time_pass_by(){ if (alive_)Time::instance()->do_something(this); grow(); }
 
 	virtual void lay_egg(){
-		format_output("Poultry::lay_egg()", "is laying eggs.");
+		format_output("Poultry::lay_egg()", " is laying eggs.");
 	}
 
 	virtual void incubate(){

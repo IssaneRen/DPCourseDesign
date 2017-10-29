@@ -22,8 +22,8 @@ public:
 	int get_water_content() { return water_content_; }
 	virtual const char* get_class_name(){ return "Plant"; }
 protected:
-	int energy_;
-	int water_content_;
+	int energy_;															//能量值，初始化为50
+	int water_content_;														//水含量，初始化为50
 };
 
 
