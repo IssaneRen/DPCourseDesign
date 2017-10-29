@@ -3,7 +3,7 @@
 #include "Crop.h"
 #include "Insect.h"
 #include "Time.h"
-#include "BaseFarmland.h"
+#include "FarmLand.h"
 #include "FarmProduct.h"
 #include "Bee.h"
 #include "Tool.h"
@@ -12,6 +12,7 @@
 #include "Weed.h"
 #include "Stock.h"
 #include "Chicken.h"
+#include "Cattle.h"
 
 void testTime();
 void testInsect();
@@ -26,7 +27,9 @@ int main(){
 	//instead, delete invoking them here in main() if you want to
 
 	//testTool();
-	test_chicken_time_atmosphere();
+	//test_chicken_time_atmosphere();
+
+	test_farmland();
 
 	system("pause");
 	return 0;
@@ -47,7 +50,7 @@ void test_chicken_time_atmosphere(){
 	vector<Abstract*> abs_list;
 	abs_list.push_back(time);
 	abs_list.push_back(atm);
-	Chicken* chicken = new Chicken(&abs_list);
+	Cattle* cattle = new Cattle(&abs_list);
 	time = time->hour_pass(7);
 	time->report();
 	time = time->hour_pass(4);
@@ -57,8 +60,8 @@ void test_chicken_time_atmosphere(){
 	time = time->hour_pass(100);
 	time->report();
 
-	atm->change_weathertype(CLOUDY);
-	delete chicken;
+	atm->change_weathertype(WINDY);
+	delete cattle;
 }
 
 void test_time_h() {
@@ -104,10 +107,13 @@ void testTool()
 }
 
 void test_farmland(){
-	BaseFarmLand* base_farm_land = new BaseFarmLand(NULL, 100, 100, "base farmland", 0.3);
-	FarmLand* farm_land = new FarmLand(base_farm_land);
-	EffectFarmLand* effect_farm_land = new EffectFarmLand(farm_land);
+	FarmLand* farmland = new FarmLand(NULL, 100, 100, "farmland,1.0f");
+	EffectFarmLand* effect_farm_land = new EffectFarmLand(farmland);
 	Crop* crop = new Crop(NULL, 10, 50);
+	effect_farm_land->plow(30);
 	crop->plant_on(effect_farm_land);
 	cout << "Because the crop is planted on an effect farmland, its output rate is set to " << crop->get_output_rate() << "." << endl;
+	delete crop;
+	delete farmland;
+	delete effect_farm_land;
 }
