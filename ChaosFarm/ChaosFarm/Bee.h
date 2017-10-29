@@ -45,7 +45,7 @@ float Bee::get_reproduction_rate()
 }
 void Bee::when_atmosphere_changed()
 {
-	Atmosphere* atmosphere = Atmosphere::getInstance();
+	Atmosphere* atmosphere = Atmosphere::get_instance();
 
 }
 void Bee::grow()

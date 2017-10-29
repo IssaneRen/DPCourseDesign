@@ -30,7 +30,7 @@ public:
 	//*在判断对象依然活着的时候，会根据变化后的天气类型做一些事情。
 	virtual void when_atmosphere_changed(){
 		if (alive_){
-			Atmosphere* atm = Atmosphere::getInstance();
+			Atmosphere* atm = Atmosphere::get_instance();
 			switch (atm->get_weather_type()){
 			case SUNNY:format_output("Mammals::when_atmosphere_changed()", "is enjoying the sunshine"); break;
 			case WINDY:format_output("Mammals::when_atmosphere_changed()", "is walking briefly."); break;

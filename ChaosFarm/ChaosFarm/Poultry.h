@@ -29,7 +29,7 @@ public:
 	//*反应函数。当天气变化时，由update()调用此函数。
 	//*在判断对象依然活着的时候，会根据变化后的天气类型做一些事情。
 	virtual void when_atmosphere_changed(){
-		Atmosphere* atm = Atmosphere::getInstance();
+		Atmosphere* atm = Atmosphere::get_instance();
 		switch (atm->get_weather_type()){
 		case SUNNY:format_output("Poultry::when_atmosphere_changed()", "is enjoying the sunshine"); break;
 		case WINDY:format_output("Poultry::when_atmosphere_changed()", "is feeling the wind"); break;
@@ -44,7 +44,8 @@ public:
 	//*飞来飞去
 	void fly(){ cout << "Poultry:" << id_ << ":fly(): A poultry is flying." << endl; }
 
-
+	//*行为函数。
+	//*下蛋
 	virtual void lay_egg(){
 		format_output("Poultry::lay_egg()", "is laying eggs.");
 	}

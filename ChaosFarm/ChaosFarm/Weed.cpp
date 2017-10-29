@@ -26,7 +26,7 @@ void Weed::bloom()
 
 void Weed::photosynthesis()
 {
-	Atmosphere* atm = Atmosphere::getInstance();
+	Atmosphere* atm = Atmosphere::get_instance();
 	energy_ = energy_ + 10 * atm->get_lux();
 	water_content_--;
 	cout << "Weed has absorbed sunshine"
@@ -42,7 +42,7 @@ void Weed::water_absorb()
 
 void Weed::breath()
 {
-	Atmosphere* atm = Atmosphere::getInstance();
+	Atmosphere* atm = Atmosphere::get_instance();
 
 	if (energy_ >= 5)
 	{

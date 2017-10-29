@@ -45,7 +45,7 @@ void testTime()
 
 void test_chicken_time_atmosphere(){
 	Time* time = Time::instance();
-	Atmosphere* atm = Atmosphere::getInstance();
+	Atmosphere* atm = Atmosphere::get_instance();
 	time->report();
 	vector<Abstract*> abs_list;
 	abs_list.push_back(time);

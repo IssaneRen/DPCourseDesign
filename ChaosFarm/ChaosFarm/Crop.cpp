@@ -94,7 +94,7 @@ void Crop::die()
 
 void Crop::photosynthesis()
 {
-	Atmosphere* atm = Atmosphere::getInstance();
+	Atmosphere* atm = Atmosphere::get_instance();
 	if (water_content_ > 0)							    //光合作用
 	{
 		
@@ -134,7 +134,7 @@ void Crop::time_pass_by()
 
 void Crop::when_atmosphere_changed()
 {
-	Atmosphere* atm = Atmosphere::getInstance();
+	Atmosphere* atm = Atmosphere::get_instance();
 	switch (atm->get_weather_type())
 	{
 	case SUNNY:

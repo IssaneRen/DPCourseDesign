@@ -33,14 +33,6 @@ public:
 	//*Animal的子类必须实现此函数。
 	virtual void grow() = 0;
 
-	//*反应函数。当时间流逝时，由update()调用此函数。
-	//*注意：纯虚
-	virtual void time_pass_by() = 0;
-
-	//*反应函数。当天气变化时，由update()调用此函数。
-	//*注意：纯虚
-	virtual void when_atmosphere_changed() = 0;
-
 	//*用以获取年龄的函数
 	//*const：你无法通过此函数修改对象的年龄。
 	const int get_age() { return age_; }
@@ -59,6 +51,14 @@ protected:
 	int health_;
 	//*表征是否依然活着
 	bool alive_;
+
+	//*反应函数。当时间流逝时，由update()调用此函数。
+	//*注意：纯虚
+	virtual void time_pass_by() = 0;
+
+	//*反应函数。当天气变化时，由update()调用此函数。
+	//*注意：纯虚
+	virtual void when_atmosphere_changed() = 0;
 };
 
 

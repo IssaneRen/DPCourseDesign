@@ -30,7 +30,7 @@ public:
 	virtual void do_afternoon();
 
 	//*反应函数。
-	//*表征此动物在晚上时做的事情。
+	//*表征此动物在晚上.时做的事情。
 	virtual void do_night();
 };
 
