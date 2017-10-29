@@ -17,17 +17,6 @@ void Chicken::when_atmosphere_changed()
 	cout << "Atmosphere has changed." << endl;
 }
 
-void Chicken::die()
-{
-	cout << "A chicken is dead." << endl;
-}
-
-
-void Chicken::grow()
-{
-	age_ += 1;
-}
-
 
 void Chicken::cry()
 {
@@ -40,11 +29,6 @@ void Chicken::drink()
 }
 
 
-void Chicken::incubate()
-{
-	cout << "I am incubating the eggs." << endl;
-	return;
-}
 
 void Chicken::do_morning(){
 	cout << "Chicken:" << id_ << ":do_morning(): the chicken is crowing." << endl;
@@ -52,12 +36,12 @@ void Chicken::do_morning(){
 
 
 void Chicken::do_noon(){
-	cout << "Chicken:" << id_ << ":do_noon(): the chicken is taking a nap." << endl;
+	lay_egg();
 }
 
 
 void Chicken::do_afternoon(){
-	lay_egg();
+	incubate();
 }
 
 
