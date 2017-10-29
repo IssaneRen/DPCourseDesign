@@ -30,6 +30,7 @@ public:
 	//取得当前天气下的光强系数。
 	float get_lux(){ return lux_; }
 
+	virtual const char* get_class_name(){ return "Atmosphere"; }
 protected:
 	Atmosphere();
 	~Atmosphere();

@@ -12,12 +12,16 @@ public:
 
 	~Living(){}
 
+	virtual const char* get_class_name(){ return "Living"; }
 
-	virtual void breath(){ cout << "A living is breath." << endl; }										 //呼吸函数。调用改变atm二氧化碳和氧气浓度的函数
+	virtual void die(){
+		cout << get_class_name() << ":" << id_ << ":" << "the living is dead just now." << endl;
+	}
 
-	virtual void die() = 0;
-
-	virtual void grow() = 0;															//生长函数。随时间增长年龄
+	virtual void grow(){
+		age_++;
+		if (age_ >= max_age_)die();
+	}
 
 	virtual void time_pass_by() = 0;
 
@@ -37,14 +41,10 @@ public:
 		}
 	}
 
-	void set_health_gradient(float new_gradient){ health_gradient_ = new_gradient; }
-
 	int get_age() { return age_; }
 protected:
 	int age_;
 	int max_age_;
-	float grow_speed_;						//由空气气味浓度影响，是一个系数。在grow()中被使用
-	float health_gradient_;					//健康值变化率，由空气微生物浓度影响，是一个系数。在time_pass_by()中被使用，影响健康度变化
 	int health_;							 //归0后死亡。
 };
 

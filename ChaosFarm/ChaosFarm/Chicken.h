@@ -8,6 +8,8 @@ public:
 	Chicken(vector<Abstract*>* abs_list = NULL, int size = 3, int max_age = 100);
 
 	~Chicken() {}
+
+	virtual const char* get_class_name(){ return "Chicken"; }
     
 	virtual void time_pass_by(){ Time::instance()->do_something(this); }
 

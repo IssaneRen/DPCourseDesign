@@ -29,6 +29,7 @@ public:
 	void plant_on(BaseFarmLand* farmland);
 	void set_output_rate(float new_rate){ output_rate_ = new_rate; }
 	float get_output_rate(){ return output_rate_; }
+	virtual const char* get_class_name(){ return "Crop"; }
 private:
 	int fruit_size_;
 	float output_rate_;

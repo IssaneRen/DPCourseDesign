@@ -25,6 +25,8 @@ public:
 	virtual void do_afternoon() = 0;
 
 	virtual void do_night() = 0;
+
+	virtual const char* get_class_name(){ return "Poultry"; }
 };
 #endif 
 

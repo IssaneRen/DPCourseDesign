@@ -47,6 +47,8 @@ public:
 
 	~Time(){ }
 
+	virtual const char* get_class_name(){ return "Time"; }
+
 protected:
 
 

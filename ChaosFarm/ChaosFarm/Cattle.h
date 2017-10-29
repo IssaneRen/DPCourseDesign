@@ -28,6 +28,8 @@ public:
 	virtual void do_afternoon(){}
 
 	virtual void do_night(){}
+
+	virtual const char* get_class_name(){ return "Cattle"; }
 };
 
 #endif 

@@ -13,6 +13,8 @@ public:
 
 	int get_id(){ return id_; }
 
+	virtual const char* get_class_name(){ return "Object"; }
+
 protected:
 	int id_;
 

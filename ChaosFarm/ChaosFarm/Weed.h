@@ -31,6 +31,7 @@ public:
 	virtual void attack(Crop* crop);                                 //杂草攻击庄稼函数
 	void setStrategy(StrategyType type);                             //杂草不同动作的策略
 	void doIt(StrategyType type);                                    //杂草进行不同动作
+	virtual const char* get_class_name(){ return "Weed"; }
 	
 protected:
 	WeedStrategy* strategy_;
