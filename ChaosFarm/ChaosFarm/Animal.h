@@ -16,9 +16,15 @@ public:
 
 	virtual void do_night() = 0;
 
-	virtual void cry() = 0;
+	virtual void sleep(){ format_output("Animal::sleep()", "zzz..."); }
 
-	virtual void drink(){}
+	virtual void cry(){
+		format_output("Animal::cry()", "is crying");
+	}
+
+	virtual void drink(){
+		format_output("Animal::drink()", "is driking");
+	}
 
 	virtual void time_pass_by() = 0;
 
@@ -39,11 +45,10 @@ public:
 		}
 	}
 
-	virtual void die() = 0;
-
-	virtual void grow() = 0;															
-
-protected:
+	virtual void die(){
+		alive_ = false;
+		format_output("Animal::die()", "is dead");
+	}														
 };
 
 

@@ -10,20 +10,10 @@ public:
 	~Chicken() {}
 
 	virtual const char* get_class_name(){ return "Chicken"; }
-    
-	virtual void time_pass_by(){ Time::instance()->do_something(this); }
-
-	virtual void when_atmosphere_changed();
-
-	virtual void die();
-
-	virtual void grow();
 
 	virtual void cry();
 
 	virtual void drink();
-
-	void incubate();
 
 	virtual void do_morning();
 

@@ -35,8 +35,7 @@ public:
 	Time* hour_pass(int n = 1);
 
 	virtual void do_something(Animal* animal){
-		cout << "An animal tried to do something in this Time:";
-		report();
+		cerr << "ERROR: You have come into the base class Time. which whill never happen if correct" << endl;
 	}
 
 	int get_d_hour(){ return d_hour_; }
@@ -104,7 +103,7 @@ public:
 	}
 
 	virtual void report(){
-		cout << "It's morning now." << endl;
+		format_output("MorningTime::report()", "it is morning now");
 		Time::report();
 	}
 
@@ -129,7 +128,7 @@ public:
 	}
 
 	virtual void report(){
-		cout << "It's noon now." << endl;
+		format_output("NoonTime::report()", "it is noon now");
 		Time::report();
 	}
 protected:
@@ -153,7 +152,7 @@ public:
 	}
 
 	virtual void report(){
-		cout << "It's afternoon now." << endl;
+		format_output("AfternoonTime::report()", "it is afternoon now");
 		Time::report();
 	}
 protected:
@@ -176,7 +175,7 @@ public:
 	}
 
 	virtual void report(){
-		cout << "It's night now." << endl;
+		format_output("NightTime::report()", "it is night now");
 		Time::report();
 	}
 protected:
