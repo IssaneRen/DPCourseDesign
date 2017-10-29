@@ -42,10 +42,13 @@ public:
 	}
 
 	int get_age() { return age_; }
+	void set_alive(bool alive) { alive_ = alive; }
+	bool is_alive() { return alive_; }
 protected:
 	int age_;
 	int max_age_;
 	int health_;							 //¹é0ºóËÀÍö¡£
+	bool alive_;
 };
 
 

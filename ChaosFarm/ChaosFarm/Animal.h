@@ -18,7 +18,9 @@ public:
 
 	virtual void cry() = 0;
 
-	virtual void drink(){}
+	virtual void drink(){
+		cout << get_class_name() << ":" << id_ << ":" << "the living is dead just now." << endl;
+	}
 
 	virtual void time_pass_by() = 0;
 
