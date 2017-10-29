@@ -1,9 +1,10 @@
-#include "Object.h"
+﻿#include "Object.h"
 #include "Time.h"
 #include "Crop.h"
 #include "Insect.h"
 #include "Time.h"
 #include "BaseFarmland.h"
+#include "FarmProduct.h"
 #include "Bee.h"
 #include "Tool.h"
 #include "UnitTool.h"
@@ -19,6 +20,7 @@ void stock_test();
 void test_farmland();
 void test_chicken_time();
 void test_Crop();
+void test_chicken_time_atmosphere();
 
 
 int main(){
@@ -31,6 +33,7 @@ int main(){
 	//test_Crop();
 	//test_chicken_time();
 	
+	test_chicken_time_atmosphere();
 	system("pause");
 	return 0;
 }
@@ -43,11 +46,13 @@ void testTime()
 	time->report();
 }
 
-void test_chicken_time(){
+void test_chicken_time_atmosphere(){
 	Time* time = Time::instance();
+	Atmosphere* atm = Atmosphere::getInstance();
 	time->report();
 	vector<Abstract*> abs_list;
 	abs_list.push_back(time);
+	abs_list.push_back(atm);
 	Chicken* chicken = new Chicken(&abs_list);
 	time = time->hour_pass(7);
 	time->report();
@@ -57,6 +62,8 @@ void test_chicken_time(){
 	time->report();
 	time = time->hour_pass(100);
 	time->report();
+
+	atm->change_weathertype(CLOUDY);
 	delete chicken;
 }
 
