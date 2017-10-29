@@ -18,14 +18,17 @@ void testInsect();
 void testTool();
 void stock_test();
 void test_farmland();
+void test_chicken_time();
 
 
 int main(){
 	//add Test Functions here!
 	//Do not delete test Functions
 	//instead, delete invoking them here in main() if you want to
-	testTool();
 
+	//testTool();
+
+	test_chicken_time();
 	system("pause");
 	return 0;
 }
@@ -37,6 +40,24 @@ void testTime()
 	time->set_time(test);
 	time->report();
 }
+
+void test_chicken_time(){
+	Time* time = Time::instance();
+	time->report();
+	vector<Abstract*> abs_list;
+	abs_list.push_back(time);
+	Chicken* chicken = new Chicken(&abs_list);
+	time = time->hour_pass(7);
+	time->report();
+	time = time->hour_pass(4);
+	time->report();
+	time = time->hour_pass(7);
+	time->report();
+	time = time->hour_pass(7);
+	time->report();
+	delete chicken;
+}
+
 
 void test_time_h() {
 	Time* time = Time::instance();

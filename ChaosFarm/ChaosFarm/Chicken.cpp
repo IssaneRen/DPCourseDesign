@@ -39,11 +39,6 @@ void Chicken::drink()
 	cout << "Chiken:" << id_ << "drink(): the chicken is drinking." << endl;
 }
 
-void Chicken::lay_egg()
-{
-	cout << "I have laid an egg." << endl;
-	return;
-}
 
 void Chicken::incubate()
 {
@@ -62,7 +57,7 @@ void Chicken::do_noon(){
 
 
 void Chicken::do_afternoon(){
-	cout << "Chicken:" << id_ << ":do_afternoon(): the chicken is laying eggs." << endl;
+	lay_egg();
 }
 
 

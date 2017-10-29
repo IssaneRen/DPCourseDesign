@@ -14,7 +14,9 @@ public:
 
 	virtual void time_pass_by(){ Time::instance()->do_something(this); }
 
-	virtual void lay_egg() = 0;
+	virtual void lay_egg(){
+		cout << get_class_name() << ": " << id_ << " : Poultry:lay_egg(): the " << get_class_name() << " is laying eggs." << endl;
+	}
 
 	virtual void incubate() = 0;
 

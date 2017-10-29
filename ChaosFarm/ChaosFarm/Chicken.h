@@ -23,8 +23,6 @@ public:
 
 	virtual void drink();
 
-	void lay_egg();
-
 	void incubate();
 
 	virtual void do_morning();
