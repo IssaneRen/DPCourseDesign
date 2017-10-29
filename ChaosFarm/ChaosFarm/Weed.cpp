@@ -1,4 +1,4 @@
-#include "Weed.h"
+﻿#include "Weed.h"
 
 Weed::Weed(vector<Abstract*>* abs_list, int size, int max_age)
 	:Plant(abs_list, size, max_age), strategy_(NULL) {
@@ -69,27 +69,6 @@ void Weed::when_atmosphere_changed()
 
 }
 
-void Weed::update(AbstractType type)
-{
-	time_pass_by();
-	if (health_ < 0)
-	{
-		die();
-	}
-
-	if (type == TIME)
-	{
-		Time* time = Time::instance();
-		int check_time[4];
-		time->get_time(check_time);
-		
-		if (check_time[3] > 18 || check_time[3] < 6)
-		{
-			doIt(Dance);
-		}
-		
-	}
-}
 
 void Weed::attack(Crop* crop)
 {
