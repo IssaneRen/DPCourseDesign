@@ -19,7 +19,7 @@ class Atmosphere :public Abstract {
 
 public:
 	//取得当前的天气类型。
-	WEATHER_TYPE get_weather_type(){ return weather; }
+	WEATHER_TYPE get_weather_type(){ return weather_; }
 
 	//用于设置当前天气。
 	void change_weathertype(WEATHER_TYPE new_weather);
@@ -30,15 +30,18 @@ public:
 	//取得当前天气下的光强系数。
 	float get_lux(){ return lux_; }
 
-private:
+	virtual const char* get_class_name(){ return "Atmosphere"; }
+protected:
 	Atmosphere();
 	~Atmosphere();
 
 	float lux_;								//光强系数。影响植物光合作用一次取得的energy量
 
-	WEATHER_TYPE weather;					//当前天气类型
+	WEATHER_TYPE weather_;					//当前天气类型
 
-	static Atmosphere* instance;			//singleton的static实例
+	static Atmosphere* instance_;			//singleton的static实例
+
+	virtual void notify();
 };
 
 

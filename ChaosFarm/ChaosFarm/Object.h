@@ -7,13 +7,18 @@ using namespace std;
 
 class Object{
 public:
-	Object();
+	Object(){ id_ = counter_++; }
 
 	virtual ~Object(){}
 
+	int get_id(){ return id_; }
+
+	virtual const char* get_class_name(){ return "Object"; }
 
 protected:
+	int id_;
 
+	static int counter_;
 };
 
 

@@ -35,6 +35,8 @@ public:
 
 	void set_size(int new_size){ size_ = new_size; }
 
+	virtual const char* get_class_name(){ return "Entity"; }
+
 protected:
 	int size_;
 };

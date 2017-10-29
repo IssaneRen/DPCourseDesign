@@ -1,7 +1,7 @@
 #ifndef CF_POULTRY_H_
 #define CF_POULTRY_H_
 #include "Animal.h"
-#include "Fence.h"
+#include "Time.h"
 
 
 class Poultry :public Animal {
@@ -10,13 +10,13 @@ public:
 
 	~Poultry() {}
 
-	void go_into_fence(Fence* fence);
+	void fly(){ cout << "Poultry:" << id_ << ":fly(): A poultry is flying." << endl; }
 
-	void go_out_of_fence(Fence* fence);
+	virtual void time_pass_by(){ Time::instance()->do_something(this); }
 
-	void fly();
-
-	virtual void lay_egg() = 0;
+	virtual void lay_egg(){
+		cout << get_class_name() << ": " << id_ << " : Poultry:lay_egg(): the " << get_class_name() << " is laying eggs." << endl;
+	}
 
 	virtual void incubate() = 0;
 
@@ -27,6 +27,8 @@ public:
 	virtual void do_afternoon() = 0;
 
 	virtual void do_night() = 0;
+
+	virtual const char* get_class_name(){ return "Poultry"; }
 };
 #endif 
 

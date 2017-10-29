@@ -20,6 +20,7 @@ public:
 	void produce_honey();
 	virtual Insect* clone(vector<Abstract*>* abs_list, int size);
 	virtual Living* mate_with(vector<Abstract*>* abs_list, Living* another){ return NULL; }
+	virtual const char* get_class_name(){ return "Bee"; }
 protected:
 	Bee(vector<Abstract*>* abs_list, int size, int dummy) :Insect(abs_list, size, 900), reproduction_rate_(1) {}
 private:

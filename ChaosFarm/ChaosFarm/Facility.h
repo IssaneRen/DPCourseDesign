@@ -17,6 +17,8 @@ public:
 	virtual void when_atmosphere_changed() = 0;
 
 	int get_durability(){ return durability_; }
+
+	virtual const char* get_class_name(){ return "Facility"; }
 protected:
 	int durability_;
 };

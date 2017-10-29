@@ -1,7 +1,7 @@
 #ifndef CF_MAMMALS_H_
 #define CF_MAMMALS_H_
 #include "Animal.h"
-#include "Fence.h"
+#include "Time.h"
 
 
 class Mammals :public Animal {
@@ -10,15 +10,11 @@ public:
 
 	~Mammals() {}
 
-	void go_into_fence(Fence* fence);
-
-	void go_out_of_fence(Fence* fence);
-
 	void run();
 
-	virtual void produce_milk() = 0;
+	virtual void time_pass_by(){ Time::instance()->do_something(this); }
 
-	virtual void farrow() = 0;
+	virtual void produce_milk() = 0;
 
 	virtual void do_morning() = 0;
 
@@ -27,6 +23,8 @@ public:
 	virtual void do_afternoon() = 0;
 
 	virtual void do_night() = 0;
+
+	virtual const char* get_class_name(){ return "Mammals"; }
 };
 #endif 
 

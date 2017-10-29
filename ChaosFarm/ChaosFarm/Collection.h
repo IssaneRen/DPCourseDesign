@@ -19,6 +19,7 @@ public:
 		virtual void turn_last() = 0;
 		virtual bool has_next() = 0;
 		virtual bool has_previous() = 0;
+		virtual const char* get_class_name(){ return "FarmIterator"; }
 	protected:
 		Object* current_node_;
 	};

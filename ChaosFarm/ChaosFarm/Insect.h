@@ -40,6 +40,7 @@ public:
 	virtual void grow() = 0;
 	virtual void cry() = 0;
 	virtual void die() = 0;
+	virtual const char* get_class_name(){ return "Insect"; }
 protected:
 	Insect(vector<Abstract*>* abs_list, int size, int max_age) :Animal(abs_list, size, max_age) {}
 	virtual Insect* clone(vector<Abstract*>* abs_list, int size) = 0;
@@ -106,6 +107,7 @@ public:
 	void hatch(vector<Abstract*>* abs_list);
 	virtual void add(Object* new_element);
 	virtual void remove(FarmIterator& iterator);
+	virtual const char* get_class_name(){ return "InsectGroup"; }
 private:
 	string* species_;
 	List*list_;

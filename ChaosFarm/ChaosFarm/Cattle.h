@@ -8,26 +8,18 @@ public:
 	Cattle(vector<Abstract*>* abs_list, int size, int max_age);
 
 	~Cattle() {}
-    
-	void time_pass_by();
 
-	void when_atmosphere_changed();
+	virtual void when_atmosphere_changed();
 
-	void die();
+	virtual void die();
 
-	void breath(Atmosphere* atm);
+	virtual void grow();
 
-	void grow();
+	virtual void cry();
 
-	bool eat(Entity* food);
-
-	void cry();
-
-	bool drink();
+	virtual void drink();
 
 	void produce_milk();
-
-	void farrow();
 
 	virtual void do_morning(){}
 
@@ -36,6 +28,8 @@ public:
 	virtual void do_afternoon(){}
 
 	virtual void do_night(){}
+
+	virtual const char* get_class_name(){ return "Cattle"; }
 };
 
 #endif 
