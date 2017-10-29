@@ -34,16 +34,9 @@ void Cattle::cry()
 	cout << "A cattle is crying!" << endl;
 }
 
-bool Cattle::drink() 
+void Cattle::drink() 
 {
-	if (thirsty_ <= 0) 
-	{
-		cout << "I am not thirsty, and don't want to drink." << endl;
-		return false;
-	}
-	cout << "I have drunk some water." << endl;
-	thirsty_--;
-	return true;
+	cout << "Cattle:" << id_ << "drink(): the cattle is drinking." << endl;
 }
 
 void Cattle::produce_milk()

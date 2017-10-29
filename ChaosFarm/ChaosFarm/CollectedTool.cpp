@@ -1,4 +1,4 @@
-#include "CollectedTool.h"
+ï»¿#include "CollectedTool.h"
 
 #define DEBUG
 
@@ -35,7 +35,7 @@ void CollectedTool::outputDurability()
 #ifdef DEBUG
 	auto it = toolList_.begin();
 	for (; it != toolList_.end(); it++) {
-		cout << "¹¤¾ß³ÉÔ±£º" << (*it)->getName() << " Ê£ÓàÄÍ¾Ã¶È:" << (*it)->getDurability() << endl;
+		cout << "å·¥å…·æˆå‘˜ï¼š" << (*it)->getName() << " å‰©ä½™è€ä¹…åº¦:" << (*it)->getDurability() << endl;
 	}
 #endif // DEBUG
 
@@ -56,7 +56,7 @@ void CollectedTool::loss()
 		(*it)->loss();
 	}
 #ifdef DEBUG
-	cout << "ÎÒ(" << this->getName() << ")Ä¥ËðÀ²!!ËäÈ»ÎÒÊÇ¹¤¾ß×éºÏ£¡" << endl;
+	cout << "æˆ‘(" << this->getName() << ")ç£¨æŸå•¦!!è™½ç„¶æˆ‘æ˜¯å·¥å…·ç»„åˆï¼" << endl;
 #endif // DEBUG
 
 }
@@ -65,7 +65,7 @@ void CollectedTool::fix(int n)
 {
 	durability_ += n;
 #ifdef DEBUG
-	cout << "ÎÒ(" << this->getName() << ")±»ÐÞÀíÁË " << n << " µãÄÍ¾Ã¶ÈÀ²£¡" << endl;
+	cout << "æˆ‘(" << this->getName() << ")è¢«ä¿®ç†äº† " << n << " ç‚¹è€ä¹…åº¦å•¦ï¼" << endl;
 	outputDurability();
 #endif // DEBUG
 }
@@ -84,7 +84,7 @@ void CollectedTool::removeTool(Tool* tool)
 			return;
 		}
 	}
-	cout << "ERROR!Ã»ÓÐÕâ¸ö¹¤¾ß£¡" << endl;
+	cout << "ERROR!æ²¡æœ‰è¿™ä¸ªå·¥å…·ï¼" << endl;
 }
 
 vector<Tool*>* CollectedTool::getToolList()
@@ -98,11 +98,11 @@ string CollectedTool::getUnitName(Tool* tool)
 	auto it = toolList_.begin();
 	for (; it != toolList_.end(); it++) {
 		if (*it == tool) {
-			cout << "Ãû×Ö£º" << endl;
+			cout << "åå­—ï¼š" << endl;
 			return (*it)->getName();
 		}
 	}
-	cout << "ERROR!Ã»ÓÐÕâ¸ö¹¤¾ß£¡" << endl;
+	cout << "ERROR!æ²¡æœ‰è¿™ä¸ªå·¥å…·ï¼" << endl;
 }
 
 vector<Tool*>* CollectedTool::checkFixNeededTool()
@@ -110,7 +110,7 @@ vector<Tool*>* CollectedTool::checkFixNeededTool()
 	vector<Tool*>* newToolVector = new vector<Tool*>();
 	auto it = toolList_.begin();
 	for (; it != toolList_.end(); it++) {
-		if (durability_ <= needFixValue) {	//ÐèÒªÐÞÀíÁË£¡
+		if (durability_ <= needFixValue) {	//éœ€è¦ä¿®ç†äº†ï¼
 			newToolVector->push_back(*it);
 		}
 	}

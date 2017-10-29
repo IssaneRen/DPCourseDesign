@@ -27,6 +27,7 @@ public:
 		return !((ptr_) == another.get_element());
 	}
 
+	virtual const char* get_class_name(){ return "Iterator"; }
 private:
 
 	T* ptr_;

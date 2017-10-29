@@ -70,7 +70,7 @@ void Crop::growbigger()
 		{
 			die();
 		}
-		size_ = size_ * (1 + grow_speed_);
+		size_ = size_ * 2;
 	}
 }
 
@@ -138,11 +138,9 @@ void Crop::when_atmosphere_changed()
 	switch (atm->get_weather_type())
 	{
 	case SUNNY:
-		grow_speed_ += 0.1;
 		water_content_ -= 3;
 		break;
 	case RAINY:
-		grow_speed_ -= 0.1;
 		water_content_ += 5;
 		break;
 	case WINDY:

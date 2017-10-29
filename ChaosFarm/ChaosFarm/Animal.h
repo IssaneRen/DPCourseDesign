@@ -18,7 +18,7 @@ public:
 
 	virtual void cry() = 0;
 
-	virtual bool drink();
+	virtual void drink(){}
 
 	virtual void time_pass_by() = 0;
 
@@ -44,8 +44,6 @@ public:
 	virtual void grow() = 0;															
 
 protected:
-	int hunger_;			
-	int thirsty_;
 };
 
 

@@ -28,7 +28,7 @@ public:
 
 	bool remove_observer(Entity *observer);
 
-
+	virtual const char* get_class_name(){ return "Abstract"; }
 protected:
 	ObserverPool* observer_pool_;
 

@@ -26,6 +26,7 @@ public:
 	vector<Tool*>* checkFixNeededTool();
 	Tool* checkWorstTool();
 
+	virtual const char* get_class_name(){ return "CollectedTool"; }
 private:
 	vector<Tool*> toolList_;
 };

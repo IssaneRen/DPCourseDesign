@@ -8,20 +8,20 @@ public:
 	Chicken(vector<Abstract*>* abs_list = NULL, int size = 3, int max_age = 100);
 
 	~Chicken() {}
+
+	virtual const char* get_class_name(){ return "Chicken"; }
     
 	virtual void time_pass_by(){ Time::instance()->do_something(this); }
 
-	void when_atmosphere_changed();
+	virtual void when_atmosphere_changed();
 
-	void die();
+	virtual void die();
 
-	void grow();
+	virtual void grow();
 
-	void cry();
+	virtual void cry();
 
-	bool drink();
-
-	void lay_egg();
+	virtual void drink();
 
 	void incubate();
 

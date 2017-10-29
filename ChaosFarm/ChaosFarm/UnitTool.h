@@ -20,6 +20,8 @@ public:
 	int getDurabilityUnit() { return durabilityUnit_; }
 	void setDurabilityUnit(int durabilityUnit) { durabilityUnit_ = durabilityUnit; }
 
+	virtual const char* get_class_name(){ return "UnitTool"; }
+
 private:
 	int durabilityUnit_;
 };

@@ -15,6 +15,8 @@ public:
 
 	const char* get_name(){ return name_->c_str(); }
 
+	virtual const char* get_class_name(){ return "FarmProduct"; }
+
 private:
 	string* name_;
 };

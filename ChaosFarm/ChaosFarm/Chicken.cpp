@@ -34,23 +34,11 @@ void Chicken::cry()
 	cout << "A chicken is crying." << endl;
 }
 
-bool Chicken::drink() 
+void Chicken::drink() 
 {
-	if (thirsty_ <= 0) 
-	{
-		cout << "I am not thirsty, and don't want to drink." << endl;
-		return false;
-	}
-	cout << "I have drunk some water." << endl;
-	thirsty_--;
-	return true;
+	cout << "Chiken:" << id_ << "drink(): the chicken is drinking." << endl;
 }
 
-void Chicken::lay_egg()
-{
-	cout << "I have laid an egg." << endl;
-	return;
-}
 
 void Chicken::incubate()
 {
@@ -69,7 +57,7 @@ void Chicken::do_noon(){
 
 
 void Chicken::do_afternoon(){
-	cout << "Chicken:" << id_ << ":do_afternoon(): the chicken is laying eggs." << endl;
+	lay_egg();
 }
 
 
