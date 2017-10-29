@@ -53,7 +53,7 @@ void test_chicken_time(){
 	time->report();
 	time = time->hour_pass(7);
 	time->report();
-	time = time->hour_pass(7);
+	time = time->hour_pass(100);
 	time->report();
 	delete chicken;
 }

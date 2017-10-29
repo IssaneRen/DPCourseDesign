@@ -8,11 +8,8 @@ Weed::Weed(vector<Abstract*>* abs_list, int size, int max_age)
 
 void Weed::grow()
 {
+
 	photosynthesis();
-	if (health_ < 100)
-	{
-		health_++;
-	}
 }
 
 void Weed::die()

@@ -10,15 +10,23 @@ public:
 
 	~Poultry() {}
 
-	void fly(){ cout << "Poultry:" << id_ << ":fly(): A poultry is flying." << endl; }
-
-	virtual void time_pass_by(){ Time::instance()->do_something(this); }
-
-	virtual void lay_egg(){
-		cout << get_class_name() << ": " << id_ << " : Poultry:lay_egg(): the " << get_class_name() << " is laying eggs." << endl;
+	virtual void grow(){
+		age_ += Time::instance()->get_d_hour();
+		if (age_ >= max_age_)die();
 	}
 
-	virtual void incubate() = 0;
+
+	void fly(){ cout << "Poultry:" << id_ << ":fly(): A poultry is flying." << endl; }
+
+	virtual void time_pass_by(){ if (alive_)Time::instance()->do_something(this); grow(); }
+
+	virtual void lay_egg(){
+		format_output("Poultry::lay_egg()", "is laying eggs.");
+	}
+
+	virtual void incubate(){
+		format_output("Poultry::incubate()", "is incubating.");
+	}
 
 	virtual void do_morning() = 0;
 

@@ -12,9 +12,17 @@ public:
 
 	void run();
 
-	virtual void time_pass_by(){ Time::instance()->do_something(this); }
 
-	virtual void produce_milk() = 0;
+	virtual void grow(){
+		age_ += Time::instance()->get_d_hour();
+		if (age_ >= max_age_)die();
+	}
+
+	virtual void time_pass_by(){ if (alive_) Time::instance()->do_something(this); grow(); }
+
+	virtual void produce_milk(){
+		format_output("Mammals::produce_milk()", "is producing milk");
+	}
 
 	virtual void do_morning() = 0;
 
