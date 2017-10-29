@@ -18,7 +18,10 @@ void testInsect();
 void testTool();
 void stock_test();
 void test_farmland();
+void test_chicken_time();
+void test_Crop();
 void test_chicken_time_atmosphere();
+
 
 int main(){
 	//add Test Functions here!
@@ -26,8 +29,11 @@ int main(){
 	//instead, delete invoking them here in main() if you want to
 
 	//testTool();
+	//test_chicken_time();
+	//test_Crop();
+	//test_chicken_time();
+	
 	test_chicken_time_atmosphere();
-
 	system("pause");
 	return 0;
 }
@@ -110,4 +116,16 @@ void test_farmland(){
 	Crop* crop = new Crop(NULL, 10, 50);
 	crop->plant_on(effect_farm_land);
 	cout << "Because the crop is planted on an effect farmland, its output rate is set to " << crop->get_output_rate() << "." << endl;
+}
+
+void test_Crop(){
+	Time* time = Time::instance();
+	time->report();
+	vector<Abstract*> abs_list;
+	abs_list.push_back(time);
+	Crop* crop1 = new Crop(&abs_list, 0, 8);						//最大年龄为8
+	crop1->absorb_water();
+	crop1->weaken(5);
+	for (int i = 0; i < 10;i++)
+		time = time->hour_pass();									//经过1小时
 }
