@@ -13,6 +13,7 @@ public:
 	void set_previous(Node* previous);
 	void set_value(Object* value);
 	void set_next(Node* next);
+	void delete_content();
 	virtual const char* get_class_name(){ return "Node"; }
 private:
 	Node* previous_;
@@ -27,6 +28,7 @@ public:
 	Node* head();
 	void add(Node* new_node);
 	void remove(Node* node);
+	void erase(Node* node);
 	int size();
 	bool is_empty();
 	virtual const char* get_class_name(){ return "List"; }

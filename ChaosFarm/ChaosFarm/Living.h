@@ -10,7 +10,7 @@ class Living :public Entity{
 public:
 	Living(vector<Abstract*>* abs_list, int size, int max_age);
 
-	~Living(){}
+	virtual ~Living(){}
 
 	virtual const char* get_class_name(){ return "Living"; }
 
@@ -24,20 +24,6 @@ public:
 	virtual void time_pass_by() = 0;
 
 	virtual void when_atmosphere_changed() = 0;
-
-	virtual void update(AbstractType type){
-		switch (type)
-		{
-		case ERROR:
-			break;
-		case TIME:time_pass_by();
-			break;
-		case ATMOSPHERE:when_atmosphere_changed();
-			break;
-		default:
-			break;
-		}
-	}
 
 	int get_age() { return age_; }
 protected:

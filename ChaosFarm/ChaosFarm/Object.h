@@ -9,7 +9,7 @@ class Object{
 public:
 	Object(){ id_ = counter_++; }
 
-	~Object(){}
+	virtual ~Object(){}
 
 	int get_id(){ return id_; }
 

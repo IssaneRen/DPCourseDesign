@@ -6,7 +6,7 @@ class Facility :public Entity{
 public:
 	Facility(vector<Abstract*>* abs_list, int size, int init_durability = 100);
 
-	~Facility(){}
+	virtual ~Facility(){}
 
 	virtual void fix(int n = 1){ durability_ += n; }
 

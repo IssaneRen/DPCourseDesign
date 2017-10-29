@@ -11,7 +11,7 @@ class Entity :public Object{
 public:
 	Entity(vector<Abstract*>* abs_list, int size = 0);
 
-	~Entity(){}
+	virtual ~Entity(){}
 
 	virtual void time_pass_by(){}
 

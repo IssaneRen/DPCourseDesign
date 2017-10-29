@@ -6,7 +6,7 @@ class Animal :public Living{
 public:
 	Animal(vector<Abstract*>* abs_list, int size, int max_age);
 
-	~Animal(){}
+	virtual ~Animal(){}
 
 	virtual void do_morning() = 0;
 
