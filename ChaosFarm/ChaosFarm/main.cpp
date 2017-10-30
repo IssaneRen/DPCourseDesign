@@ -1,7 +1,3 @@
-﻿#include "Object.h"
-#include "Time.h"
-#include "Crop.h"
-#include "Insect.h"
 #include "Time.h"
 #include "FarmLand.h"
 #include "FarmProduct.h"
@@ -13,35 +9,29 @@
 #include "Stock.h"
 #include "Chicken.h"
 #include "Cattle.h"
+#include "Farmland.h"
+#include "Bee.h"
+#include "Warehouse.h"
 
-void testTime();
-void testInsect();
-void testTool();
-void stock_test();
-void test_farmland();
 void test_chicken_time_atmosphere();
+void test_farmland();
 
-int main(){
-	//add Test Functions here!
-	//Do not delete test Functions
-	//instead, delete invoking them here in main() if you want to
+int main() {
+	InsectGroup* beeGroup = new InsectGroup(new string("bee"));
 
-	//testTool();
-	//test_chicken_time_atmosphere();
+	for (int i = 0; i < 20; i++)
+	{
+		beeGroup->hatch(NULL);
+	}
 
+	cout << beeGroup->size() << endl;
+
+	delete beeGroup;
 	test_farmland();
-
 	system("pause");
 	return 0;
 }
 
-void testTime() 
-{
-	Time* time = Time::instance();
-	int test[] = { 2017, 15, 12, 15 };
-	time->set_time(test);
-	time->report();
-}
 
 void test_chicken_time_atmosphere(){
 	Time* time = Time::instance();
@@ -64,47 +54,6 @@ void test_chicken_time_atmosphere(){
 	delete cattle;
 }
 
-void test_time_h() {
-	Time* time = Time::instance();
-	time->report();
-	time = time->hour_pass(7);
-	time->report();
-	time = time->hour_pass(4);
-	time->report();
-	time = time->hour_pass(7);
-	time->report();
-	time = time->hour_pass(7);
-	time->report();
-}
-
-
-void stock_test(){
-	Stock* stock = new Stock(NULL, 100);
-	Chicken* chicken = new Chicken();
-	stock->put_in(chicken);
-	StockList::Iterator* chicken_find = stock->find(chicken);
-	if (chicken_find != NULL)cout << "FIND!" << endl;
-	else cout << "not find" << endl;
-	delete chicken_find;
-	delete chicken;
-	delete stock;
-}
-
-void testTool()
-{
-	//Tool* tool = new Tool(nullptr,0);
-	UnitTool* mugun = new UnitTool("木棍");
-	UnitTool* chuizitou = new UnitTool("锤子头");
-	auto list = new vector<Tool*>;
-	list->push_back(mugun);
-	list->push_back(chuizitou);
-	CollectedTool* chuizi = new CollectedTool("锤子", list);
-	chuizitou->loss();
-	if (chuizi->checkWorstTool()->getName().length() > 0)
-		cout << "锤子中最需要修理的是：" << chuizi->checkWorstTool()->getName() << endl;
-	chuizi->outputDurability();
-	chuizi->loss();
-}
 
 void test_farmland(){
 	FarmLand* farmland = new FarmLand(NULL, 100, 100, "farmland,1.0f");

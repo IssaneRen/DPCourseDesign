@@ -16,7 +16,7 @@ public:
 	//*参数abs_list为指向存放了对象将要订阅的subject——Abstract类及其子类对象的指针的vector，在此构造函数中，将完成订阅。
 	Entity(vector<Abstract*>* abs_list = NULL, int size = 0);
 
-	~Entity(){}
+	virtual ~Entity(){}
 
 	//*更新函数。当收到来源于订阅的subject——Abstract的通知时，会根据调用它的Abstract的类型，调用不同的反应函数。
 	//*AbstractType: 详见enum AbtractType

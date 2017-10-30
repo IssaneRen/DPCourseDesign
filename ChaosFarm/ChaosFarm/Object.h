@@ -12,7 +12,7 @@ public:
 	//*构造函数。在此为对象赋予独一无二的ID
 	Object(){ id_ = counter_++; }
 
-	~Object(){}
+	virtual ~Object(){}
 
 	//*调用此函数以获取对象的ID
 	//const：你无法借由此函数改变对象的ID。

@@ -12,7 +12,7 @@ public:
 	//*max_age：该动物的最大年龄。
 	Animal(vector<Abstract*>* abs_list = NULL, int size = 0, int max_age = 100);
 
-	~Animal(){}
+	virtual ~Animal(){}
 
 	//*反应函数。
 	//*表征此动物在早晨时做的事情。

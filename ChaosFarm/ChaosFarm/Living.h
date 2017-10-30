@@ -17,7 +17,7 @@ public:
 	//*max_age：该生物的最大年龄。
 	Living(vector<Abstract*>* abs_list = NULL, int size = 0, int max_age = 100);
 
-	~Living(){}
+	virtual ~Living(){}
 
 	//*死亡函数。
 	//*被调用后，该生物将会死亡，不再对Subject的变化做出反应。
@@ -42,6 +42,7 @@ public:
 
 	//*返回表征是否依然活着的bool值。
 	bool is_alive(){ return alive_; }
+
 protected:
 	//*年龄
 	int age_;

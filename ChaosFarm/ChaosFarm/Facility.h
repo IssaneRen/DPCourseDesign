@@ -11,7 +11,7 @@ public:
 	//*init_durability：初始耐久度。
 	Facility(vector<Abstract*>* abs_list = NULL, int size = 0, int init_durability = 100);
 
-	~Facility(){}
+	virtual ~Facility(){}
 
 	//*修理函数。
 	//*参数n表示修理恢复的耐久度数
