@@ -13,6 +13,7 @@ class Insect:public Animal
 public:
 	friend class InsectData;
 	virtual ~Insect(){}
+	//根据species创建相应种类的Insect
 	static Insect* find_and_clone(vector<Abstract*>* abs_list, string* species)
 	{
 		map<string*, Insect*>::iterator it;
