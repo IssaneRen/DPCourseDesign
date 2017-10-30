@@ -13,6 +13,7 @@ class Insect:public Animal
 public:
 	friend class InsectData;
 	virtual ~Insect(){}
+	//*根据species创建相应种类的Insect
 	static Insect* find_and_clone(vector<Abstract*>* abs_list, string* species)
 	{
 		map<string*, Insect*>::iterator it;
@@ -31,19 +32,33 @@ public:
 		Insect*temp = (*it).second->clone(abs_list, 1);
 		return temp;
 	}
+	//*反应函数。当时间流逝时，由update()调用此函数。
 	virtual void time_pass_by();
+	//*成长函数
 	virtual void grow();
+	//*获取当前繁殖率
 	virtual float get_reproduction_rate() = 0;
+	//*反应函数。当天气变化时，由update()调用此函数。
 	virtual void when_atmosphere_changed();
+	//*获取昆虫的种类，要由子类实现
 	virtual string* get_species() = 0;
+	//*被重写的获取类名的函数，返回"Insect"
 	virtual const char* get_class_name(){ return "Insect"; }
 protected:
+	//*被引用的次数，为0时被delete
 	int ref_count_;
+	//*繁殖率
 	float reproduction_rate_;
+	//*abs_list：需要注册的subject列表。
+	//*size：该生物的大小。
+	//*max_age：该生物的最大年龄。
 	Insect(vector<Abstract*>* abs_list, int size, int max_age) :Animal(abs_list, size, max_age),reproduction_rate_(1) {}
+	//*根据原型克隆一份自己，将由子类实现
 	virtual Insect* clone(vector<Abstract*>* abs_list, int size) = 0;
+	//*将原型放入列表中
 	static void addPrototype(Insect* insect);
 private:
+	//*记录每一个子类的原型
 	static map<string*, Insect*> prototype_;
 };
 
@@ -86,20 +101,23 @@ void Insect::grow()
 	if (age_ >= max_age_)die();
 }
 
-/*InsectData*/
+/*InsectData，封装Insect以实现reference counting*/
 class InsectData :public Entity
 {
 public:
+	//*根据species创建相应种类的InsectData
 	InsectData(vector<Abstract*>* abs_list, string* species) :Entity(abs_list, 1)
 	{
 		insect_ = Insect::find_and_clone(NULL, species);
 		insect_->ref_count_ = 1;
 	}
+	//*根据另一个InsectData创建新对象
 	InsectData(vector<Abstract*>* abs_list, InsectData& another) :Entity(abs_list, 1)
 	{
 		insect_ = another.insect_;
 		(insect_->ref_count_)++;
 	}
+	//*将被引用的Insect数量-1，如果引用数为0则删除
 	~InsectData()
 	{
 		if (insect_ != NULL)
@@ -111,13 +129,20 @@ public:
 			}
 		}
 	}
+	//*反应函数。当时间流逝时，由update()调用此函数。
 	void time_pass_by();
+	//*获取繁殖率
 	float get_reproduction_rate();
+	//*反应函数。当天气变化时，由update()调用此函数。
 	void when_atmosphere_changed();
+	//*获取昆虫种类
 	string* get_species();
+	//*被重写的获取类名的函数
 	const char* get_class_name() { return insect_->get_class_name(); }
 private:
+	//*被引用的Insect对象
 	Insect* insect_;
+	//*当更改数据时调用，解除对原对象的引用，并复制一个新对象
 	void copy_on_write();
 };
 
@@ -167,31 +192,49 @@ public:
 		friend class InsectGroup;
 		Iterator(InsectGroup* group);
 		Iterator(Iterator* another);
+		//*获取该节点的值
 		virtual Object* value();
+		//*指向下一节点
 		virtual void turn_next();
+		//*指向上一节点
 		virtual void turn_previous();
+		//*指向首节点
 		virtual void turn_first();
+		//*指向尾节点
 		virtual void turn_last();
+		//*判断是否有下一节点
 		virtual bool has_next();
+		//*判断是否有上一节点
 		virtual bool has_previous();
-		virtual const char* get_class_name() { return "Iterator"; }
+		//*被重写的获取类名的函数，返回"InsectGroup::Iterator"
+		virtual const char* get_class_name() { return "InsectGroup::Iterator"; }
 	};
+	//*设置虫群的种类
 	InsectGroup(string* species) :species_(species)
 	{
 		list_ = new List();
 	}
+	//*析构函数
 	~InsectGroup()
 	{
 		delete species_;
 		delete list_;
 	}
+	//*获取大小
 	virtual int size();
+	//*判断是否为空
 	virtual bool is_empty();
+	//*将iterator指向开始处
 	virtual void begin(FarmIterator& iterator);
+	//*将iterator指向结束处
 	virtual void end(FarmIterator& iterator);
+	//*孵化一定数量的昆虫
 	void hatch(vector<Abstract*>* abs_list);
+	//*添加新元素
 	virtual void add(Object* new_element);
+	//*移除iterator指向的元素
 	virtual void remove(FarmIterator& iterator);
+	//*被重写的获取类名的函数，返回"InsectGroup"
 	virtual const char* get_class_name(){ return "InsectGroup"; }
 private:
 	string* species_;
