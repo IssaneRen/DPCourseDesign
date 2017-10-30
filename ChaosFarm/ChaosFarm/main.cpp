@@ -28,7 +28,7 @@ int main() {
 	{
 		it.turn_next();
 
-		Bee* temp = (Bee*)it.value();
+		InsectData* temp = (InsectData*)it.value();
 
 		warehouse->add(temp);
 
