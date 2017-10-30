@@ -17,21 +17,13 @@ void test_chicken_time_atmosphere();
 void test_farmland();
 
 int main() {
-	InsectGroup* beeGroup = new InsectGroup(new string("bee"));
-
-	for (int i = 0; i < 20; i++)
-	{
-		beeGroup->hatch(NULL);
-	}
-
-	cout << beeGroup->size() << endl;
-
-	delete beeGroup;
-	test_farmland();
+	//add Test Functions here!
+	//Do not delete test Functions
+	//instead, delete invoking them here in main() if you want to
+  
 	system("pause");
 	return 0;
 }
-
 
 void test_chicken_time_atmosphere(){
 	Time* time = Time::instance();
