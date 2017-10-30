@@ -15,7 +15,7 @@ Atmosphere::~Atmosphere()
 }
 
 
-Atmosphere* Atmosphere::getInstance() {
+Atmosphere* Atmosphere::get_instance() {
 	if (!instance_)instance_ = new Atmosphere();
 	return instance_;
 }

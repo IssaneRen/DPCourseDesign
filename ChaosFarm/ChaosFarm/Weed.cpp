@@ -12,21 +12,15 @@ void Weed::grow()
 	photosynthesis();
 }
 
-void Weed::die()
-{
-	cout << "Weed is dead"
-		<< endl;
-
-}
 
 void Weed::bloom()
 {
-
+	format_output("Weed::bloom()", "the weed dose not want to bloom.");
 }
 
 void Weed::photosynthesis()
 {
-	Atmosphere* atm = Atmosphere::getInstance();
+	Atmosphere* atm = Atmosphere::get_instance();
 	energy_ = energy_ + 10 * atm->get_lux();
 	water_content_--;
 	cout << "Weed has absorbed sunshine"
@@ -42,7 +36,7 @@ void Weed::water_absorb()
 
 void Weed::breath()
 {
-	Atmosphere* atm = Atmosphere::getInstance();
+	Atmosphere* atm = Atmosphere::get_instance();
 
 	if (energy_ >= 5)
 	{
@@ -86,7 +80,7 @@ void Weed::attack(Crop* crop)
 	}
 }
 
-void Weed::setStrategy(StrategyType type)
+void Weed::set_strategy(StrategyType type)
 {
 	delete strategy_;
 	if (type == Sing)
@@ -103,8 +97,8 @@ void Weed::setStrategy(StrategyType type)
 	}
 }
 
-void Weed::doIt(StrategyType type)
+void Weed::do_it(StrategyType type)
 {
-	setStrategy(type);
+	set_strategy(type);
 	strategy_->format();
 }
