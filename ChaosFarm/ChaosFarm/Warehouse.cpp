@@ -34,9 +34,9 @@ void Warehouse::set_max_durability(int value)
 
 void Warehouse::fix(int n)
 {
-	if (durability_ = max_durability_)
+	if (durability_ == max_durability_)
 	{
-		cout << "Warehouse doesn't need fixing!" << endl;
+		format_output("Warehouse::fix()", "Warehouse doesn't need fixing!");
 	}
 	else
 	{
@@ -45,6 +45,7 @@ void Warehouse::fix(int n)
 		{
 			durability_ = max_durability_;
 		}
+		format_output("Warehouse::fix()", "Warehouse has been fixed!");
 	}
 }
 
@@ -136,6 +137,7 @@ void Warehouse::dilate(int extend_space)
 		shelf_ = new Shelf();
 	}
 	shelf_->dilate(extend_space);
+	format_output("Warehouse::dilate()", "has been dilated!");
 }
 
 int Warehouse::capacity()

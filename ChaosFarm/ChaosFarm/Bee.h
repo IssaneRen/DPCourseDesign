@@ -6,20 +6,26 @@ class Bee :public Insect
 {
 public:
 	virtual ~Bee(){}
+	//*获取种类
 	virtual string* get_species();
-	virtual float get_reproduction_rate();
+	//*反应函数。
+	//*表征此蜜蜂在早晨时做的事情。
 	virtual void do_morning();
+	//*反应函数。
+	//*表征此蜜蜂在中午时做的事情。
 	virtual void do_noon();
+	//*反应函数。
+	//*表征此蜜蜂在下午时做的事情。
 	virtual void do_afternoon();
+	//*反应函数。
+	//*表征此蜜蜂在晚上时做的事情。
 	virtual void do_night();
+	//*用于根据原型制作蜜蜂的实例
 	virtual Insect* clone(vector<Abstract*>* abs_list, int size);
 	virtual const char* get_class_name(){ return "Bee"; }
 protected:
 
 	Bee(vector<Abstract*>* abs_list, int size, int dummy) :Insect(abs_list, size, 900){}
-
-	//*反应函数。当天气变化时，由update()调用此函数。
-	virtual void when_atmosphere_changed();
 private:
 	static Bee bee_;
 	Bee() :Insect(NULL, 0, 0){ addPrototype(this); }
@@ -35,15 +41,6 @@ Insect * Bee::clone(vector<Abstract*>* abs_list, int size)
 {
 	Bee* temp = new Bee(abs_list, size, 1);
 	return temp;
-}
-float Bee::get_reproduction_rate()
-{
-	return reproduction_rate_;
-}
-
-void Bee::when_atmosphere_changed()
-{
-	Atmosphere* atmosphere = Atmosphere::get_instance();
 }
 
 void Bee::do_morning()
