@@ -32,6 +32,7 @@ int main() {
 	test_crop();
 	cout << "===========================Test Crop FarmLand==========================" << endl;
 	test_farmland();
+
 	system("pause");
 	return 0;
 }
@@ -81,6 +82,19 @@ void test_tool()
 	chuizi->loss();
 }
 
+void testTool()
+{
+	//Tool* tool = new Tool(nullptr,0);
+	UnitTool* mugun = new UnitTool("木棍");
+	auto list = new vector<Tool*>;
+	list->push_back(mugun);
+	mugun->fix();
+	CollectedTool* chuizi = new CollectedTool("锤子", list);
+	if (chuizi->checkWorstTool()->getName().length() > 0)
+		cout << "Needed Fix most urgently: " << chuizi->checkWorstTool()->getName() << endl;
+	chuizi->outputDurability();
+	chuizi->loss();
+}
 
 
 void test_farmland(){
