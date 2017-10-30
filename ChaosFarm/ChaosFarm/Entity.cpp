@@ -6,4 +6,5 @@ Entity::Entity(vector<Abstract*>* abs_list, int size):size_(size){
 			(*it)->add_observer(this);
 		}
 	}
+
 }

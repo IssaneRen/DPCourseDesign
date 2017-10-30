@@ -37,7 +37,7 @@ public:
 	//*将通知所有注册此subject的observer
 	Time* hour_pass(int n = 1);
 
-	//*根据当前的state，调用animal的不同函数。
+	//*根据当前的state，调用entity的不同函数。
 	//*由于这是基类函数，故不应在运行时被调用。
 	virtual void do_something(Animal* animal){
 		cerr << "ERROR: You have come into the base class Time. which whill never happen if correct" << endl;
