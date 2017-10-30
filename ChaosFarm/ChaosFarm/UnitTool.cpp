@@ -1,6 +1,6 @@
 #include "UnitTool.h"
 
-#define DEBUG
+//#define DEBUG
 
 const int initDurabilityUnit = 1;
 
@@ -20,23 +20,19 @@ UnitTool::~UnitTool()
 {
 }
 
-void UnitTool::update(AbstractType type)
-{
-
-}
-
 void UnitTool::outputDurability()
 {
 #ifdef DEBUG
-	cout << "ÎÒ(" << this->getName() << ")µ±Ç°ÄÍ¾Ã¶È" << durability_ << endl;
+	cout << "æˆ‘(" << this->getName() << ")å½“å‰è€ä¹…åº¦" << durability_ << endl;
 #endif // DEBUG
 }
 
 void UnitTool::loss()
 {
 	durability_ -= durabilityUnit_;
+	format_output("UnitTool::fix", (this->getName() + " lost its " + to_string(this->getDurabilityUnit()) + " durability").c_str());
 #ifdef DEBUG
-	cout << "ÎÒ(" << this->getName() << ")Ä¥ËðÁË " << durabilityUnit_ << "µãÄÍ¾Ã¶ÈÀ²£¡" << endl;
+	cout << "æˆ‘(" << this->getName() << ")ç£¨æŸäº† " << durabilityUnit_ << "ç‚¹è€ä¹…åº¦å•¦ï¼" << endl;
 	outputDurability();
 #endif //DEBUG
 }
@@ -44,8 +40,9 @@ void UnitTool::loss()
 void UnitTool::fix(int n)
 {
 	durability_ += n;
+	format_output("UnitTool::fix", ("fix " + this->getName() + " "+ to_string(n) + " durability").c_str());
 #ifdef DEBUG
-	cout << "ÎÒ(" << this->getName() << ")±»ÐÞÀíÁË " << n << " µãÄÍ¾Ã¶ÈÀ²£¡" << endl;
+	cout << "æˆ‘(" << this->getName() << ")è¢«ä¿®ç†äº† " << n << " ç‚¹è€ä¹…åº¦å•¦ï¼" << endl;
 	outputDurability();
 #endif // DEBUG
 }

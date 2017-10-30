@@ -25,8 +25,8 @@ int main(){
 	//Do not delete test Functions
 	//instead, delete invoking them here in main() if you want to
 
-	//testTool();
-	test_chicken_time_atmosphere();
+	//Test Tool
+	testTool();
 
 	system("pause");
 	return 0;
@@ -91,14 +91,12 @@ void testTool()
 {
 	//Tool* tool = new Tool(nullptr,0);
 	UnitTool* mugun = new UnitTool("木棍");
-	UnitTool* chuizitou = new UnitTool("锤子头");
 	auto list = new vector<Tool*>;
 	list->push_back(mugun);
-	list->push_back(chuizitou);
+	mugun->fix();
 	CollectedTool* chuizi = new CollectedTool("锤子", list);
-	chuizitou->loss();
 	if (chuizi->checkWorstTool()->getName().length() > 0)
-		cout << "锤子中最需要修理的是：" << chuizi->checkWorstTool()->getName() << endl;
+		cout << "Needed Fix most urgently: " << chuizi->checkWorstTool()->getName() << endl;
 	chuizi->outputDurability();
 	chuizi->loss();
 }
