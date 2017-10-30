@@ -32,6 +32,13 @@ public:
 	//*将年月日时格式的时间，存放在一个容量为4的数组内传入以修改时间
 	void set_time(const int time_container[4]);
 
+	PeriodType get_period(){
+		if (hour_ >= 6 && hour_ <= 11)return MORNING;
+		else if (hour_ >= 11 && hour_ <= 14)return NOON;
+		else if (hour_ >= 14 && hour_ <= 16)return AFTERNOON;
+		else return NIGHT;
+	}
+
 	//*表征时间过去的函数。
 	//*n表示过去的小时数。
 	//*将通知所有注册此subject的observer
