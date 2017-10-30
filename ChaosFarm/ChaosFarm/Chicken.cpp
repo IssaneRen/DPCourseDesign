@@ -12,20 +12,6 @@ Chicken::Chicken(vector<Abstract*>* abs_list, int size, int max_age) :Poultry(ab
 }
 
 
-
-
-void Chicken::cry()
-{
-	format_output("Chicken::cry()", "cluck  cluck  cluck !!!");
-}
-
-void Chicken::drink() 
-{
-	format_output("Chicken::drink() ", "the water is great.");
-}
-
-
-
 void Chicken::do_morning(){
 	cry();
 }

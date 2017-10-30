@@ -16,6 +16,11 @@ Node::Node(Object* value)
 
 Node::~Node()
 {
+
+}
+
+void Node::delete_content()
+{
 	delete content_;
 }
 
@@ -128,6 +133,12 @@ void List::remove(Node* node)
 			}
 		}
 	}
+}
+
+void List::erase(Node* node)
+{
+	node->delete_content();
+	remove(node);
 }
 
 int List::size()

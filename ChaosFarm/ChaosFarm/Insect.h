@@ -3,14 +3,16 @@
 #include "Animal.h"
 #include "Collection.h"
 #include "List.h"
+#include "Atmosphere.h"
 #include<vector>
 #include<math.h>
-
 
 /*Insect*/
 class Insect:public Animal
 {
 public:
+	friend class InsectData;
+	virtual ~Insect(){}
 	static Insect* find_and_clone(vector<Abstract*>* abs_list, string* species)
 	{
 		map<string*, Insect*>::iterator it;
@@ -30,18 +32,15 @@ public:
 		return temp;
 	}
 	virtual void time_pass_by();
+	virtual void grow();
 	virtual float get_reproduction_rate() = 0;
-	virtual void when_atmosphere_changed() = 0;
+	virtual void when_atmosphere_changed();
 	virtual string* get_species() = 0;
-	virtual void update(Abstract* abs, AbstractType type);
-	virtual Living* mate_with(vector<Abstract*>* abs_list,Living* another) = 0;
-	virtual void breath(Atmosphere* atm);
-	virtual void grow() = 0;
-	virtual void cry() = 0;
-	virtual void die() = 0;
 	virtual const char* get_class_name(){ return "Insect"; }
 protected:
-	Insect(vector<Abstract*>* abs_list, int size, int max_age) :Animal(abs_list, size, max_age) {}
+	int ref_count_;
+	float reproduction_rate_;
+	Insect(vector<Abstract*>* abs_list, int size, int max_age) :Animal(abs_list, size, max_age),reproduction_rate_(1) {}
 	virtual Insect* clone(vector<Abstract*>* abs_list, int size) = 0;
 	static void addPrototype(Insect* insect);
 private:
@@ -56,19 +55,105 @@ map<string*, Insect*> Insect::prototype_;
 
 void Insect::time_pass_by()
 {
-	grow();
+	if (alive_)
+	{
+		Time::instance()->do_something(this);
+		grow();
+	}
 }
 
-void Insect::update(Abstract* abs, AbstractType type)
+void Insect::when_atmosphere_changed()
 {
-
+	if (alive_)
+	{
+		Atmosphere* atmosphere = Atmosphere::get_instance();
+		if (atmosphere->get_weather_type() == WINDY)
+		{
+			reproduction_rate_ = 0.5;
+			format_output("Insect::when_atmosphere_changed()", "low reproduction rate!");
+		}
+		if (atmosphere->get_weather_type() == RAINY)
+		{
+			reproduction_rate_ = 0.25;
+			format_output("Insect::when_atmosphere_changed()", "low reproduction rate!");
+		}
+	}
 }
 
-void Insect::breath(Atmosphere* atm)
+void Insect::grow()
 {
-
+	age_ += Time::instance()->get_d_hour();
+	if (age_ >= max_age_)die();
 }
 
+/*InsectData*/
+class InsectData :public Entity
+{
+public:
+	InsectData(vector<Abstract*>* abs_list, string* species) :Entity(abs_list, 1)
+	{
+		insect_ = Insect::find_and_clone(NULL, species);
+		insect_->ref_count_ = 1;
+	}
+	InsectData(vector<Abstract*>* abs_list, InsectData& another) :Entity(abs_list, 1)
+	{
+		insect_ = another.insect_;
+		(insect_->ref_count_)++;
+	}
+	~InsectData()
+	{
+		if (insect_ != NULL)
+		{
+			(insect_->ref_count_)--;
+			if (insect_->ref_count_ == 0)
+			{
+				delete insect_;
+			}
+		}
+	}
+	void time_pass_by();
+	float get_reproduction_rate();
+	void when_atmosphere_changed();
+	string* get_species();
+	const char* get_class_name() { return insect_->get_class_name(); }
+private:
+	Insect* insect_;
+	void copy_on_write();
+};
+
+void InsectData::time_pass_by()
+{
+	copy_on_write();
+	insect_->time_pass_by();
+}
+
+float InsectData::get_reproduction_rate()
+{
+	return insect_->get_reproduction_rate();
+}
+
+void InsectData::when_atmosphere_changed()
+{
+	copy_on_write();
+	insect_->when_atmosphere_changed();
+}
+
+string* InsectData::get_species()
+{
+	return insect_->get_species();
+}
+
+void InsectData::copy_on_write()
+{
+	Insect* temp = Insect::find_and_clone(NULL, insect_->get_species());
+	*temp = *insect_;
+	insect_->ref_count_--;
+	if (insect_->ref_count_ == 0)
+	{
+		delete insect_;
+	}
+	insect_ = temp;
+}
 
 /*InsectGroup*/
 class InsectGroup :public Collection
@@ -77,8 +162,9 @@ public:
 	class Iterator :public FarmIterator
 	{
 	public:
-		friend class InsectGroup;
 		Iterator();
+		virtual ~Iterator(){}
+		friend class InsectGroup;
 		Iterator(InsectGroup* group);
 		Iterator(Iterator* another);
 		virtual Object* value();
@@ -88,6 +174,7 @@ public:
 		virtual void turn_last();
 		virtual bool has_next();
 		virtual bool has_previous();
+		virtual const char* get_class_name() { return "Iterator"; }
 	};
 	InsectGroup(string* species) :species_(species)
 	{
@@ -100,11 +187,11 @@ public:
 	}
 	virtual int size();
 	virtual bool is_empty();
-	virtual void begin(FarmIterator* iterator);
-	virtual void end(FarmIterator* iterator);
+	virtual void begin(FarmIterator& iterator);
+	virtual void end(FarmIterator& iterator);
 	void hatch(vector<Abstract*>* abs_list);
 	virtual void add(Object* new_element);
-	virtual void remove(FarmIterator* iterator);
+	virtual void remove(FarmIterator& iterator);
 	virtual const char* get_class_name(){ return "InsectGroup"; }
 private:
 	string* species_;
@@ -119,35 +206,30 @@ bool InsectGroup::is_empty()
 {
 	return list_->is_empty();
 }
-void InsectGroup::begin(FarmIterator* iterator)
+void InsectGroup::begin(FarmIterator& iterator)
 {
 	if (size() > 0)
 	{
 		Iterator begin(this);
-		if (iterator != NULL)
-		{
-			*(Iterator*)iterator = begin;
-		}
-		else
-		{
-			return;
-		}
+		iterator = begin;
+	}
+	else
+	{
+		Iterator begin;
+		iterator = begin;
 	}
 }
-void InsectGroup::end(FarmIterator* iterator)
+void InsectGroup::end(FarmIterator& iterator)
 {
 	if (size() > 0)
 	{
 		Iterator end(this);
-		for (; end.has_next(); end.turn_next());
-		if (iterator != NULL)
-		{
-			*(Iterator*)iterator = end;
-		}
-		else
-		{
-			return;
-		}
+		iterator = end;
+	}
+	else
+	{
+		Iterator end;
+		iterator = end;
 	}
 }
 void InsectGroup::hatch(vector<Abstract*>* abs_list)
@@ -156,33 +238,36 @@ void InsectGroup::hatch(vector<Abstract*>* abs_list)
 	if (list_->size() > 0)
 	{
 		Iterator* it = new Iterator();
-		begin((FarmIterator*)it);
+		begin(*it);
 		float group_reproduction_rate = 0;
 		for (; it->has_next(); it->turn_next())
 		{
-			group_reproduction_rate = group_reproduction_rate + ((Insect*)it->value())->get_reproduction_rate();
+			group_reproduction_rate = group_reproduction_rate + ((InsectData*)it->value())->get_reproduction_rate();
 		}
-		group_reproduction_rate = group_reproduction_rate + ((Insect*)it->value())->get_reproduction_rate();
+		group_reproduction_rate = group_reproduction_rate + ((InsectData*)it->value())->get_reproduction_rate();
 		float average_rate = group_reproduction_rate / (list_->size());
 		number = (int)(sqrt(list_->size())*average_rate);
 		delete it;
 	}
 	else
 	{
-		number = 0;
+		number = 100;
 	}
+	InsectData* temp = new InsectData(abs_list, species_);
+
 	for (int i = 0; i < number; i++)
 	{
-		Insect*temp = Insect::find_and_clone(abs_list, species_);
-		Node* new_element = new Node(temp);
+		InsectData* data = new InsectData(abs_list, *temp);
+		Node* new_element = new Node(data);
 		list_->add(new_element);
 	}
+	delete temp;
 }
 void InsectGroup::add(Object* new_element)
 {
 	if (new_element != NULL)
 	{
-		Insect* temp = (Insect*)new_element;
+		InsectData* temp = (InsectData*)new_element;
 		if (*species_ == *(temp->get_species()))
 		{
 			Node* new_node = new Node(temp);
@@ -190,9 +275,10 @@ void InsectGroup::add(Object* new_element)
 		}
 	}
 }
-void InsectGroup::remove(FarmIterator* iterator)
+void InsectGroup::remove(FarmIterator& iterator)
 {
-	list_->remove((Node*)(((Iterator*)iterator)->current_node_));
+	Iterator* temp = (Iterator*)&iterator;
+	list_->erase((Node*)temp->current_node_);
 }
 
 
