@@ -15,7 +15,11 @@ public:
 	virtual Insect* clone(vector<Abstract*>* abs_list, int size);
 	virtual const char* get_class_name(){ return "Bee"; }
 protected:
+
 	Bee(vector<Abstract*>* abs_list, int size, int dummy) :Insect(abs_list, size, 900){}
+
+	//*反应函数。当天气变化时，由update()调用此函数。
+	virtual void when_atmosphere_changed();
 private:
 	static Bee bee_;
 	Bee() :Insect(NULL, 0, 0){ addPrototype(this); }
@@ -35,6 +39,11 @@ Insect * Bee::clone(vector<Abstract*>* abs_list, int size)
 float Bee::get_reproduction_rate()
 {
 	return reproduction_rate_;
+}
+
+void Bee::when_atmosphere_changed()
+{
+	Atmosphere* atmosphere = Atmosphere::get_instance();
 }
 
 void Bee::do_morning()

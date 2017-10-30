@@ -1,7 +1,7 @@
 #ifndef CF_CROP_H
 #define CF_CROP_H
 #include "Plant.h"
-#include "BaseFarmland.h"
+#include "FarmLand.h"
 
 class BaseFarmLand;
 
@@ -19,7 +19,6 @@ public:
 	void breath();
 	void time_pass_by();
 	void when_atmosphere_changed();
-	void update(AbstractType type);
 	void grow();
 	void bear_fruit();
 	void reproduce();
