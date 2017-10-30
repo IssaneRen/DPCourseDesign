@@ -68,7 +68,7 @@ Time* Time::hour_pass(int n){
 
 
 
-void Time::set_time(int time_containner[4]){
+void Time::set_time(const int time_containner[4]){
 	year_ = time_containner[0];
 	month_ = time_containner[1];
 	day_ = time_containner[2];

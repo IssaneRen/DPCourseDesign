@@ -65,7 +65,7 @@ void Insect::when_atmosphere_changed()
 {
 	if (alive_)
 	{
-		Atmosphere* atmosphere = Atmosphere::getInstance();
+		Atmosphere* atmosphere = Atmosphere::get_instance();
 		if (atmosphere->get_weather_type() == WINDY)
 		{
 			reproduction_rate_ = 0.5;

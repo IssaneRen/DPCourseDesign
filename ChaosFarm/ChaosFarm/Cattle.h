@@ -2,33 +2,39 @@
 #define CF_CATTLE_H_
 #include "Mammals.h"
 
+//*一个实例类，所有的虚函数都已实现。
+//*奶牛。
 class Cattle final: public Mammals{
 public:
 
-	Cattle(vector<Abstract*>* abs_list, int size, int max_age);
+	//*abs_list：需要注册的subject列表。
+	//*size：该动物的大小。
+	//*max_age：该动物的最大年龄。
+	Cattle(vector<Abstract*>* abs_list, int size = 7, int max_age = 200):Mammals(abs_list,size,max_age){}
 
 	~Cattle() {}
 
-	virtual void when_atmosphere_changed();
+	//*反应函数。
+	//*表征此动物在早上时做的事情。
+	virtual void do_morning(){ run(); }
 
-	virtual void die();
+	//*反应函数。
+	//*表征此动物在中午时做的事情。
+	virtual void do_noon(){ produce_milk(); }
 
-	virtual void grow();
+	//*反应函数。
+	//*表征此动物在下午时做的事情。
+	virtual void do_afternoon(){ drink(); }
 
-	virtual void cry();
+	//*反应函数。
+	//*表征此动物在晚上时做的事情。
+	virtual void do_night(){ sleep(); }
 
-	virtual void drink();
+	//*行为函数。
+	//*产奶
+	void produce_milk(){ format_output("Mammals::produce_milk()", "is producing milk"); }
 
-	void produce_milk();
-
-	virtual void do_morning(){}
-
-	virtual void do_noon(){}
-
-	virtual void do_afternoon(){}
-
-	virtual void do_night(){}
-
+	//*被重写的获取类名的函数，返回"Cattle"
 	virtual const char* get_class_name(){ return "Cattle"; }
 };
 
