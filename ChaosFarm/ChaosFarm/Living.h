@@ -43,6 +43,9 @@ public:
 	//*返回表征是否依然活着的bool值。
 	bool is_alive(){ return alive_; }
 
+	//*设置生物是否存活
+	void set_alive(bool alive) { alive_ = alive; }
+
 protected:
 	//*年龄
 	int age_;
