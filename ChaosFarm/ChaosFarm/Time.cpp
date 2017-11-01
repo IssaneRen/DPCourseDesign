@@ -1,6 +1,5 @@
 #include "Time.h"
 
-
 Time* Time::time_instance_ = 0;
 
 

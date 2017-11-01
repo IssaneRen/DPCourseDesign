@@ -101,9 +101,7 @@ private:
 	public:
 		~TimeReleaser()
 		{
-			if (Time::time_instance_)
-
-				delete Time::time_instance_;
+			if (Time::time_instance_)delete Time::time_instance_;
 		}
 		static TimeReleaser garbo;
 	};

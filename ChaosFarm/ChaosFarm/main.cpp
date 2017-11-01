@@ -37,7 +37,7 @@ int main() {
 	return 0;
 }
 
-void test_chicken_cattle_time_atmosphere(){
+void test_chicken_cattle_time_atmosphere() {
 	Time* time = Time::instance();
 	Atmosphere* atm = Atmosphere::get_instance();
 	time->report();
@@ -97,7 +97,7 @@ void testTool()
 }
 
 
-void test_farmland(){
+void test_farmland() {
 	FarmLand* farmland = new FarmLand(NULL, 100, 100, "farmland,1.0f");
 	EffectFarmLand* effect_farm_land = new EffectFarmLand(farmland);
 	Crop* crop = new Crop(NULL, 10, 50);
@@ -109,7 +109,7 @@ void test_farmland(){
 	delete effect_farm_land;
 }
 
-void test_crop(){
+void test_crop() {
 	Time* time = Time::instance();
 	time->report();
 	vector<Abstract*> abs_list;

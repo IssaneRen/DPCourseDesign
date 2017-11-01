@@ -37,7 +37,7 @@ public:
 	//*成长函数
 	virtual void grow();
 	//*获取当前繁殖率
-	virtual float get_reproduction_rate() = 0;
+	float get_reproduction_rate();
 	//*反应函数。当天气变化时，由update()调用此函数。
 	virtual void when_atmosphere_changed();
 	//*获取昆虫的种类，要由子类实现
@@ -75,6 +75,11 @@ void Insect::time_pass_by()
 		Time::instance()->do_something(this);
 		grow();
 	}
+}
+
+float Insect::get_reproduction_rate()
+{
+	return reproduction_rate_;
 }
 
 void Insect::when_atmosphere_changed()
@@ -130,11 +135,11 @@ public:
 		}
 	}
 	//*反应函数。当时间流逝时，由update()调用此函数。
-	void time_pass_by();
+	virtual void time_pass_by();
 	//*获取繁殖率
 	float get_reproduction_rate();
 	//*反应函数。当天气变化时，由update()调用此函数。
-	void when_atmosphere_changed();
+	virtual void when_atmosphere_changed();
 	//*获取昆虫种类
 	string* get_species();
 	//*被重写的获取类名的函数
@@ -170,14 +175,20 @@ string* InsectData::get_species()
 
 void InsectData::copy_on_write()
 {
-	Insect* temp = Insect::find_and_clone(NULL, insect_->get_species());
-	*temp = *insect_;
-	insect_->ref_count_--;
-	if (insect_->ref_count_ == 0)
+	if (insect_->ref_count_ > 1)
 	{
-		delete insect_;
+		Insect* temp = Insect::find_and_clone(NULL, insect_->get_species());
+		int id = temp->get_id();
+		*temp = *insect_;
+		temp->id_ = id;
+		temp->ref_count_ = 1;
+		insect_->ref_count_--;
+		if (insect_->ref_count_ == 0)
+		{
+			delete insect_;
+		}
+		insect_ = temp;
 	}
-	insect_ = temp;
 }
 
 /*InsectGroup*/
@@ -294,17 +305,22 @@ void InsectGroup::hatch(vector<Abstract*>* abs_list)
 	}
 	else
 	{
-		number = 100;
+		number = 10;
+	}
+	if (number < 1)
+	{
+		number = 1;
 	}
 	InsectData* temp = new InsectData(abs_list, species_);
+	Node* new_element = new Node(temp);
+	list_->add(new_element);
 
-	for (int i = 0; i < number; i++)
+	for (int i = 1; i < number; i++)
 	{
 		InsectData* data = new InsectData(abs_list, *temp);
 		Node* new_element = new Node(data);
 		list_->add(new_element);
 	}
-	delete temp;
 }
 void InsectGroup::add(Object* new_element)
 {
